@@ -27,6 +27,9 @@
     <ClCompile Include="..\..\Src\lib_parallax_scroll.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\SimplePhysics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\LessonX.h">
@@ -38,7 +41,10 @@
     <ClInclude Include="..\..\Header\HUD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Header\LIbParallexScroll.h">
+    <ClInclude Include="..\..\Header\LibParallexScroll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\SimplePhysics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -48,11 +54,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\Src\CommonClass_2008.lib">
-      <Filter>Source Files</Filter>
-    </Library>
-    <Library Include="..\..\Src\CommonClass_2015.lib">
-      <Filter>Source Files</Filter>
-    </Library>
+    <None Include="..\..\Header\Eigen\Dense">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

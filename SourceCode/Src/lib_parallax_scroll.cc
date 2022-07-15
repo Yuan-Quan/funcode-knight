@@ -1,6 +1,5 @@
 #include "LibParallexScroll.h"
 #include <iostream>
-#include "pid.h"
 using namespace std;
 
 Eigen::Vector2f LibParallexScroll::velocity_conversion_function(float z, Eigen::Vector2f velocity)
@@ -310,16 +309,16 @@ float LibParallexScroll::parse_scenery_z_deepth(std::string name)
 	// strip right to first underscore
 	size_t trim_idx = name.find('_');
 	// if the first char is not L
-	if (!name[0] == 'L')
+	if (name.find('L') == std::string::npos)
 	{
 		cout << "error parsing scenery program interface: " << name << endl;
-		return 0.f;
+		return 15;
 	}
 	// if the first underscore is not found
 	if (trim_idx == std::string::npos)
 	{
 		cout << "error parsing scenery program interface: " << name << endl;
-		return 0.f;
+		return 15;
 	}
 	// remove first 'L' and everyting after first underscore
 	// leaving only the number

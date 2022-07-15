@@ -8,6 +8,8 @@
 #define _LESSON_X_H_
 //
 #include <Windows.h>
+#include "LibParallexScroll.h"
+#include "SimplePhysics.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -16,6 +18,13 @@ class	CGameMain
 {
 private:
 	int				m_iGameState;				// 游戏状态，0：结束或者等待开始；1：初始化；2：游戏进行中
+	LibParallexScroll kings_parallex = LibParallexScroll();
+	float potato_speed_up;
+	float potato_speed_down;
+	float potato_speed_left;
+	float potato_speed_right;
+
+	SimplePhysics kings_physics = SimplePhysics();
 
 public:
 	CGameMain();            //构造函数

@@ -21,7 +21,31 @@ CGameMain		g_GameMain;
 // 构造函数
 CGameMain::CGameMain()
 {
-	m_iGameState			=	0;
+	m_iGameState			=	1;
+	kings_parallex.add_player({ "potato" });
+	kings_parallex.add_scenery({
+		"L15_kings_path_P1",
+		"L15_kings_path_P2",
+		"L15_kings_path_P3",
+		"L15_kings_path_P4",
+		"L15_kings_path_P5",
+		"L15_kings_path_P6",
+		"L15_kings_path_P7",
+		"L15_kings_path_P8",
+		"map_tile_1",
+		});
+	kings_parallex.add_camera_lock({
+		"cam_lck_1",
+		"cam_lck_2",
+		"cam_lck_3",
+		"cam_lck_4",
+		"cam_lck_5",
+		"cam_lck_6",
+		"cam_lck_7",
+		"cam_lck_8",
+		});
+
+
 }
 //==============================================================================
 //
@@ -74,12 +98,19 @@ void CGameMain::GameMainLoop( float	fDeltaTime )
 // 每局开始前进行初始化，清空上一局相关数据
 void CGameMain::GameInit()
 {
+	kings_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
+	std::function<void(float, float)> f = std::bind(&LibParallexScroll::set_player_linear_velocity, &kings_parallex, std::placeholders::_1, std::placeholders::_2);
+	kings_physics.add_entity("potato", f);
+	kings_physics.add_map_tile("map_tile_1");
+	//kings_physics.init();
 }
 //=============================================================================
 //
 // 每局游戏进行中
 void CGameMain::GameRun( float fDeltaTime )
 {
+	kings_parallex.main_loop(fDeltaTime);
+	kings_physics.main_loop(fDeltaTime);
 }
 //=============================================================================
 //
@@ -120,7 +151,23 @@ void CGameMain::OnMouseUp( const int iMouseType, const float fMouseX, const floa
 // 参数 iAltPress, iShiftPress，iCtrlPress：键盘上的功能键Alt，Ctrl，Shift当前是否也处于按下状态(0未按下，1按下)
 void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShiftPress, const bool bCtrlPress )
 {	
-
+	switch(iKey)
+	{
+	case KEY_W:		
+		kings_physics.set_force_1("potato", 0, -20);
+		break;
+	case KEY_A:
+		kings_physics.set_force_1("potato", -20, 0);
+		break;
+	case KEY_S:	
+		kings_physics.set_force_1("potato", 0, 20);
+		break;
+	case KEY_D:
+		kings_physics.set_force_1("potato", 20, 0);
+		break;
+	case KEY_F:
+		break;
+	}
 }
 //==========================================================================
 //
@@ -128,7 +175,21 @@ void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShi
 // 参数 iKey：弹起的键，值见 enum KeyCodes 宏定义
 void CGameMain::OnKeyUp( const int iKey )
 {
-	
+	switch(iKey)
+	{
+	case KEY_W:		
+		kings_physics.set_force_1("potato", 0, 0);
+		break;
+	case KEY_A:
+		kings_physics.set_force_1("potato", 0, 0);
+		break;
+	case KEY_S:	
+		kings_physics.set_force_1("potato", 0, 0);
+		break;
+	case KEY_D:
+		kings_physics.set_force_1("potato", 0, 0);
+		break;
+	}	
 }
 //===========================================================================
 //
@@ -137,7 +198,7 @@ void CGameMain::OnKeyUp( const int iKey )
 // 参数 szTarName：被碰撞的精灵名字
 void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName )
 {
-	
+	kings_physics.on_colid_callback(szSrcName, szTarName);
 }
 //===========================================================================
 //
@@ -146,6 +207,5 @@ void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName 
 // 参数 iColSide：碰撞到的边界 0 左边，1 右边，2 上边，3 下边
 void CGameMain::OnSpriteColWorldLimit( const char *szName, const int iColSide )
 {
-	
 }
 

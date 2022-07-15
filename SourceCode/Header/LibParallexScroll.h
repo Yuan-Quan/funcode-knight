@@ -3,7 +3,6 @@
 #include <string>
 #include "CommonClass.h"
 #include <Eigen/Dense>
-#include "pid.h"
 
 class LibParallexScroll
 {
@@ -47,7 +46,7 @@ private:
 	float camera_bondary_bottom_ = 0.f;
 
 
-	PID cam_pid_controller_ = PID(0.01f, 100.f, 100.f, 0.001f, 0.f, 0.f);
+	//PID cam_pid_controller_ = PID(0.01f, 100.f, 100.f, 0.001f, 0.f, 0.f);
 	Eigen::Vector2f camera_pos_setpoint_;
 	Eigen::Vector2f cam_velocity_pid_warper_(Eigen::Vector2f error);
 	float cam_acc_lim = 0.1;
