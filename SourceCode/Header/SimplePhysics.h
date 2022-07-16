@@ -24,8 +24,13 @@ struct Box {
 
 struct Object {
 	Eigen::Vector2f velocity;
+	Eigen::Vector2f vel_tmp;
+	Eigen::Vector2f vel_1;
 	Eigen::Vector2f force;
 	Eigen::Vector2f force_1;
+	Eigen::Vector2f force_tmp;
+	Eigen::Vector2f tmp_col_vel_intergral;
+	int col_update_span;
 	Box* hit_box;
 	float mass;
 	int type;
@@ -43,19 +48,6 @@ struct Transform { // Describes an objects location
 	Eigen::Quaterniond Rotation;
 };
 
-struct Collision{
-	Object* a;
-	Object* b;
-	int col_status;
-
-	Collision(Object* a, Object* b, int col_status)
-	{
-		this->a = a;
-		this->b = b;
-		this->col_status = col_status;
-	}
-};
-
 public:
 	SimplePhysics();
 	~SimplePhysics();
@@ -63,6 +55,7 @@ public:
 	float get_entity_velocity_x(size_t idx);
 	float get_entity_velocity_y(size_t idx);
 	void add_map_tile(std::string name);
+	void add_map_tile(std::vector<std::string> names);
 	void add_entity(std::string name);
 	void add_entity(std::string name, std::function<void(float, float)> vel_fun);
 	// a constant force offset, before force summing
@@ -77,16 +70,28 @@ public:
 	void set_vel_override(std::string name, float x, float y);
 	
 	void init();
+	void on_colid_callback(Object* src, Object* tar);
 	void on_colid_callback(std::string src_name, std::string tar_name);
 	void main_loop(float dt);
 
 private:
 	std::vector<Object*> objects_;
-	Eigen::Vector2f gravity_ = Eigen::Vector2f(0.0, 9.8);
+	//Eigen::Vector2f gravity_ = Eigen::Vector2f(0.0, 0.0);
+	Eigen::Vector2f gravity_ = Eigen::Vector2f(0.0, 98.0);
+	float dt_;
+	float damping_factor_ = 0.9999f;
+	float fric_factor_ = 0.0f;
+	float drag_factor_ = 0.2f;
+	float collision_cancel_epsilon_ = 0.001;
 
-	int test_collision_(Box* a , Box* b);
-	std::vector<Collision> collisions_;
+	void test_collision_(Object* a , Object* b);
 	void handel_collisions_();
+	void process_collisions_();
+	void update_col_intergral(Object* obj);
+	void remove_aix_component_(Object* obj, int direction);
+	void reset_col_(Object* obj);
+	bool is_col_(Box* a, Box* b);
+	Eigen::Vector2f get_aix_component_(Eigen::Vector2f input, int direction);
 	
 	inline float relu(float input)
 	{

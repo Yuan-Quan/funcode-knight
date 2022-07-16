@@ -1,7 +1,7 @@
-//-------------------------- 7/15/2022 -- 21:06:31 -----
+//-------------------------- 7/16/2022 -- 17:47:56 -----
 Processor Init:
-   AMD (unknown), ~3.25 Ghz
-     (timed at roughly 3.24 Ghz)
+   AMD (unknown), ~3.20 Ghz
+     (timed at roughly 3.19 Ghz)
    FPU detected
    MMX detected
    SSE detected
@@ -117,6 +117,8 @@ Activating DirectInput...
 DirectInput joystick failed to enable!
 Compiling C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/kings_path.t2d...
 Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/kings_path.t2d.
+DirectInput deactivated.
+Activating DirectInput...
 DirectInput deactivated.
 Shutting down the OpenGL display device...
 Making the GL rendering context not current...

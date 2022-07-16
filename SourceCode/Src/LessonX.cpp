@@ -32,7 +32,22 @@ CGameMain::CGameMain()
 		"L15_kings_path_P6",
 		"L15_kings_path_P7",
 		"L15_kings_path_P8",
+
 		"map_tile_1",
+		"map_tile_2",
+		"map_tile_3",
+		"map_tile_4",
+		"map_tile_5",
+		"map_tile_6",
+		"map_tile_7",
+		"map_tile_8",
+		"map_tile_9",
+		"map_tile_10",
+		"map_tile_11",
+		"map_tile_12",
+		"map_tile_13",
+		"map_tile_14",
+		"map_tile_15",
 		});
 	kings_parallex.add_camera_lock({
 		"cam_lck_1",
@@ -101,7 +116,24 @@ void CGameMain::GameInit()
 	kings_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
 	std::function<void(float, float)> f = std::bind(&LibParallexScroll::set_player_linear_velocity, &kings_parallex, std::placeholders::_1, std::placeholders::_2);
 	kings_physics.add_entity("potato", f);
-	kings_physics.add_map_tile("map_tile_1");
+	kings_physics.add_map_tile({
+		"map_tile_1",
+		"map_tile_2",
+		"map_tile_3",
+		"map_tile_4",
+		"map_tile_5",
+		"map_tile_6",
+		"map_tile_7",
+		"map_tile_8",
+		"map_tile_9",
+		"map_tile_10",
+		"map_tile_11",
+		"map_tile_12",
+		"map_tile_13",
+		"map_tile_14",
+		"map_tile_15",
+		});
+	
 	//kings_physics.init();
 }
 //=============================================================================
@@ -153,17 +185,18 @@ void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShi
 {	
 	switch(iKey)
 	{
-	case KEY_W:		
-		kings_physics.set_force_1("potato", 0, -20);
+	case KEY_Z:		
+		kings_physics.set_vel_temp("potato", 0, -18);
+		kings_physics.set_force_1("potato", 0, -150);
 		break;
-	case KEY_A:
-		kings_physics.set_force_1("potato", -20, 0);
+	case KEY_LEFT:
+		kings_physics.set_vel_offset("potato", -20, 0);
 		break;
 	case KEY_S:	
-		kings_physics.set_force_1("potato", 0, 20);
+		//kings_physics.set_vel_temp("potato", 0, 20);
 		break;
-	case KEY_D:
-		kings_physics.set_force_1("potato", 20, 0);
+	case KEY_RIGHT:
+		kings_physics.set_vel_offset("potato", 20, 0);
 		break;
 	case KEY_F:
 		break;
@@ -177,17 +210,17 @@ void CGameMain::OnKeyUp( const int iKey )
 {
 	switch(iKey)
 	{
-	case KEY_W:		
+	case KEY_Z:		
 		kings_physics.set_force_1("potato", 0, 0);
 		break;
-	case KEY_A:
-		kings_physics.set_force_1("potato", 0, 0);
+	case KEY_LEFT:
+		kings_physics.set_vel_offset("potato", 0, 0);
 		break;
 	case KEY_S:	
-		kings_physics.set_force_1("potato", 0, 0);
+		//kings_physics.set_vel_temp("potato", 0, 0);
 		break;
-	case KEY_D:
-		kings_physics.set_force_1("potato", 0, 0);
+	case KEY_RIGHT:
+		kings_physics.set_vel_offset("potato", 0, 0);
 		break;
 	}	
 }
@@ -198,7 +231,7 @@ void CGameMain::OnKeyUp( const int iKey )
 // 参数 szTarName：被碰撞的精灵名字
 void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName )
 {
-	kings_physics.on_colid_callback(szSrcName, szTarName);
+	//kings_physics.on_colid_callback(szSrcName, szTarName);
 }
 //===========================================================================
 //
