@@ -68,6 +68,8 @@ public:
 	void set_vel_temp(std::string name, float x, float y);
 	// change the velocity of object
 	void set_vel_override(std::string name, float x, float y);
+
+	bool get_is_on_ground();
 	
 	void init();
 	void on_colid_callback(Object* src, Object* tar);

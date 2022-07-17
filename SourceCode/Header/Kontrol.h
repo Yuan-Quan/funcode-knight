@@ -29,6 +29,7 @@ private:
 	std::function<void(std::string, float, float)> const_vel_nh_;
 	std::function<void(std::string, float, float)> tmp_force_nh_;
 	std::function<void(std::string, float, float)> const_force_nh_;
+	std::function<bool()> is_grounded_nh_;
 
 	Eigen::Vector2f tmp_vel_;
 	Eigen::Vector2f const_vel_;
@@ -40,11 +41,16 @@ private:
 	Eigen::Vector2f const_vel_left_;
 	Eigen::Vector2f const_vel_right_;
 
-	void update_stat();
+	bool is_jumping_ = false;
+	float jump_time = 0.f;
+
+	void update_jump_stat(float dt);
 	void update_cool_down();
 	void update_velocity();
 	void summing();
 
+	void on_jump_key_press();
+	void on_jump_key_release();
 	void set_left();
 	void unset_left();
 	void set_right();
@@ -68,6 +74,8 @@ public:
 		std::function<void(std::string, float, float)> tmp_force,
 		std::function<void(std::string, float, float)> const_force
 	);
+
+	void set_gound_state_handler(std::function<bool()> is_grounded);
 
 	void main_loop(float dt);
 };

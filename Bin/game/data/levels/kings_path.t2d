@@ -170,8 +170,8 @@
    };
    new t2dShapeVector(cam_lck_3) {
       canSaveDynamicFields = "1";
-      Position = "557.892 259.544";
-      size = "120.604 103.507";
+      Position = "592.644 275.838";
+      size = "190.110 136.096";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
       LineColor = "1 1 1 1";

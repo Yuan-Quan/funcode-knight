@@ -152,6 +152,11 @@ void SimplePhysics::set_vel_temp(std::string name, float x, float y)
 
 }
 
+bool SimplePhysics::get_is_on_ground()
+{
+	return objects_.at(0)->is_against_down;
+}
+
 void SimplePhysics::init()
 {
 	for (auto& item : objects_)
@@ -262,6 +267,7 @@ void SimplePhysics::main_loop(float dt)
 		obj->velocity *= damping_factor_;
 		obj->velocity += obj->force / obj->mass * dt;
 		obj->velocity += obj->vel_tmp;
+		obj->velocity += obj->vel_1;
 		//obj->Position += obj->Velocity * dt;
 
 		obj->force << 0, 0; // reset net force at the end
@@ -295,8 +301,9 @@ void SimplePhysics::main_loop(float dt)
 	{
 		if (item->velocity_handeler)
 		{
-			item->velocity_handeler(item->velocity.x() + item->vel_1.x(), item->velocity.y() + item->vel_1.y());
+			item->velocity_handeler(item->velocity.x(), item->velocity.y());
 		}
+		item->velocity -= item->vel_1;
 	}
 }
 
@@ -423,9 +430,10 @@ void SimplePhysics::update_col_intergral(Object* obj)
 	Eigen::Vector2f e_up;
 	e_up<< 0, -1;
 	Eigen::Vector2f e_down;
-	e_down<< 0, -1;
+	e_down<< 0, 1;
 
 	// relu here is not needed
+	// actually this entire thing is not needed
 	if (obj->is_against_left)
 	{
 		if (relu(obj->tmp_col_vel_intergral.dot(e_right)) >= collision_cancel_epsilon_)

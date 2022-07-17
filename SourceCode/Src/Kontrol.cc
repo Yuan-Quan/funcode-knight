@@ -1,6 +1,19 @@
 #include "Kontrol.h"
 using namespace hk_config;
 
+void Kontrol::update_jump_stat(float dt)
+{
+	if (is_jumping_)
+	{
+		jump_time += dt;
+	}
+	if (jump_time >= 0.35)
+	{
+		unset_jump();
+	}
+
+}
+
 void Kontrol::update_velocity()
 {
 	tmp_vel_nh_(player_name_, tmp_vel_.x(), tmp_vel_.y());
@@ -18,6 +31,23 @@ void Kontrol::summing()
 
 	tmp_vel_ += tmp_vel_jump;
 	tmp_vel_jump << 0, 0;
+}
+
+void Kontrol::on_jump_key_press()
+{
+	if (is_grounded_nh_())
+	{
+		set_jump();
+	}
+
+}
+
+void Kontrol::on_jump_key_release()
+{
+	if (is_jumping_)
+	{
+		unset_jump();
+	}
 }
 
 void Kontrol::set_left()
@@ -44,11 +74,16 @@ void Kontrol::set_jump()
 {
 	tmp_vel_jump << 0, -60;
 	const_force_jump << 0, -450;
+
+	is_jumping_ = true;
 }
 
 void Kontrol::unset_jump()
 {
 	const_force_jump << 0, 0;
+	is_jumping_ = false;
+
+	jump_time = 0.f;
 }
 
 Kontrol::Kontrol(std::string name)
@@ -67,7 +102,7 @@ void Kontrol::key_press_callback(int key)
 		set_right();
 		break;
 	case KeyBinds::KEY_JUMP:
-		set_jump();
+		on_jump_key_press();
 		break;
 	default:
 		break;
@@ -85,7 +120,8 @@ void Kontrol::key_relese_callback(int key)
 		unset_right();
 		break;
 	case KeyBinds::KEY_JUMP:
-		unset_jump();
+		on_jump_key_release();
+		break;
 	default:
 		break;
 	}
@@ -99,8 +135,14 @@ void Kontrol::set_physics_engine_handler(std::function<void(std::string, float, 
 	const_force_nh_ = const_force;
 }
 
+void Kontrol::set_gound_state_handler(std::function<bool()> is_grounded)
+{
+	is_grounded_nh_ = is_grounded;
+}
+
 void Kontrol::main_loop(float dt)
 {
+	update_jump_stat(dt);
 	summing();
 	update_velocity();
 }
