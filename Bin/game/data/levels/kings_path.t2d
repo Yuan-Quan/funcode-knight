@@ -45,6 +45,7 @@
       canSaveDynamicFields = "1";
       Position = "-27.766 -2.966";
       size = "301.266 301.266";
+      Layer = "15";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
          mountID = "2";
@@ -57,6 +58,7 @@
       canSaveDynamicFields = "1";
       Position = "273.622 -3.345";
       size = "301.266 301.266";
+      Layer = "15";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
          mountID = "3";
@@ -69,6 +71,7 @@
       canSaveDynamicFields = "1";
       Position = "574.256 -3.345";
       size = "301.266 301.266";
+      Layer = "15";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
          mountID = "4";
@@ -81,6 +84,7 @@
       canSaveDynamicFields = "1";
       Position = "792.757 -3.345";
       size = "137.688 301.266";
+      Layer = "15";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
          mountID = "5";
@@ -93,6 +97,7 @@
       canSaveDynamicFields = "1";
       Position = "-26.582 255.776";
       size = "301.266 218.447";
+      Layer = "15";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
          mountID = "6";
@@ -105,6 +110,7 @@
       canSaveDynamicFields = "1";
       Position = "274.683 255.776";
       size = "301.266 218.447";
+      Layer = "15";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
          mountID = "7";
@@ -117,6 +123,7 @@
       canSaveDynamicFields = "1";
       Position = "574.772 255.776";
       size = "301.266 218.447";
+      Layer = "15";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
          mountID = "8";
@@ -129,22 +136,10 @@
       canSaveDynamicFields = "1";
       Position = "792.757 255.776";
       size = "137.688 218.447";
+      Layer = "15";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
          mountID = "9";
-   };
-   new t2dStaticSprite(potato) {
-      imageMap = "DandanTarget1ImageMap";
-      frame = "0";
-      useSourceRect = "0";
-      sourceRect = "2.36006e-039 0 2.36006e-039 6.22914e-039";
-      canSaveDynamicFields = "1";
-      Position = "2.106 13.929";
-      size = "7.894 11.348";
-      WorldLimitMin = "-50.000 -37.500";
-      WorldLimitMax = "50.000 37.500";
-      CollisionActiveSend = "1";
-         mountID = "10";
    };
    new t2dShapeVector(cam_lck_1) {
       canSaveDynamicFields = "1";
@@ -155,7 +150,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "11";
+         mountID = "10";
    };
    new t2dShapeVector(cam_lck_2) {
       canSaveDynamicFields = "1";
@@ -166,7 +161,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "12";
+         mountID = "11";
    };
    new t2dShapeVector(cam_lck_3) {
       canSaveDynamicFields = "1";
@@ -177,7 +172,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "13";
+         mountID = "12";
    };
    new t2dShapeVector(cam_lck_4) {
       canSaveDynamicFields = "1";
@@ -188,7 +183,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "14";
+         mountID = "13";
    };
    new t2dShapeVector(cam_lck_5) {
       canSaveDynamicFields = "1";
@@ -199,7 +194,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "15";
+         mountID = "14";
    };
    new t2dShapeVector(cam_lck_6) {
       canSaveDynamicFields = "1";
@@ -210,7 +205,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "16";
+         mountID = "15";
    };
    new t2dShapeVector(cam_lck_7) {
       canSaveDynamicFields = "1";
@@ -221,7 +216,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "17";
+         mountID = "16";
    };
    new t2dShapeVector(cam_lck_8) {
       canSaveDynamicFields = "1";
@@ -232,7 +227,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "18";
+         mountID = "17";
    };
    new t2dShapeVector(map_tile_1) {
       canSaveDynamicFields = "1";
@@ -244,7 +239,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "19";
+         mountID = "18";
    };
    new t2dShapeVector(map_tile_2) {
       canSaveDynamicFields = "1";
@@ -256,7 +251,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "20";
+         mountID = "19";
    };
    new t2dShapeVector(map_tile_3) {
       canSaveDynamicFields = "1";
@@ -268,7 +263,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "21";
+         mountID = "20";
    };
    new t2dShapeVector(map_tile_4) {
       canSaveDynamicFields = "1";
@@ -280,7 +275,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "22";
+         mountID = "21";
    };
    new t2dShapeVector(map_tile_5) {
       canSaveDynamicFields = "1";
@@ -292,7 +287,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "23";
+         mountID = "22";
    };
    new t2dShapeVector(map_tile_6) {
       canSaveDynamicFields = "1";
@@ -304,7 +299,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "24";
+         mountID = "23";
    };
    new t2dShapeVector(map_tile_7) {
       canSaveDynamicFields = "1";
@@ -316,7 +311,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "25";
+         mountID = "24";
    };
    new t2dShapeVector(map_tile_8) {
       canSaveDynamicFields = "1";
@@ -328,7 +323,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "26";
+         mountID = "25";
    };
    new t2dShapeVector(map_tile_9) {
       canSaveDynamicFields = "1";
@@ -340,7 +335,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "27";
+         mountID = "26";
    };
    new t2dShapeVector(map_tile_10) {
       canSaveDynamicFields = "1";
@@ -352,7 +347,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "28";
+         mountID = "27";
    };
    new t2dShapeVector(map_tile_15) {
       canSaveDynamicFields = "1";
@@ -364,7 +359,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "29";
+         mountID = "28";
    };
    new t2dShapeVector(map_tile_11) {
       canSaveDynamicFields = "1";
@@ -376,7 +371,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "30";
+         mountID = "29";
    };
    new t2dShapeVector(map_tile_12) {
       canSaveDynamicFields = "1";
@@ -388,7 +383,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "31";
+         mountID = "30";
    };
    new t2dShapeVector(map_tile_13) {
       canSaveDynamicFields = "1";
@@ -400,7 +395,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "32";
+         mountID = "31";
    };
    new t2dShapeVector(map_tile_14) {
       canSaveDynamicFields = "1";
@@ -412,19 +407,19 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "33";
+         mountID = "32";
    };
    new t2dStaticSprite() {
       imageMap = "soul_orbImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "0 0 0 0";
+      sourceRect = "2.36006e-039 0 2.36006e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "-56.423 -32.114";
       size = "30.750 19.375";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
-         mountID = "34";
+         mountID = "33";
    };
    new t2dAnimatedSprite(hp_mask_0) {
       animationName = "hp_mask_flashAnimation";
@@ -433,7 +428,7 @@
       size = "12.000 12.000";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
-         mountID = "35";
+         mountID = "34";
    };
    new t2dAnimatedSprite(soul_orb) {
       animationName = "soul_orb_glowAnimation";
@@ -442,6 +437,536 @@
       size = "13.205 12.486";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
+         mountID = "35";
+   };
+   new t2dAnimatedSprite(Knight) {
+      animationName = "I";
+      canSaveDynamicFields = "1";
+      Position = "0.520 -3.275";
+      size = "21.903 16.549";
+      SortPoint = "-0.249 0.337";
+      Layer = "1";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionPolyList = "-0.417 -0.130 -0.108 -0.136 -0.182 0.838 -0.270 0.838";
+      LinkPoints = "-1.250 0.000 -0.850 0.000 0.750 0.500 -0.250 1.800 -1.500 0.750 -0.250 -2.750 0.500 0.240 -0.150 0.500 0.000 0.000 -0.500 0.000 -0.250 -1.200 0.750 0.000 0.350 0.000";
          mountID = "36";
+   };
+   new t2dTextObject(move) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "-29.250 -25.000";
+      size = "21.500 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "move";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "37";
+   };
+   new t2dTextObject(face) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "-31.625 -15.000";
+      size = "16.750 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "face";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "38";
+   };
+   new t2dTextObject(jump) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "-30.500 -5.000";
+      size = "19.000 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "jump";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "39";
+   };
+   new t2dTextObject(attack) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "-28.125 5.000";
+      size = "23.750 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "attack";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "40";
+   };
+   new t2dTextObject(magic) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "26.813 -25.000";
+      size = "23.625 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "magic";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "41";
+   };
+   new t2dTextObject(dash) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "24.563 -15.000";
+      size = "19.125 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "dash";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "42";
+   };
+   new t2dTextObject(hurt) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "22.625 -5.000";
+      size = "15.250 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "hurt";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "43";
+   };
+   new t2dTextObject(focus) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "25.625 5.000";
+      size = "21.250 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "focus";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "44";
+   };
+   new t2dTextObject(djump) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "26.938 15.000";
+      size = "23.875 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "djump";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "45";
+   };
+   new t2dAnimatedSprite(SBE0) {
+      animationName = "SBE";
+      canSaveDynamicFields = "1";
+      Position = "-40.408 50.000";
+      size = "19.185 20.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionPolyList = "-0.750 0.000 -0.225 -0.350 1.000 -0.500 0.750 0.750 -0.225 0.660 -0.750 0.500 -0.850 0.250";
+         mountID = "46";
+   };
+   new t2dAnimatedSprite(SAE0) {
+      animationName = "SAE";
+      canSaveDynamicFields = "1";
+      Position = "-16.927 50.000";
+      size = "29.976 20.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionPolyList = "-0.700 -0.250 -0.250 -0.500 0.500 -0.500 1.000 -0.225 1.000 0.500 0.000 0.750 -0.250 0.750 -0.860 0.275 -0.860 0.000";
+         mountID = "47";
+   };
+   new t2dAnimatedSprite(USE0) {
+      animationName = "USE";
+      canSaveDynamicFields = "1";
+      Position = "10.000 55.164";
+      size = "20.000 30.327";
+      Layer = "2";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionPolyList = "0.000 -0.600 0.500 -0.500 0.760 0.250 0.775 0.775 -0.860 0.350 -0.500 -0.500";
+         mountID = "48";
+   };
+   new t2dAnimatedSprite(DSE0) {
+      animationName = "DSE";
+      canSaveDynamicFields = "1";
+      Position = "32.964 62.342";
+      size = "19.784 30.000";
+      Layer = "2";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionPolyList = "-0.750 -0.750 0.750 -1.000 0.800 -0.250 0.600 0.200 0.000 0.300 -0.275 0.225 -0.550 0.000";
+         mountID = "49";
+   };
+   new t2dAnimatedSprite(WJE0) {
+      animationName = "WJE";
+      canSaveDynamicFields = "1";
+      Position = "50.234 52.530";
+      size = "19.532 25.061";
+      Layer = "2";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+         mountID = "50";
+   };
+   new t2dAnimatedSprite(DE0) {
+      animationName = "DE";
+      canSaveDynamicFields = "1";
+      Position = "72.410 50.000";
+      size = "25.180 20.000";
+      Layer = "2";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+         mountID = "51";
+   };
+   new t2dAnimatedSprite(DJE0) {
+      animationName = "DJE";
+      canSaveDynamicFields = "1";
+      Position = "-60.000 51.914";
+      size = "20.000 23.829";
+      Layer = "2";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+         mountID = "52";
+   };
+   new t2dAnimatedSprite(SE0) {
+      animationName = "SE";
+      canSaveDynamicFields = "1";
+      Position = "-39.820 95.000";
+      size = "50.360 70.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionPolyList = "-0.750 -0.500 0.750 -0.500 1.000 0.000 0.750 0.500 0.250 0.750 -0.250 0.750 -0.750 0.500 -1.000 0.000";
+         mountID = "53";
+   };
+   new t2dAnimatedSprite(FE0) {
+      animationName = "FE";
+      canSaveDynamicFields = "1";
+      Position = "-0.937 97.262";
+      size = "28.125 21.250";
+      SortPoint = "-0.200 0.259";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+         mountID = "54";
+   };
+   new t2dAnimatedSprite(DSSE0) {
+      animationName = "DSSE";
+      canSaveDynamicFields = "1";
+      Position = "22.500 75.254";
+      size = "75.000 20.508";
+      SortPoint = "0.003 -0.524";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionPolyList = "-1.000 -0.500 -0.750 -0.850 1.000 -1.000 0.750 0.250 -0.750 0.250 -1.000 -0.250";
+         mountID = "55";
+   };
+   new t2dAnimatedSprite(B0) {
+      animationName = "B";
+      canSaveDynamicFields = "1";
+      Position = "27.188 97.375";
+      size = "34.375 14.750";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionPolyList = "-1.000 -0.250 -0.750 -0.750 0.000 -0.750 1.000 0.000 1.000 0.250 0.000 1.000 -0.750 1.000 -1.000 0.500";
+         mountID = "56";
+   };
+   new t2dAnimatedSprite(Blank) {
+      animationName = "DJE";
+      canSaveDynamicFields = "1";
+      Position = "108.590 9.981";
+      size = "43.750 52.125";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+         mountID = "57";
+   };
+   new t2dTextObject(effect) {
+      canSaveDynamicFields = "1";
+      Visible = "0";
+      Position = "-29.125 15.000";
+      size = "21.750 10.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      text = "effect";
+      font = "Arial";
+      wordWrap = "0";
+      hideOverflow = "1";
+      textAlign = "Left";
+      lineHeight = "10";
+      aspectRatio = "1";
+      lineSpacing = "0";
+      characterSpacing = "0";
+      autoSize = "1";
+      fontSizes = "80";
+      textColor = "1 1 1 1";
+      bilinearFilter = "0";
+      snapToInteger = "0";
+      noUnicode = "0";
+         hideOverlap = "0";
+         mountID = "58";
+   };
+   new t2dShapeVector(knight_placeholder) {
+      canSaveDynamicFields = "1";
+      Position = "-1.843 1.225";
+      size = "6.315 12.450";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      LinkPoints = "0.000 0.265";
+      PolyList = "-1.000 -1.000 -1.000 1.000 1.000 1.000 1.000 -1.000";
+      LineColor = "0.321569 1 0 1";
+      fillColor = "0.02745 1 0 0.243137";
+      FillMode = "0";
+         mountID = "59";
+   };
+   new t2dShapeVector(map_tile_16) {
+      canSaveDynamicFields = "1";
+      Position = "484.368 259.653";
+      size = "58.736 34.479";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "60";
+   };
+   new t2dShapeVector(map_tile_17) {
+      canSaveDynamicFields = "1";
+      Position = "458.350 240.292";
+      size = "58.713 39.415";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "61";
+   };
+   new t2dShapeVector(map_tile_18) {
+      canSaveDynamicFields = "1";
+      Position = "398.027 227.302";
+      size = "148.101 51.162";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "62";
+   };
+   new t2dShapeVector(map_tile_19) {
+      canSaveDynamicFields = "1";
+      Position = "278.063 238.674";
+      size = "121.527 32.652";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "63";
+   };
+   new t2dShapeVector(map_tile_20) {
+      canSaveDynamicFields = "1";
+      Position = "186.437 234.372";
+      size = "62.875 16.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "64";
+   };
+   new t2dShapeVector(map_tile_21) {
+      canSaveDynamicFields = "1";
+      Position = "231.467 203.857";
+      size = "14.933 4.547";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "65";
+   };
+   new t2dShapeVector(map_tile_22) {
+      canSaveDynamicFields = "1";
+      Position = "255.576 187.827";
+      size = "11.151 11.336";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "66";
+   };
+   new t2dShapeVector(map_tile_23) {
+      canSaveDynamicFields = "1";
+      Position = "228.343 173.078";
+      size = "8.687 3.843";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "67";
+   };
+   new t2dShapeVector(map_tile_24) {
+      canSaveDynamicFields = "1";
+      Position = "285.660 173.094";
+      size = "11.319 13.812";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "68";
+   };
+   new t2dShapeVector(map_tile_25) {
+      canSaveDynamicFields = "1";
+      Position = "306.698 152.500";
+      size = "13.395 5.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "69";
+   };
+   new t2dShapeVector(map_tile_26) {
+      canSaveDynamicFields = "1";
+      Position = "269.500 142.000";
+      size = "21.000 6.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "70";
    };
 };

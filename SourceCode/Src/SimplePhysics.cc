@@ -434,38 +434,38 @@ void SimplePhysics::update_col_intergral(Object* obj)
 
 	// relu here is not needed
 	// actually this entire thing is not needed
-	if (obj->is_against_left)
-	{
-		if (relu(obj->tmp_col_vel_intergral.dot(e_right)) >= collision_cancel_epsilon_)
-		{
-			obj->is_against_left = false;
-			//obj->tmp_col_vel_intergral << 0, 0;
-		}
-	}
-	if (obj->is_against_right)
-	{
-		if (relu(obj->tmp_col_vel_intergral.dot(e_left)) >= collision_cancel_epsilon_)
-		{
-			obj->is_against_right = false;
-			//obj->tmp_col_vel_intergral << 0, 0;
-		}
-	}
-	if (obj->is_against_up)
-	{
-		if (relu(obj->tmp_col_vel_intergral.dot(e_down)) >= collision_cancel_epsilon_)
-		{
-			obj->is_against_up = false;
-			//obj->tmp_col_vel_intergral << 0, 0;
-		}
-	}
-	if (obj->is_against_down)
-	{
-		if (relu(obj->velocity.dot(e_up)) >= collision_cancel_epsilon_)
-		{
-			obj->is_against_down = false;
-			//obj->tmp_col_vel_intergral << 0, 0;
-		}
-	}
+	//if (obj->is_against_left)
+	//{
+	//	if (relu(obj->tmp_col_vel_intergral.dot(e_right)) >= collision_cancel_epsilon_)
+	//	{
+	//		obj->is_against_left = false;
+	//		//obj->tmp_col_vel_intergral << 0, 0;
+	//	}
+	//}
+	//if (obj->is_against_right)
+	//{
+	//	if (relu(obj->tmp_col_vel_intergral.dot(e_left)) >= collision_cancel_epsilon_)
+	//	{
+	//		obj->is_against_right = false;
+	//		//obj->tmp_col_vel_intergral << 0, 0;
+	//	}
+	//}
+	//if (obj->is_against_up)
+	//{
+	//	if (relu(obj->tmp_col_vel_intergral.dot(e_down)) >= collision_cancel_epsilon_)
+	//	{
+	//		obj->is_against_up = false;
+	//		//obj->tmp_col_vel_intergral << 0, 0;
+	//	}
+	//}
+	//if (obj->is_against_down)
+	//{
+	//	if (relu(obj->velocity.dot(e_up)) >= collision_cancel_epsilon_)
+	//	{
+	//		obj->is_against_down = false;
+	//		//obj->tmp_col_vel_intergral << 0, 0;
+	//	}
+	//}
 }
 
 void SimplePhysics::remove_aix_component_(Object* obj, int direction)

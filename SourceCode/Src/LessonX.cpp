@@ -22,7 +22,7 @@ CGameMain		g_GameMain;
 CGameMain::CGameMain()
 {
 	m_iGameState			=	1;
-	kings_parallex.add_player({ "potato" });
+	kings_parallex.add_player({ "knight_placeholder" });
 	kings_parallex.add_scenery({
 		"L15_kings_path_P1",
 		"L15_kings_path_P2",
@@ -48,6 +48,18 @@ CGameMain::CGameMain()
 		"map_tile_13",
 		"map_tile_14",
 		"map_tile_15",
+		"map_tile_16",
+		"map_tile_17",
+		"map_tile_18",
+		"map_tile_19",
+		"map_tile_20",
+		"map_tile_21",
+		"map_tile_22",
+		"map_tile_23",
+		"map_tile_24",
+		"map_tile_25",
+		"map_tile_26",
+
 		});
 	kings_parallex.add_camera_lock({
 		"cam_lck_1",
@@ -115,7 +127,7 @@ void CGameMain::GameInit()
 {
 	kings_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
 	std::function<void(float, float)> f = std::bind(&LibParallexScroll::set_player_linear_velocity, &kings_parallex, std::placeholders::_1, std::placeholders::_2);
-	kings_physics.add_entity("potato", f);
+	kings_physics.add_entity("knight_placeholder", f);
 	kings_physics.add_map_tile({
 		"map_tile_1",
 		"map_tile_2",
@@ -132,6 +144,17 @@ void CGameMain::GameInit()
 		"map_tile_13",
 		"map_tile_14",
 		"map_tile_15",
+		"map_tile_16",
+		"map_tile_17",
+		"map_tile_18",
+		"map_tile_19",
+		"map_tile_20",
+		"map_tile_21",
+		"map_tile_22",
+		"map_tile_23",
+		"map_tile_24",
+		"map_tile_25",
+		"map_tile_26",
 		});
 
 	std::function<void(std::string, float, float)> fun_tmp_vel = std::bind(&SimplePhysics::set_vel_temp, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
@@ -142,11 +165,15 @@ void CGameMain::GameInit()
 
 	kings_kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
 	kings_kontrol.set_gound_state_handler(fun_ground_state);
+	animator.set_gound_status_handler(fun_ground_state);
 
 	for (size_t i = 0; i < 4; i++)
 	{
 		hud.apend_a_mask();
 	}
+
+	auto knight = new CSprite("Knight");
+	knight->SpriteMountToSprite("knight_placeholder", 0.f, -0.4f);
 	//kings_physics.init();
 }
 //=============================================================================
@@ -158,6 +185,7 @@ void CGameMain::GameRun( float fDeltaTime )
 	kings_physics.main_loop(fDeltaTime);
 	kings_kontrol.main_loop(fDeltaTime);
 	hud.main_loop();
+	animator.main_loop(fDeltaTime);
 }
 //=============================================================================
 //
@@ -199,6 +227,7 @@ void CGameMain::OnMouseUp( const int iMouseType, const float fMouseX, const floa
 void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShiftPress, const bool bCtrlPress )
 {
 	kings_kontrol.key_press_callback(iKey);
+	animator.key_press_callback(iKey);
 }
 //==========================================================================
 //
@@ -207,6 +236,7 @@ void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShi
 void CGameMain::OnKeyUp( const int iKey )
 {
 	kings_kontrol.key_relese_callback(iKey);
+	animator.key_release_callback(iKey);
 }
 //===========================================================================
 //
