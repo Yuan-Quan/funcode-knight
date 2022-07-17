@@ -101,14 +101,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\HUD.cc" />
+    <ClCompile Include="..\..\Src\Kontrol.cc" />
     <ClCompile Include="..\..\Src\LessonX.cpp" />
     <ClCompile Include="..\..\Src\lib_parallax_scroll.cc" />
     <ClCompile Include="..\..\Src\Main.cpp" />
-    <ClCompile Include="..\..\Src\SimplePhysics.cpp" />
+    <ClCompile Include="..\..\Src\SimplePhysics.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\CommonClass.h" />
     <ClInclude Include="..\..\Header\HUD.h" />
+    <ClInclude Include="..\..\Header\Kontrol.h" />
     <ClInclude Include="..\..\Header\LessonX.h" />
     <ClInclude Include="..\..\Header\LibParallexScroll.h" />
     <ClInclude Include="..\..\Header\SimplePhysics.h" />

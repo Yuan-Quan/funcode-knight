@@ -77,11 +77,11 @@ public:
 private:
 	std::vector<Object*> objects_;
 	//Eigen::Vector2f gravity_ = Eigen::Vector2f(0.0, 0.0);
-	Eigen::Vector2f gravity_ = Eigen::Vector2f(0.0, 98.0);
+	Eigen::Vector2f gravity_ = Eigen::Vector2f(0.0, 298.0);
 	float dt_;
 	float damping_factor_ = 0.9999f;
 	float fric_factor_ = 0.0f;
-	float drag_factor_ = 0.2f;
+	float drag_factor_ = 0.05f;
 	float collision_cancel_epsilon_ = 0.001;
 
 	void test_collision_(Object* a , Object* b);

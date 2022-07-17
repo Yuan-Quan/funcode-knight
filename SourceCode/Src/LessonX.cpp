@@ -133,6 +133,13 @@ void CGameMain::GameInit()
 		"map_tile_14",
 		"map_tile_15",
 		});
+
+	std::function<void(std::string, float, float)> fun_tmp_vel = std::bind(&SimplePhysics::set_vel_temp, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_const_vel = std::bind(&SimplePhysics::set_vel_offset, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_tmp_force = std::bind(&SimplePhysics::set_force_temp, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_cont_force = std::bind(&SimplePhysics::set_force_1, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+
+	kings_kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
 	
 	//kings_physics.init();
 }
@@ -143,6 +150,7 @@ void CGameMain::GameRun( float fDeltaTime )
 {
 	kings_parallex.main_loop(fDeltaTime);
 	kings_physics.main_loop(fDeltaTime);
+	kings_kontrol.main_loop(fDeltaTime);
 }
 //=============================================================================
 //
@@ -182,25 +190,8 @@ void CGameMain::OnMouseUp( const int iMouseType, const float fMouseX, const floa
 // 参数 iKey：被按下的键，值见 enum KeyCodes 宏定义
 // 参数 iAltPress, iShiftPress，iCtrlPress：键盘上的功能键Alt，Ctrl，Shift当前是否也处于按下状态(0未按下，1按下)
 void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShiftPress, const bool bCtrlPress )
-{	
-	switch(iKey)
-	{
-	case KEY_Z:		
-		kings_physics.set_vel_temp("potato", 0, -18);
-		kings_physics.set_force_1("potato", 0, -150);
-		break;
-	case KEY_LEFT:
-		kings_physics.set_vel_offset("potato", -20, 0);
-		break;
-	case KEY_S:	
-		//kings_physics.set_vel_temp("potato", 0, 20);
-		break;
-	case KEY_RIGHT:
-		kings_physics.set_vel_offset("potato", 20, 0);
-		break;
-	case KEY_F:
-		break;
-	}
+{
+	kings_kontrol.key_press_callback(iKey);
 }
 //==========================================================================
 //
@@ -208,21 +199,7 @@ void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShi
 // 参数 iKey：弹起的键，值见 enum KeyCodes 宏定义
 void CGameMain::OnKeyUp( const int iKey )
 {
-	switch(iKey)
-	{
-	case KEY_Z:		
-		kings_physics.set_force_1("potato", 0, 0);
-		break;
-	case KEY_LEFT:
-		kings_physics.set_vel_offset("potato", 0, 0);
-		break;
-	case KEY_S:	
-		//kings_physics.set_vel_temp("potato", 0, 0);
-		break;
-	case KEY_RIGHT:
-		kings_physics.set_vel_offset("potato", 0, 0);
-		break;
-	}	
+	kings_kontrol.key_relese_callback(iKey);
 }
 //===========================================================================
 //

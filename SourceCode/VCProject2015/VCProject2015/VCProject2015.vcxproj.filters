@@ -27,7 +27,10 @@
     <ClCompile Include="..\..\Src\lib_parallax_scroll.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\SimplePhysics.cpp">
+    <ClCompile Include="..\..\Src\SimplePhysics.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Kontrol.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Header\SimplePhysics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\Kontrol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

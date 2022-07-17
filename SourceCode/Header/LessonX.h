@@ -10,6 +10,7 @@
 #include <Windows.h>
 #include "LibParallexScroll.h"
 #include "SimplePhysics.h"
+#include "Kontrol.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -25,6 +26,8 @@ private:
 	float potato_speed_right;
 
 	SimplePhysics kings_physics = SimplePhysics();
+
+	Kontrol kings_kontrol = Kontrol("potato");
 
 public:
 	CGameMain();            //¹¹Ôìº¯Êý
