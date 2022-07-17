@@ -11,6 +11,7 @@
 #include "LibParallexScroll.h"
 #include "SimplePhysics.h"
 #include "Kontrol.h"
+#include "HUD.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -26,8 +27,8 @@ private:
 	float potato_speed_right;
 
 	SimplePhysics kings_physics = SimplePhysics();
-
 	Kontrol kings_kontrol = Kontrol("potato");
+	HUD hud = HUD("hp_mask_0", "soul_orb");
 
 public:
 	CGameMain();            //¹¹Ôìº¯Êý

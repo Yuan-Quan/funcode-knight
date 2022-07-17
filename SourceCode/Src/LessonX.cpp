@@ -142,6 +142,11 @@ void CGameMain::GameInit()
 
 	kings_kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
 	kings_kontrol.set_gound_state_handler(fun_ground_state);
+
+	for (size_t i = 0; i < 5; i++)
+	{
+		hud.apend_a_mask();
+	}
 	
 	//kings_physics.init();
 }
@@ -153,6 +158,7 @@ void CGameMain::GameRun( float fDeltaTime )
 	kings_parallex.main_loop(fDeltaTime);
 	kings_physics.main_loop(fDeltaTime);
 	kings_kontrol.main_loop(fDeltaTime);
+	hud.main_loop();
 }
 //=============================================================================
 //

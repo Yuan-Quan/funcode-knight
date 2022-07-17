@@ -414,4 +414,34 @@
       FillMode = "0";
          mountID = "33";
    };
+   new t2dStaticSprite() {
+      imageMap = "soul_orbImageMap";
+      frame = "0";
+      useSourceRect = "0";
+      sourceRect = "0 0 0 0";
+      canSaveDynamicFields = "1";
+      Position = "-56.423 -32.114";
+      size = "30.750 19.375";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+         mountID = "34";
+   };
+   new t2dAnimatedSprite(hp_mask_0) {
+      animationName = "hp_mask_flashAnimation";
+      canSaveDynamicFields = "1";
+      Position = "-49.919 -34.878";
+      size = "12.000 12.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+         mountID = "35";
+   };
+   new t2dAnimatedSprite(soul_orb) {
+      animationName = "soul_orb_glowAnimation";
+      canSaveDynamicFields = "1";
+      Position = "-63.397 -30.028";
+      size = "13.205 12.486";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+         mountID = "36";
+   };
 };

@@ -1,11 +1,8 @@
 ﻿C:\program files\microsoft visual studio\2022\community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(500,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
 cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  SimplePhysics.cc
+  LessonX.cpp
+C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(52,20): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(87,34): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\SimplePhysics.cc(318,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\SimplePhysics.cc(319,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\SimplePhysics.cc(320,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\SimplePhysics.cc(321,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 HUD.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
 CommonClass_2015.lib(CommonClass.obj) : warning LNK4099: PDB 'CommonClass_2015.pdb' was not found with 'CommonClass_2015.lib(CommonClass.obj)' or at 'C:\Users\metro\source\repos\kings_physics\Bin\CommonClass_2015.pdb'; linking object as if no debug info
