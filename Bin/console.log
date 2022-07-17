@@ -1,7 +1,7 @@
-//-------------------------- 7/17/2022 -- 12:32:19 -----
+//-------------------------- 7/17/2022 -- 12:36:10 -----
 Processor Init:
-   AMD (unknown), ~3.15 Ghz
-     (timed at roughly 3.15 Ghz)
+   AMD (unknown), ~3.20 Ghz
+     (timed at roughly 3.19 Ghz)
    FPU detected
    MMX detected
    SSE detected
@@ -110,6 +110,7 @@ Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/common/gam
 FunCode (v1.7.5) initialized...
 Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/managed/datablocks.cs.
 Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/managed/persistent.cs.
+Compiling C:/Users/metro/source/repos/kings_physics/Bin/game/managed/brushes.cs...
 Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/managed/brushes.cs.
 Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/gui/mainScreen.gui.
 Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/gameScripts/game.cs.
@@ -121,7 +122,6 @@ t2dSceneGraph::addToScene() - Object '1371' is already in a SceneGraph!.
 t2dSceneGraph::addToScene() - Object '1372' is already in a SceneGraph!.
 t2dSceneGraph::addToScene() - Object '1373' is already in a SceneGraph!.
 t2dSceneGraph::addToScene() - Object '1374' is already in a SceneGraph!.
-t2dSceneGraph::addToScene() - Object '1375' is already in a SceneGraph!.
 DirectInput deactivated.
 Shutting down the OpenGL display device...
 Making the GL rendering context not current...
