@@ -13,8 +13,20 @@ private:
 		CSprite* scenery;
 	};
 
+	struct NPCObj
+	{
+		Eigen::Vector2f vel;
+		CSprite* sp;
+
+		NPCObj(CSprite* sp)
+		{
+			vel = Eigen::Vector2f(0, 0);
+			this->sp = sp;
+		}
+	};
+
 	std::vector<CSprite*> player_;
-	std::vector<CSprite*> npc_;
+	std::vector<NPCObj*> npc_;
 	std::vector<SceneryObj*> scenery_;
 	std::vector<CSprite*> camera_locks_;
 
@@ -63,6 +75,7 @@ private:
 	float parse_scenery_z_deepth(std::string name);
 	void update_camera_velocity();
 	void update_player_velocity();
+	void update_npc_velocity();
 	void update_scenery_velocity();
 	void update_camera_lock_velocity();
 	void update_player_stats();
@@ -90,11 +103,18 @@ public:
 	LibParallexScroll(std::vector<std::string> player, std::vector<std::string> npc, std::vector<std::string> scenery);	// Constructor
 
 	void set_player_linear_velocity(float v_x, float v_y);
+	void set_npc_linear_velocity(std::string name, float v_x, float v_y);
 	void set_target_framing(float x, float y);
+
+	[[DEPRECATED]]
 	void set_cam_lim_left(bool is_lim);
+	[[DEPRECATED]]
 	void set_cam_lim_right(bool is_lim);
+	[[DEPRECATED]]
 	void set_cam_lim_up(bool is_lim);
+	[[DEPRECATED]]
 	void set_cam_lim_down(bool is_lim);
+
 	void set_screen_bondary(float left, float right, float top, float bottom);
 
 	Eigen::Vector2f get_current_actual_framing();

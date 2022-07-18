@@ -1,7 +1,7 @@
-//-------------------------- 7/17/2022 -- 21:14:46 -----
+//-------------------------- 7/18/2022 -- 11:44:17 -----
 Processor Init:
-   AMD (unknown), ~3.20 Ghz
-     (timed at roughly 3.17 Ghz)
+   AMD (unknown), ~3.15 Ghz
+     (timed at roughly 3.16 Ghz)
    FPU detected
    MMX detected
    SSE detected
@@ -139,67 +139,37 @@ Namespace::unlinkClass - cannot unlink namespace parent linkage for DSSE0 for t2
 Error: cannot change namespace parent linkage of DSSE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 Namespace::unlinkClass - cannot unlink namespace parent linkage for B0 for t2dImageMapDatablock.
 Error: cannot change namespace parent linkage of B0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1483' is already in a SceneGraph!.
-t2dSceneGraph::addToScene() - Object '1484' is already in a SceneGraph!.
 t2dSceneGraph::addToScene() - Object '1485' is already in a SceneGraph!.
 t2dSceneGraph::addToScene() - Object '1486' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1487' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1488' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
+Namespace::unlinkClass - cannot unlink namespace parent linkage for SAE0 for t2dImageMapDatablock.
+Error: cannot change namespace parent linkage of SAE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1489' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
+Namespace::unlinkClass - cannot unlink namespace parent linkage for SBE0 for t2dImageMapDatablock.
+Error: cannot change namespace parent linkage of SBE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1490' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
+Namespace::unlinkClass - cannot unlink namespace parent linkage for SAE0 for t2dImageMapDatablock.
+Error: cannot change namespace parent linkage of SAE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1491' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
+Namespace::unlinkClass - cannot unlink namespace parent linkage for SAE0 for t2dImageMapDatablock.
+Error: cannot change namespace parent linkage of SAE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1492' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
+Namespace::unlinkClass - cannot unlink namespace parent linkage for SBE0 for t2dImageMapDatablock.
+Error: cannot change namespace parent linkage of SBE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1493' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
+Namespace::unlinkClass - cannot unlink namespace parent linkage for SBE0 for t2dImageMapDatablock.
+Error: cannot change namespace parent linkage of SBE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1494' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
+Namespace::unlinkClass - cannot unlink namespace parent linkage for SAE0 for t2dImageMapDatablock.
+Error: cannot change namespace parent linkage of SAE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1495' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
+Namespace::unlinkClass - cannot unlink namespace parent linkage for SAE0 for t2dImageMapDatablock.
+Error: cannot change namespace parent linkage of SAE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1496' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
+Namespace::unlinkClass - cannot unlink namespace parent linkage for SAE0 for t2dImageMapDatablock.
+Error: cannot change namespace parent linkage of SAE0 from t2dImageMapDatablock to t2dAnimatedSprite.
 t2dSceneGraph::addToScene() - Object '1497' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1498' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1499' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1500' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1501' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1502' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1503' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1504' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1505' is already in a SceneGraph!.
 DirectInput deactivated.
 Namespace::unlinkClass - cannot unlink namespace parent linkage for B0 for t2dImageMapDatablock.
 Namespace::unlinkClass - cannot unlink namespace parent linkage for DSSE0 for t2dImageMapDatablock.

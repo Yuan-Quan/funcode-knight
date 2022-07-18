@@ -1742,4 +1742,14 @@ $managedDatablockSet = new SimSet() {
       animationPingPong = "0";
       animationReverse = "0";
    };
+   new t2dAnimationDatablock(DandanTargetAnimation1) {
+      imageMap = "DandanTarget1ImageMap";
+      animationFrames = "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15";
+      animationTime = "0.533333";
+      animationCycle = "1";
+      randomStart = "0";
+      startFrame = "0";
+      animationPingPong = "0";
+      animationReverse = "0";
+   };
 };

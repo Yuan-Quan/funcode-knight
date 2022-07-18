@@ -32,7 +32,7 @@ void Kontrol::update_cool_down(float dt)
 	{
 		dash_cd_time += dt;
 	}
-	if (dash_cd_time >= 0.8)
+	if (dash_cd_time >= 0.5)
 	{
 		dash_cd_time = 0;
 		is_dash_cd_ = false;
@@ -67,11 +67,14 @@ void Kontrol::summing()
 
 void Kontrol::on_jump_key_press()
 {
-	if (is_grounded_nh_())
+	if (jump_refresh>0)
 	{
+		if (!is_grounded_nh_())
+		{
+			unset_jump();
+		}
 		set_jump();
 	}
-
 }
 
 void Kontrol::on_jump_key_release()
@@ -117,11 +120,13 @@ void Kontrol::set_jump()
 	tmp_vel_jump << 0, -60;
 	const_force_jump << 0, -450;
 
+	jump_refresh--;
 	is_jumping_ = true;
 }
 
 void Kontrol::unset_jump()
 {
+	tmp_vel_jump << 0, 0;
 	const_force_jump << 0, 0;
 	is_jumping_ = false;
 
@@ -130,16 +135,31 @@ void Kontrol::unset_jump()
 
 void Kontrol::set_dash()
 {
-	is_dashing_ = true;
-	is_dash_cd_ = true;
-	if (heading_left_)
+	if (dash_refresh)
 	{
-		const_vel_dash_ << -140, 0;
+		is_dashing_ = true;
+		is_dash_cd_ = true;
+		dash_refresh = false;
+		if (dash_down)
+		{
+			const_vel_dash_ << 0, 140;
+		}
+		else
+		{
+			unset_jump();
+			jump_refresh -= 2;
+			const_force_jump << 0, -298;
+			if (heading_left_)
+			{
+				const_vel_dash_ << -140, 0;
+			}
+			else
+			{
+				const_vel_dash_ << 140, 0;
+			}
+		}
 	}
-	else
-	{
-		const_vel_dash_ << 140, 0;
-	}
+	
 }
 
 
@@ -147,6 +167,8 @@ void Kontrol::unset_dash()
 {
 	is_dashing_ = false;
 	const_vel_dash_ << 0, 0;
+	unset_jump();
+	jump_refresh += 2;
 
 	dash_time_ = 0.f;
 }
@@ -165,6 +187,9 @@ void Kontrol::key_press_callback(int key)
 		break;
 	case KeyBinds::KEY_RIGHT:
 		set_right();
+		break;
+	case KeyBinds::KEY_DOWN:
+		dash_down = true;
 		break;
 	case KeyBinds::KEY_JUMP:
 		on_jump_key_press();
@@ -186,6 +211,9 @@ void Kontrol::key_relese_callback(int key)
 		break;
 	case KeyBinds::KEY_RIGHT:
 		unset_right();
+		break;
+	case KeyBinds::KEY_DOWN:
+		dash_down = false;
 		break;
 	case KeyBinds::KEY_JUMP:
 		on_jump_key_release();
@@ -217,5 +245,15 @@ void Kontrol::main_loop(float dt)
 	update_cool_down(dt);
 	summing();
 	update_velocity();
+	refresh();
+}
+
+void Kontrol::refresh()
+{
+	if (is_grounded_nh_())
+	{
+		jump_refresh = 1;
+		dash_refresh = true;
+	}
 }
 

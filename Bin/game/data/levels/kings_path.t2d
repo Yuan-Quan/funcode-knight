@@ -969,4 +969,13 @@
       FillMode = "0";
          mountID = "70";
    };
+   new t2dAnimatedSprite(potato) {
+      animationName = "DandanTargetAnimation1";
+      canSaveDynamicFields = "1";
+      Position = "83.164 297.088";
+      size = "8.000 11.500";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+         mountID = "71";
+   };
 };

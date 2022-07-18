@@ -14,7 +14,7 @@ class KnightAnimator
         // set,get方法用于操作状态，等
         void			set_keybinds( const int key );
         void            stop_knight();
-        void set_gound_status_handler(function<bool()> fun);
+        void            set_gound_status_handler(function<bool()> fun);
 
         //用来对接api的回调函数
         void            key_press_callback( const int key );
@@ -40,7 +40,7 @@ class KnightAnimator
         int				m_ihurt;					// 受伤状态，0：未受伤；1：受伤；
         int             m_idjump;                   // 二段跳状态，0：跳跃不可用；1：二段跳可用；2：第一段跳跃可也用；
         int				m_ieffect;					// 特效释放状态，0：不可释放；1：可以释放；
-        CSprite* m_pPlaceHolder;
+        CSprite*        m_pPlaceHolder;
         CAnimateSprite* m_pknight;					// 小骑士实例
         CAnimateSprite* m_peffect;					// 特效实例
         CTextSprite*	m_tmove;					// move示数
@@ -56,6 +56,7 @@ class KnightAnimator
         CSound*         m_sslash;					// 劈砍音效
         CSound*         m_sjump;					// 跳跃音效
         float			m_ftime;					// 单程差时
+        float           m_fjump;                    // 跳跃计时
         char*           m_canimation;               // 记录当前动画
         char*           m_ceffectani;               // 记录当前特效动画
         int             J;                          // 攻击键

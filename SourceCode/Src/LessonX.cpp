@@ -71,8 +71,9 @@ CGameMain::CGameMain()
 		"cam_lck_7",
 		"cam_lck_8",
 		});
-
-
+	kings_parallex.add_npc({
+		"potato"
+		});
 }
 //==============================================================================
 //
@@ -228,6 +229,17 @@ void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShi
 {
 	kings_kontrol.key_press_callback(iKey);
 	animator.key_press_callback(iKey);
+	switch (iKey)
+	{
+	case KEY_LEFT:
+		kings_parallex.set_npc_linear_velocity("potato", -20, 0);
+		break;
+	case KEY_RIGHT:
+		kings_parallex.set_npc_linear_velocity("potato", 20, 0);
+		break;
+	default:
+		break;
+	}
 }
 //==========================================================================
 //
@@ -237,6 +249,17 @@ void CGameMain::OnKeyUp( const int iKey )
 {
 	kings_kontrol.key_relese_callback(iKey);
 	animator.key_release_callback(iKey);
+	switch (iKey)
+	{
+	case KEY_LEFT:
+		kings_parallex.set_npc_linear_velocity("potato", 0, 0);
+		break;
+	case KEY_RIGHT:
+		kings_parallex.set_npc_linear_velocity("potato", 0, 0);
+		break;
+	default:
+		break;
+	}
 }
 //===========================================================================
 //

@@ -1,6 +1,7 @@
 #include <Stdio.h>
 #include "CommonClass.h"
 #include "KnightAnimator.h"
+#include "Kontrol.h"
 #include "time.h"
 #include <string>
 #include <math.h>
@@ -9,9 +10,9 @@ using namespace std;
 KnightAnimator::KnightAnimator(const char* name)
 {
 	stop = 0;
-	m_imove = 1;
+	m_imove = -1;
 	m_iface = 0;
-	m_ijump = 0;
+	m_ijump = 2;
 	m_iattack = 0;
 	m_imagic = 0;
 	m_idash = 0;
@@ -81,15 +82,8 @@ void KnightAnimator::main_loop(float dt)
 	}
 	attack();
 	face();
-	if (is_grounded_nh_() && m_ijump == 2)
-	{
-		m_ijump = 0;
-	}
-	else if (!is_grounded_nh_() && m_ijump != 2)
-	{
-		m_ijump = 2;
-	}
-jump();
+	jump();
+	if(m_fjump >= 0)m_fjump -= m_ftime;
 }
 void KnightAnimator::set_gound_status_handler(std::function<bool()> fun)
 {
@@ -114,7 +108,7 @@ void KnightAnimator::key_press_callback(int key)
 	}
 	if (stop != 0)return;
 	srand(time(NULL));
-	if (key == P) { m_ijump = 1; }//调试专用通道
+	//if (key == P) { m_ijump = 1; }//调试专用通道
 	if ((key == J) && (m_iattack == 0))m_iattack = rand() % 2 + 1;
 	if (key == I)m_imagic = 1;
 	if (key == Q)m_ifocus = 1;
@@ -151,7 +145,7 @@ void KnightAnimator::key_release_callback(const int key)
 		}
 	}
 	if (stop != 0)return;
-	if (key == P) { m_ijump = 6; }//调试专用通道
+	//if (key == P) { m_ijump = 6; }//调试专用通道
 	if (key == J) { m_iattack = 0; }
 	if (key == I) { m_imagic = 0; }
 	if (key == Q) { m_ifocus = 0; }
@@ -234,11 +228,11 @@ void KnightAnimator::jump()
 			case 0:break;
 			case 1:
 			{
-				/*if (触地)
+				if(is_grounded_nh_())
 				{
 					m_ijump=6;
 				}
-				if (离墙)
+				/*if (离墙)
 				{
 					m_ijump=3;
 					m_idjump=1;
@@ -249,19 +243,15 @@ void KnightAnimator::jump()
 			}
 			case 2:
 			{	
-				/*if (触地)
+				if (is_grounded_nh_() && m_fjump<0)
 				{
 					m_ijump=6;
 					m_idjump=2;
 				}
-				else if (触墙)
+				/*else if (触墙)
 				{
 					m_ijump=1;
-					m_idjump=2;
-				}
-				else if (未达到最大下落速度) 
-				{
-					增加下落速度(减小上升速度);
+					refresh();
 				}*/
 				Animation("AK");
 				break;
@@ -277,27 +267,28 @@ void KnightAnimator::jump()
 			}
 			case 4:
 			{
-				Animation("A");
-				/*正上跳跃*/
 				m_ijump = 2;
 				m_idjump = 1;
+				m_fjump = 0.1f;
+				Animation("A");
+				/*正上跳跃*/
 				break;
 			}
 			case 5:
 			{
 				m_imove =  0 - m_imove;
 				face();
+				m_ijump = 2;
+				m_idjump = 1;
 				Animation("WJ");
 				/*斜上跳跃*/
 				Release("WJE", 7);
-				m_ijump = 2;
-				m_idjump = 1;
 				break;
 			}
 			case 6:
 			{
-				Animation("L");
 				m_ijump = 0;
+				Animation("L");
 				break;
 			}
 		}

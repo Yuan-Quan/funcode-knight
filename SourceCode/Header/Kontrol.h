@@ -49,6 +49,9 @@ private:
 	bool is_dashing_ = false;
 	bool heading_left_ = false;
 	bool is_dash_cd_ = false;
+	int jump_refresh = 1;
+	bool dash_refresh = true;
+	bool dash_down = false;
 
 	void update_jump_stat(float dt);
 	void update_dash_stat(float dt);
@@ -67,6 +70,7 @@ private:
 	void unset_jump();
 	void set_dash();
 	void unset_dash();
+	void refresh();
 
 public:
 	/// <summary>
@@ -88,5 +92,6 @@ public:
 	void set_gound_state_handler(std::function<bool()> is_grounded);
 
 	void main_loop(float dt);
+
 };
 

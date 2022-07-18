@@ -162,7 +162,8 @@ LibParallexScroll::LibParallexScroll(std::vector<std::string> player, std::vecto
 	}
 	for (auto &i_npc : npc)
 	{
-		npc_.push_back(new CSprite(i_npc.c_str()));
+		auto tmp_npc = new NPCObj(new CSprite(i_npc.c_str()));
+		npc_.push_back(tmp_npc);
 	}
 	for (auto& i_scenery : scenery)
 	{
@@ -188,6 +189,7 @@ void LibParallexScroll::main_loop(float dt)
 	update_scenery_velocity();
 	update_camera_lock_velocity();
 	update_player_velocity();
+	update_npc_velocity();
 }
 
 void LibParallexScroll::add_player(std::vector<std::string> player)
@@ -202,7 +204,8 @@ void LibParallexScroll::add_npc(std::vector<std::string> npc)
 {
 	for (auto &i_npc : npc)
 	{
-		npc_.push_back(new CSprite(i_npc.c_str()));
+		auto tmp_npc = new NPCObj(new CSprite(i_npc.c_str()));
+		npc_.push_back(tmp_npc);
 	}
 }
 
@@ -243,9 +246,9 @@ void LibParallexScroll::force_target_framing()
 	for (auto& item : npc_)
 	{
 		Eigen::Vector2f cur_pos;
-		cur_pos << item->GetSpritePositionX() , item->GetSpritePositionY();
+		cur_pos << item->sp->GetSpritePositionX() , item->sp->GetSpritePositionY();
 		auto tar_pos = cur_pos + player2target;
-		item->SetSpritePosition(tar_pos.x(), tar_pos.y());
+		item->sp->SetSpritePosition(tar_pos.x(), tar_pos.y());
 	}
 	for (auto& item: scenery_)
 	{
@@ -399,6 +402,15 @@ void LibParallexScroll::update_player_velocity()
 	}
 }
 
+void LibParallexScroll::update_npc_velocity()
+{
+	for (auto& item : npc_)
+	{
+		Eigen::Vector2f npc2cam_vel = item->vel - camera2map_velocity_;
+		item->sp->SetSpriteLinearVelocity(npc2cam_vel.x(), npc2cam_vel.y());
+	}
+}
+
 void LibParallexScroll::update_player_stats()
 {
 	player_position_ << player_.at(0)->GetSpritePositionX(), player_.at(0)->GetSpritePositionY();
@@ -417,4 +429,21 @@ void LibParallexScroll::set_player_linear_velocity(float v_x, float v_y)
 {
 	player2map_velocity_ << v_x, v_y;
 	is_velocity_update_ = true;
+}
+
+void LibParallexScroll::set_npc_linear_velocity(std::string name, float v_x, float v_y)
+{
+	NPCObj* npc = NULL;
+	for (auto& item : npc_)
+	{
+		if (strcmp(name.c_str(), item->sp->GetName()) == 0)
+		{
+			npc = item;
+		}
+	}
+
+	if (npc)
+	{
+		npc->vel << v_x, v_y;
+	}
 }
