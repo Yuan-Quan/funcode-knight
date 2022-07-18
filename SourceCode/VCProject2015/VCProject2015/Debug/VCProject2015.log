@@ -3,9 +3,7 @@ cl : command line warning D9035: option 'Gm' has been deprecated and will be rem
   LessonX.cpp
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(109,4): warning C5030: attribute 'DEPRECATED' is not recognized
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(64,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(87,34): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Kontrol.cc
-  Generating Code...
+C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(89,34): warning C4305: 'initializing': truncation from 'double' to 'float'
 CoreLogic.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
 CommonClass_2015.lib(CommonClass.obj) : warning LNK4099: PDB 'CommonClass_2015.pdb' was not found with 'CommonClass_2015.lib(CommonClass.obj)' or at 'C:\Users\metro\source\repos\kings_physics\Bin\CommonClass_2015.pdb'; linking object as if no debug info

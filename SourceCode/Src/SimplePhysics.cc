@@ -152,6 +152,11 @@ void SimplePhysics::set_vel_temp(std::string name, float x, float y)
 
 }
 
+void SimplePhysics::set_parallex_instance(LibParallexScroll* ps)
+{
+	parallex_instance_ = ps;
+}
+
 bool SimplePhysics::get_is_on_ground()
 {
 	return objects_.at(0)->is_against_down;
@@ -240,6 +245,25 @@ void SimplePhysics::add_map_tile(std::vector<std::string> names)
 	{
 		add_map_tile(item);
 	}
+}
+
+void SimplePhysics::add_entity(std::string name)
+{
+	auto entity = new CSprite(name.c_str());
+	auto hit_box = new Box();
+	hit_box->height = entity->GetSpriteHeight();
+	hit_box->width = entity->GetSpriteWidth();
+	hit_box->position = Eigen::Vector2f(entity->GetSpritePositionX(), entity->GetSpritePositionY());
+
+	auto obj = new Object();
+	obj->sprite = entity;
+	obj->velocity = Eigen::Vector2f(0, 0);
+	obj->force = Eigen::Vector2f(0, 0);
+	obj->mass = 1.0;
+	obj->hit_box = hit_box;
+	obj->type = ObjType::ENTITY;
+	obj->velocity_handeler = std::bind(&LibParallexScroll::set_npc_linear_velocity, parallex_instance_, name, std::placeholders::_1, std::placeholders::_2);
+	objects_.push_back(obj);
 }
 
 void SimplePhysics::main_loop(float dt)

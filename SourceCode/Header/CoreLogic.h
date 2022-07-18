@@ -35,8 +35,9 @@ private:
 	bool is_immortal_ = false;
 	float immortal_timer_ = 0.f;
 	bool is_alive = true;
-	void die();
 
+	void die();
+	void knock_back(NPC* npc);
 	bool is_in_atk_range(CSprite* sp, int atk_dir);
 	std::vector<CSprite*> atk_hit_boxs_;
 	bool is_col(Box* a, Box* b);

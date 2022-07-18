@@ -1,7 +1,7 @@
-//-------------------------- 7/18/2022 -- 17:15:01 -----
+//-------------------------- 7/18/2022 -- 17:26:11 -----
 Processor Init:
    AMD (unknown), ~3.15 Ghz
-     (timed at roughly 3.17 Ghz)
+     (timed at roughly 3.15 Ghz)
    FPU detected
    MMX detected
    SSE detected
@@ -143,15 +143,6 @@ t2dSceneGraph::addToScene() - Object '1488' is already in a SceneGraph!.
 t2dSceneGraph::addToScene() - Object '1489' is already in a SceneGraph!.
 t2dSceneGraph::addToScene() - Object '1490' is already in a SceneGraph!.
 t2dSceneGraph::addToScene() - Object '1491' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DJE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DJE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1492' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for SBE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of SBE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1493' is already in a SceneGraph!.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for SBE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of SBE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1494' is already in a SceneGraph!.
 DirectInput deactivated.
 Namespace::unlinkClass - cannot unlink namespace parent linkage for B0 for t2dImageMapDatablock.
 Namespace::unlinkClass - cannot unlink namespace parent linkage for DSSE0 for t2dImageMapDatablock.

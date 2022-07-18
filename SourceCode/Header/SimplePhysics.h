@@ -2,6 +2,7 @@
 #include <Eigen/Dense>
 #include <vector>
 #include "CommonClass.h"
+#include "LibParallexScroll.h"
 
 class SimplePhysics
 {
@@ -68,6 +69,7 @@ public:
 	void set_vel_temp(std::string name, float x, float y);
 	// change the velocity of object
 	void set_vel_override(std::string name, float x, float y);
+	void set_parallex_instance(LibParallexScroll* ps);
 
 	bool get_is_on_ground();
 	
@@ -94,6 +96,7 @@ private:
 	void reset_col_(Object* obj);
 	bool is_col_(Box* a, Box* b);
 	Eigen::Vector2f get_aix_component_(Eigen::Vector2f input, int direction);
+	LibParallexScroll* parallex_instance_;
 	
 	inline float relu(float input)
 	{

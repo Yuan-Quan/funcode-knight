@@ -127,8 +127,10 @@ void CGameMain::GameMainLoop( float	fDeltaTime )
 void CGameMain::GameInit()
 {
 	kings_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
+	kings_physics.set_parallex_instance(&kings_parallex);
 	std::function<void(float, float)> f = std::bind(&LibParallexScroll::set_player_linear_velocity, &kings_parallex, std::placeholders::_1, std::placeholders::_2);
 	kings_physics.add_entity("knight_placeholder", f);
+	kings_physics.add_entity("potato");
 	kings_physics.add_map_tile({
 		"map_tile_1",
 		"map_tile_2",

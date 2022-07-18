@@ -72,6 +72,11 @@ void CoreLogic::die()
 	is_alive = false;
 }
 
+void CoreLogic::knock_back(NPC* npc)
+{
+	Eigen::Vector2f force;
+}
+
 bool CoreLogic::is_in_atk_range(CSprite* sp, int atk_dir)
 {
 
