@@ -152,6 +152,29 @@ void SimplePhysics::set_vel_temp(std::string name, float x, float y)
 
 }
 
+void SimplePhysics::set_vel_override(std::string name, float x, float y)
+{
+	Object* obj = NULL;
+	// find the spirite with the name in vector
+	for (auto& item : objects_)
+	{
+		if (strcmp(name.c_str(), item->sprite->GetName()) == 0)
+		{
+			obj = item;
+		}
+	}
+
+	if (obj)
+	{
+		obj->velocity << x, y;
+	}
+	else
+	{
+		return;
+	}
+
+}
+
 void SimplePhysics::set_parallex_instance(LibParallexScroll* ps)
 {
 	parallex_instance_ = ps;
@@ -316,6 +339,7 @@ void SimplePhysics::main_loop(float dt)
 	}
 
 	process_collisions_();
+	process_freeze_(dt);
 
 	// handel collisions
 	// handel_collisions_();
@@ -325,10 +349,23 @@ void SimplePhysics::main_loop(float dt)
 	{
 		if (item->velocity_handeler)
 		{
-			item->velocity_handeler(item->velocity.x(), item->velocity.y());
+			if (is_freeze_)
+			{
+				item->velocity_handeler(0.f, 0.f);
+			}
+			else
+			{
+				item->velocity_handeler(item->velocity.x(), item->velocity.y());
+			}
 		}
 		item->velocity -= item->vel_1;
 	}
+}
+
+void SimplePhysics::freeze(float duration)
+{
+	is_freeze_ = true;
+	freeze_duration_ = duration;
 }
 
 void SimplePhysics::test_collision_(Object* a, Object* b)
@@ -438,6 +475,19 @@ void SimplePhysics::process_collisions_()
 		//	continue;
 		//}
 
+	}
+}
+
+void SimplePhysics::process_freeze_(float dt)
+{
+	if (is_freeze_)
+	{
+		freeze_timer_ += dt;
+		if (freeze_timer_ >= freeze_duration_)
+		{
+			is_freeze_ = false;
+			freeze_timer_ = 0.f;
+		}
 	}
 }
 

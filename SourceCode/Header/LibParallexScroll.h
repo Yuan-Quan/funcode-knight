@@ -40,12 +40,17 @@ private:
 	Eigen::Vector2f target_framing_temporary_offset_;
 	Eigen::Vector2f cam_vel_temp_offset_;
 
+	Eigen::Vector2f last_shake_;
+
 	bool is_cam_left_lim_ = false;
 	bool is_cam_right_lim_ = false;
 	bool is_cam_up_lim_ = false;
 	bool is_cam_down_lim_ = false;
 	bool is_velocity_update_ = true;
 	bool pid_new_state_ = false;
+
+	bool is_shake_camera = false;
+	float camera_shake_time = 0.5;
 
 	float screen_bondary_left_ = 0.f;
 	float screen_bondary_right_ = 0.f;
@@ -57,6 +62,7 @@ private:
 	float camera_bondary_top_ = 0.f;
 	float camera_bondary_bottom_ = 0.f;
 
+	float camera_shake_timer_ = 0.f;
 
 	//PID cam_pid_controller_ = PID(0.01f, 100.f, 100.f, 0.001f, 0.f, 0.f);
 	Eigen::Vector2f camera_pos_setpoint_;
@@ -81,6 +87,7 @@ private:
 	void update_player_stats();
 	void update_current_camera_lock_zone();
 	void process_camera_lock();
+	void process_shake_camera(float dt);
 
 	Eigen::Vector2f velocity_conversion_function(float z, Eigen::Vector2f velocity);
 
@@ -128,6 +135,7 @@ public:
 	/// please don't use this shit, it will break things
 	/// </summary>
 	void force_target_framing();
+	void shake_camera(float duration);
 
 	void main_loop(float dt);
 };

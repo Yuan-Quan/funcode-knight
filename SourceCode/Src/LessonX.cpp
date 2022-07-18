@@ -59,7 +59,41 @@ CGameMain::CGameMain()
 		"map_tile_24",
 		"map_tile_25",
 		"map_tile_26",
+		"map_tile_27",
+		"map_tile_28",
+		"map_tile_29",
+		"map_tile_30",
+		"map_tile_31",
+		"map_tile_32",
+		"map_tile_33",
+		"map_tile_34",
+		"map_tile_35",
+		"map_tile_36",
+		"map_tile_37",
+		"map_tile_38",
+		"map_tile_39",
+		"map_tile_40",
+		"map_tile_41",
+		"map_tile_42",
+		"map_tile_43",
+		"map_tile_44",
+		"map_tile_45",
+		"map_tile_46",
+		"map_tile_47",
+		"map_tile_48",
+		"map_tile_49",
+		"map_tile_50",
+		"map_tile_51",
+		"map_tile_52",
+		"map_tile_53",
+		"map_tile_54",
+		"map_tile_55",
+		"map_tile_56",
+		"map_tile_57",
+		"map_tile_58",
+		"map_tile_59",
 
+		"to_dirtmouth",
 		});
 	kings_parallex.add_camera_lock({
 		"cam_lck_1",
@@ -70,6 +104,11 @@ CGameMain::CGameMain()
 		"cam_lck_6",
 		"cam_lck_7",
 		"cam_lck_8",
+		"cam_lck_9",
+		"cam_lck_10",
+		"cam_lck_11",
+		"cam_lck_12",
+		"cam_lck_13",
 		});
 	kings_parallex.add_npc({
 		"potato"
@@ -158,6 +197,40 @@ void CGameMain::GameInit()
 		"map_tile_24",
 		"map_tile_25",
 		"map_tile_26",
+		"map_tile_27",
+		"map_tile_28",
+		"map_tile_29",
+		"map_tile_30",
+		"map_tile_31",
+		"map_tile_32",
+		"map_tile_33",
+		"map_tile_34",
+		"map_tile_35",
+		"map_tile_36",
+		"map_tile_37",
+		"map_tile_38",
+		"map_tile_39",
+		"map_tile_40",
+		"map_tile_41",
+		"map_tile_42",
+		"map_tile_43",
+		"map_tile_44",
+		"map_tile_45",
+		"map_tile_46",
+		"map_tile_47",
+		"map_tile_48",
+		"map_tile_49",
+		"map_tile_50",
+		"map_tile_51",
+		"map_tile_52",
+		"map_tile_53",
+		"map_tile_54",
+		"map_tile_55",
+		"map_tile_56",
+		"map_tile_57",
+		"map_tile_58",
+		"map_tile_59",
+
 		});
 
 	std::function<void(std::string, float, float)> fun_tmp_vel = std::bind(&SimplePhysics::set_vel_temp, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
@@ -179,6 +252,8 @@ void CGameMain::GameInit()
 	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
 	atk_hitbox_down->SpriteMountToSprite("knight_placeholder", 0.f, 1.8f);
 	kings_logic.set_hud_instance(&hud);
+	kings_logic.set_physics_instance(&kings_physics);
+	kings_logic.set_parallex_instance(&kings_parallex);
 	kings_logic.add_enemy("potato", 2);
 	kings_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
 	kings_kontrol.set_logic_instance(&kings_logic);
@@ -217,7 +292,6 @@ void CGameMain::OnMouseMove( const float fMouseX, const float fMouseY )
 // 参数 fMouseX, fMouseY：为鼠标当前坐标
 void CGameMain::OnMouseClick( const int iMouseType, const float fMouseX, const float fMouseY )
 {
-	
 }
 //==========================================================================
 //
@@ -244,6 +318,10 @@ void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShi
 		break;
 	case KEY_RIGHT:
 		kings_parallex.set_npc_linear_velocity("potato", 20, 0);
+		break;
+	case KEY_B:
+		//kings_parallex.shake_camera(0.2);
+		kings_physics.freeze(1);
 		break;
 	default:
 		break;

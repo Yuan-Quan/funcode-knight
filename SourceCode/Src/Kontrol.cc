@@ -225,8 +225,22 @@ void Kontrol::attack()
 {
 	if (!is_attack_cd_)
 	{
-		core_logic_instance_->attack_callback(atk_dir_);
+		int atk_dir = AtkDirection::SIDE;
+		if (is_up_atk_override)
+		{
+			atk_dir = AtkDirection::UP;
+		}
+		if (is_down_atk_override)
+		{
+			atk_dir = AtkDirection::DOWN;
+		}
+		bool response = core_logic_instance_->attack_callback(atk_dir);
 		is_attack_cd_ = true;
+
+		if (is_down_atk_override && response)
+		{
+			tmp_vel_jump << 0, -160;
+		}
 	}
 }
 
@@ -240,19 +254,17 @@ void Kontrol::key_press_callback(int key)
 	switch (key)
 	{
 	case KeyBinds::KEY_LEFT:
-		atk_dir_ = AtkDirection::SIDE;
 		set_left();
 		break;
 	case KeyBinds::KEY_RIGHT:
-		atk_dir_ = AtkDirection::SIDE;
 		set_right();
 		break;
 	case KeyBinds::KEY_DOWN:
-		atk_dir_ = AtkDirection::DOWN;
+		is_down_atk_override = true;
 		dash_down = true;
 		break;
 	case KeyBinds::KEY_UP:
-		atk_dir_ = AtkDirection::UP;
+		is_up_atk_override = true;
 		break;
 	case KeyBinds::KEY_JUMP:
 		on_jump_key_press();
@@ -281,7 +293,11 @@ void Kontrol::key_relese_callback(int key)
 	case KeyBinds::KEY_RIGHT:
 		unset_right();
 		break;
+	case KeyBinds::KEY_UP:
+		is_up_atk_override = false;
+		break;
 	case KeyBinds::KEY_DOWN:
+		is_down_atk_override = false;
 		dash_down = false;
 		break;
 	case KeyBinds::KEY_JUMP:

@@ -1,633 +1,350 @@
-#include <Stdio.h>
-#include "CommonClass.h"
-#include "KnightAnimator.h"
-#include "time.h"
-#include <string>
-#include <math.h>
-using namespace std;
+#include "Kontrol.h"
+using namespace hk_config;
 
-KnightAnimator::KnightAnimator(const char* name)
+void Kontrol::update_jump_stat(float dt)
 {
-	stop = 0;
-	m_imove = 1;
-	m_iface = 0;
-	m_ijump = 0;
-	m_iattack = 0;
-	m_imagic = 0;
-	m_idash = 0;
-	m_ihurt = 0;
-	m_ifocus = 0;
-	m_idjump = 2;
-	m_ieffect = 0;
-	m_pknight = new CAnimateSprite(name);
-    m_pPlaceHolder = new CSprite("knight_placeholder");
-	m_peffect = new CAnimateSprite("Blank");
-	m_tmove = new CTextSprite("move");
-	m_tface = new CTextSprite("face");
-	m_tjump = new CTextSprite("jump");
-	m_tattack = new CTextSprite("attack");
-	m_tmagic = new CTextSprite("magic");
-	m_tdash = new CTextSprite("dash");
-	m_thurt = new CTextSprite("hurt");
-	m_tfocus = new CTextSprite("focus");
-	m_tdjump = new CTextSprite("djump");
-	m_teffect = new CTextSprite("effect");
-	//m_sslash = new CSound(game / data / audio / slash.wav);
-	//m_sjump = new CSound(game / data / audio / jump.wav);
-	m_canimation = "I";
-	m_ceffectani = "SEA";
-	J = KEY_J;
-	K = KEY_K;
-	L = KEY_L;
-	I = KEY_I;
-	W = KEY_W;
-	S = KEY_S;
-	A = KEY_A;
-	D = KEY_D;
-	Q = KEY_Q;
-	P = KEY_P;
-	ESC = KEY_ESCAPE;
-	SIZE = 20.0f;
-	VEL = 400.0f;
-
-}
-
-KnightAnimator::~KnightAnimator()
-{
-	//dtor
-}
-
-//==========================================================================
-//
-// 单流程主程序
-void KnightAnimator::main_loop(float dt)
-{
-	if (stop != 0)return;
-	m_ftime = dt;
-	Show();
-	hurt();
-	dash();
-	magic();
-	move();
-	Delete();
-	if (strcmp("D", m_canimation) == 0)
+	if (is_jumping_)
 	{
+		jump_time_ += dt;
+	}
+	if (jump_time_ >= 0.35)
+	{
+		unset_jump();
+	}
+
+}
+
+void Kontrol::update_dash_stat(float dt)
+{
+	if (is_dashing_)
+	{
+		dash_time_ += dt;
+	}
+	if (dash_time_ >= 0.25)
+	{
+		unset_dash();
+	}
+}
+
+void Kontrol::update_heal_stat(float dt)
+{
+	if (is_healing)
+	{
+		if (core_logic_instance_->get_soul_level() <= 3)
+		{
+			unset_heal();
+			return;
+		}
+		heal_timer_ += dt;
+		soul_drain_timer_ += dt;
+		if (heal_timer_ >= 1.f)
+		{
+			core_logic_instance_->heal_a_mask();
+			heal_timer_ = 0.f;
+		}
+		if (soul_drain_timer_ >= 0.33f)
+		{
+			core_logic_instance_->drain_1_soul();
+			soul_drain_timer_ = 0.f;
+		}
+	}
+
+}
+
+void Kontrol::update_cool_down(float dt)
+{
+	if (is_dash_cd_)
+	{
+		dash_cd_time += dt;
+		if (dash_cd_time >= 0.5)
+		{
+			dash_cd_time = 0;
+			is_dash_cd_ = false;
+		}
+	}
+	
+	if (is_attack_cd_)
+	{
+		attack_cd_time += dt;
+		if (attack_cd_time >= 0.4)
+		{
+			attack_cd_time = 0.f;
+			is_attack_cd_ = false;
+		}
+	}
+}
+
+void Kontrol::update_velocity()
+{
+	tmp_vel_nh_(player_name_, tmp_vel_.x(), tmp_vel_.y());
+	const_vel_nh_(player_name_, const_vel_.x(), const_vel_.y());
+	tmp_force_nh_(player_name_, tmp_force_.x(), tmp_force_.y());
+	const_force_nh_(player_name_, const_force_.x(), const_force_.y());
+	tmp_vel_ << 0, 0;
+	tmp_force_ << 0, 0;
+}
+
+void Kontrol::summing()
+{
+	if (is_dashing_)
+	{
+		const_vel_ = const_vel_dash_;
+	}
+	else
+	{
+		const_vel_ = const_vel_left_ + const_vel_right_;
+	}
+	const_force_ = const_force_jump;
+
+	tmp_vel_ += tmp_vel_jump;
+	tmp_vel_jump << 0, 0;
+}
+
+void Kontrol::on_jump_key_press()
+{
+	if (jump_refresh>0)
+	{
+		if (!is_grounded_nh_())
+		{
+			unset_jump();
+		}
+		set_jump();
+	}
+}
+
+void Kontrol::on_jump_key_release()
+{
+	if (is_jumping_)
+	{
+		unset_jump();
+	}
+}
+
+void Kontrol::on_dash_key_press()
+{
+	if (!is_dash_cd_)
+	{
+		set_dash();
+	}
+}
+
+void Kontrol::set_left()
+{
+	const_vel_left_ << -40, 0;
+	heading_left_ = true;
+}
+
+void Kontrol::unset_left()
+{
+	const_vel_left_ << 0, 0;
+}
+
+void Kontrol::set_right()
+{
+	const_vel_right_ << 40, 0;
+	heading_left_ = false;
+}
+
+void Kontrol::unset_right()
+{
+	const_vel_right_ << 0, 0;
+}
+
+void Kontrol::set_jump()
+{
+	tmp_vel_jump << 0, -60;
+	const_force_jump << 0, -450;
+
+	jump_refresh--;
+	is_jumping_ = true;
+}
+
+void Kontrol::unset_jump()
+{
+	tmp_vel_jump << 0, 0;
+	const_force_jump << 0, 0;
+	is_jumping_ = false;
+
+	jump_time_ = 0.f;
+}
+
+void Kontrol::set_dash()
+{
+	if (dash_refresh)
+	{
+		is_dashing_ = true;
+		is_dash_cd_ = true;
+		dash_refresh = false;
+		if (dash_down)
+		{
+			const_vel_dash_ << 0, 140;
+		}
+		else
+		{
+			unset_jump();
+			jump_refresh -= 2;
+			const_force_jump << 0, -298;
+			if (heading_left_)
+			{
+				const_vel_dash_ << -140, 0;
+			}
+			else
+			{
+				const_vel_dash_ << 140, 0;
+			}
+		}
+	}
+	
+}
+
+
+void Kontrol::unset_dash()
+{
+	is_dashing_ = false;
+	const_vel_dash_ << 0, 0;
+	unset_jump();
+	jump_refresh += 2;
+
+	dash_time_ = 0.f;
+}
+
+void Kontrol::set_heal()
+{
+	is_healing = true;
+}
+
+void Kontrol::unset_heal()
+{
+	if (is_healing)
+	{
+		is_healing = false;
+	}
+}
+
+void Kontrol::attack()
+{
+	if (!is_attack_cd_)
+	{
+		int atk_dir = AtkDirection::SIDE;
+		if (is_up_atk_override)
+		{
+			atk_dir = AtkDirection::UP;
+		}
+		if (is_down_atk_override)
+		{
+			atk_dir = AtkDirection::DOWN;
+		}
+		core_logic_instance_->attack_callback(atk_dir);
+		is_attack_cd_ = true;
+	}
+}
+
+Kontrol::Kontrol(std::string name)
+{
+	player_name_ = name;
+}
+
+void Kontrol::key_press_callback(int key)
+{
+	switch (key)
+	{
+	case KeyBinds::KEY_LEFT:
+		atk_dir_ = AtkDirection::SIDE;
+		set_left();
+		break;
+	case KeyBinds::KEY_RIGHT:
+		atk_dir_ = AtkDirection::SIDE;
+		set_right();
+		break;
+	case KeyBinds::KEY_DOWN:
+		is_down_atk_override = true;
+		dash_down = true;
+		break;
+	case KeyBinds::KEY_UP:
+		is_up_atk_override = true;
+		break;
+	case KeyBinds::KEY_JUMP:
+		on_jump_key_press();
+		break;
+	case KeyBinds::KEY_DASH:
+		on_dash_key_press();
+		break;
+	case KeyBinds::KEY_FOCUS:
+		set_heal();
+		break;
+	case KeyBinds::KEY_ATTACK:
 		attack();
-		if (m_pknight->IsAnimateSpriteAnimationFinished() == false) return;
+		break;
+	default:
+		break;
 	}
-	else if (strcmp("DD", m_canimation) == 0 || strcmp("S", m_canimation) == 0 || strcmp("W", m_canimation) == 0)
-	{
-		if (m_pknight->IsAnimateSpriteAnimationFinished() == false) return;
-	}
-	attack();
-	face();
-		if (is_grounded_nh_() && m_ijump == 2)
-	{
-		m_ijump = 0;
-	}
-jump();
 }
-void KnightAnimator::set_gound_status_handler(std::function<bool()> fun)
+
+void Kontrol::key_relese_callback(int key)
 {
-	is_grounded_nh_ = fun;
-}
-//==========================================================================
-//
-// 键盘按下
-// 参数 key：被按下的键
-void KnightAnimator::key_press_callback(int key)
-{
-	if (key == ESC)
+	switch (key)
 	{
-		if (stop == 0)
-		{
-			stop = 1;
-		}
-		else if (stop == 2)
-		{
-			stop = 3;
-		}
-	}
-	if (stop != 0)return;
-	srand(time(NULL));
-	if (key == P) { m_ijump = 1; }//调试专用通道
-	if ((key == J) && (m_iattack == 0))m_iattack = rand() % 2 + 1;
-	if (key == I)m_imagic = 1;
-	if (key == Q)m_ifocus = 1;
-	if (key == S) { m_iface = -1; }
-	if (key == W) { m_iface = 1; }
-	if (key == D) { m_imove = -2;/*右移*/; }
-	if (key == A) { m_imove = 2;/*左移*/; }
-	if (key == L && m_idash == 0)m_idash = 1;
-	if (key == KEY_K && m_ihurt == 0 && m_imagic == 0 && m_idash != 1)
-	{
-		switch( m_ijump )
-		{
-			case 0:m_ijump = 4;break;
-			case 1:m_ijump = 5;break;
-			case 2:if ( m_idjump > 0 ) m_ijump= 3;break;
-		}
+	case KeyBinds::KEY_LEFT:
+		unset_left();
+		break;
+	case KeyBinds::KEY_RIGHT:
+		unset_right();
+		break;
+	case KeyBinds::KEY_UP:
+		is_up_atk_override = false;
+		break;
+	case KeyBinds::KEY_DOWN:
+		is_down_atk_override = false;
+		dash_down = false;
+		break;
+	case KeyBinds::KEY_JUMP:
+		on_jump_key_release();
+		break;
+	case KeyBinds::KEY_DASH:
+		break;
+	case KeyBinds::KEY_FOCUS:
+		unset_heal();
+		break;
+	default:
+		break;
 	}
 }
-//==========================================================================
-//
-// 键盘弹起
-// 参数 key：弹起的键
-void KnightAnimator::key_release_callback(const int key)
+
+void Kontrol::set_physics_engine_handler(std::function<void(std::string, float, float)> tmp_vel, std::function<void(std::string, float, float)> const_vel, std::function<void(std::string, float, float)> tmp_force, std::function<void(std::string, float, float)> const_force)
 {
-	if (key == ESC)
-	{
-		if (stop == 1)
-		{
-			stop = 2;
-		}
-		else if (stop == 3)
-		{
-			stop = 0;
-		}
-	}
-	if (stop != 0)return;
-	if (key == P) { m_ijump = 6; }//调试专用通道
-	if (key == J) { m_iattack = 0; }
-	if (key == I) { m_imagic = 0; }
-	if (key == Q) { m_ifocus = 0; }
-	if ((key == S) && (m_iface == -1)) { m_iface = 0; }
-	if ((key == W) && (m_iface == 1)) { m_iface = 0; }
-	if ((key == D) && (m_imove == -2)) { m_imove = -1;/*右移停止*/; }
-	if ((key == A) && (m_imove == 2)) { m_imove = 1;/*左移停止*/; }
+	tmp_vel_nh_ = tmp_vel;
+	const_vel_nh_ = const_vel;
+	tmp_force_nh_ = tmp_force;
+	const_force_nh_ = const_force;
 }
-//===========================================================================
-//
-// 小骑士朝向
-void KnightAnimator::face()
+
+void Kontrol::set_gound_state_handler(std::function<bool()> is_grounded)
 {
-	//m_pknight->SetSpritePositionY(0);
-	float shift = m_pknight->GetSpriteWidth()*0.12;
-	if (m_imove < 0)
+	is_grounded_nh_ = is_grounded;
+}
+
+void Kontrol::set_logic_instance(CoreLogic* cl)
+{
+	core_logic_instance_ = cl;
+}
+
+void Kontrol::main_loop(float dt)
+{
+	update_jump_stat(dt);
+	update_dash_stat(dt);
+	update_cool_down(dt);
+	update_heal_stat(dt);
+	summing();
+	update_velocity();
+	refresh();
+}
+
+void Kontrol::refresh()
+{
+	if (is_grounded_nh_())
 	{
-		m_pknight->SetSpritePositionX(m_pPlaceHolder->GetSpritePositionX() - shift);
-		m_pknight->SetSpriteFlipX(true);
-		m_pPlaceHolder->SetSpriteFlipX(true);
-	}
-	else if (m_imove > 0)
-	{
-		m_pknight->SetSpritePositionX(m_pPlaceHolder->GetSpritePositionX() + shift);
-		m_pknight->SetSpriteFlipX(false);
-		m_pPlaceHolder->SetSpriteFlipX(false);
+		jump_refresh = 1;
+		dash_refresh = true;
 	}
 }
-//===========================================================================
-//
-// 小骑士移动
-void KnightAnimator::move()
-{
-	if (m_ihurt == 0 && m_imagic == 0 && m_iattack == 0 && m_idash == 0 && m_ijump == 0)
-	{
-		switch (m_imove)
-		{
-		case -2:
-		case 2:Animation("RK");break;
-		case -1:
-		case 1:
-			switch (m_iface)
-			{
-			case 0:
-				if (m_ifocus == 1)
-				{
-					Animation("F");
-					Release("FE",9);
-					focus();
-				}
-				else
-				{
-					Animation("I");
-				}
-				break;
-			case -1:Animation("LDK");break;
-			case 1:Animation("LUK");break;
-			}
-		}
-	}
-}
-//===========================================================================
-//
-// 小骑士跳跃
-void KnightAnimator::jump()
-{
-	switch (m_ijump)
-	{
-		case 0:
-		case 1:
-		{
-			refresh();
-			break;
-		}
-	}
-	if ((m_ihurt == 0) && (m_imagic == 0) && (m_iattack == 0) && (m_idash != 1))
-	{
-		switch (m_ijump)
-		{
-			case 0:break;
-			case 1:
-			{
-				/*if (触地)
-				{
-					m_ijump=6;
-				}
-				if (离墙)
-				{
-					m_ijump=3;
-					m_idjump=1;
-				}
-				else 匀速下滑;*/
-				Animation("WSd");
-				break;
-			}
-			case 2:
-			{	
-				/*if (触地)
-				{
-					m_ijump=6;
-					m_idjump=2;
-				}
-				else if (触墙)
-				{
-					m_ijump=1;
-					m_idjump=2;
-				}
-				else if (未达到最大下落速度) 
-				{
-					增加下落速度(减小上升速度);
-				}*/
-				Animation("AK");
-				break;
-			}
-			case 3:
-			{
-				m_ijump = 2;
-				m_idjump = 0;
-				/*重置上升速度*/
-				Animation("DJ");
-				Release("DJE",8);
-				break;
-			}
-			case 4:
-			{
-				Animation("A");
-				/*正上跳跃*/
-				m_ijump = 2;
-				m_idjump = 1;
-				break;
-			}
-			case 5:
-			{
-				m_imove =  0 - m_imove;
-				face();
-				Animation("WJ");
-				/*斜上跳跃*/
-				Release("WJE", 7);
-				m_ijump = 2;
-				m_idjump = 1;
-				break;
-			}
-			case 6:
-			{
-				Animation("L");
-				m_ijump = 0;
-				break;
-			}
-		}
-	}
-}
-//===========================================================================
-//
-// 小骑士攻击
-void KnightAnimator::attack()
-{
-	if ((m_ihurt == 0) && (m_imagic == 0))
-	{
-		if (m_iattack != 0)
-		{
-			if (strcmp("D",m_canimation)==0)
-			{
-				Release("DSSE", 5);
-				m_iattack = 0;
-			}
-			else if (m_ijump == 1)
-			{
-				Animation("WS");
-				if (m_iattack == 1)
-				{
-					Release("SAE", 13);
-					m_iattack = 2;
-				}
-				else
-				{
-					Release("SBE", 12);
-					m_iattack = 1;
-				}
-			}
-			else if ((m_ijump >= 2) && (m_iface == -1))
-			{
-				Animation("DS");
-				Release("DSE", 4);
-			}
-			else if (m_iface == 1)
-			{
-				Animation("US");
-				Release("USE", 11);
-			}
-			else
-			{
-				if (m_iattack == 1)
-				{
-					Animation("SA");
-					Release("SAE", 2);
-					m_iattack = 2;
-				}
-				else
-				{
-					Animation("SB");
-					Release("SBE", 1);
-					m_iattack = 1;
-				}
-			}
-		}
-	}
-}
-//===========================================================================
-//
-// 小骑士受伤
-void KnightAnimator::hurt()
-{
-	if ((m_idash == 0) && (m_imagic == 0))
-	{
-		if (m_ihurt == 1)
-		{
-			Animation("H");
-			Release("SH", 0);
-			/*血量-1*/
-			m_ihurt = 0;
-		}
-	}
-	else m_ihurt = 0;
-	if (/*血量小于零*/false)
-	{
-		Animation("Dth");
-		/*结束游戏*/
-	}
-}
-//===========================================================================
-//
-// 小骑士冲刺
-void KnightAnimator::dash()
-{
-	if ((m_imagic == 0) && (m_ihurt == 0))
-	{
-		if (m_idash == 1)
-		{
-			if (m_ijump == 1)
-			{
-				m_imove = 0 - m_imove;
-				face();
-				m_ijump = 2;
-				m_idjump = 1;
-				m_idash--;
-			}
-			switch (m_iface)
-			{
-			case -1:if (m_ijump >= 2)
-			{
-				Animation("DD");/*向下冲刺*/break;
-			}
-			case 1:
-			case 0:Animation("D");
-				Release("DE", 3);
-				/*向面向方向冲刺*/break;
-			}
-			m_idash++;
-			jump();
-		}
-	}
-	else m_idash = 0;
-}
-//===========================================================================
-//
-// 小骑士施法
-void KnightAnimator::magic()
-{
-	if ((m_ihurt == 0) && (m_idash == 0))
-	{
-		if (m_imagic == 1)
-		{
-			if (m_iface == 1)
-			{
-				Animation("S");
-				Release("SE", 6);
-			}
-			else
-			{
-				Animation("W");
-				Release("B", 10);
-			}
-		}
-	}
-	else m_imagic = 0;
-}
-//===========================================================================
-//
-// 释放特效
-void KnightAnimator::Release(char* szAnim, int LinkPoint)
-{
-	float sizelvl=(m_pknight->GetSpriteHeight())/SIZE;
-	if (
-		(m_ieffect == 1) ||
-		(
-			strcmp("D", m_canimation) == 0 &&
-			strcmp("DSSE", szAnim) == 0 &&
-			strcmp("DSSE", m_ceffectani) != 0
-			)
-		)
-	{
-		char* tmpEffect;
-		tmpEffect = CSystem::MakeSpriteName(szAnim, 0);
-		m_peffect->DeleteSprite();
-		m_peffect->CloneSprite(tmpEffect);
-		m_peffect->SetSpriteHeight((m_peffect->GetSpriteHeight()) * sizelvl);
-		m_peffect->SetSpriteWidth((m_peffect->GetSpriteWidth()) * sizelvl);
-		if (strcmp("F", m_canimation) == 0)
-		{
-			m_peffect->SetSpriteColorAlpha(200);
-		}
-		else
-		{
-			m_peffect->SetSpriteColorAlpha(255);
-		}
-		m_peffect->SetSpriteVisible(true);
-		m_peffect->SetSpriteCollisionSend(true);
-		m_peffect->SetSpriteEnable(true);
-		bool bFlipX = m_pknight->GetSpriteFlipX();
-		if (strcmp("WJ", m_canimation) == 0 || strcmp("W" , m_canimation) == 0)
-		{
-			float fPosX, fPosY;
-			fPosX = m_pknight->GetSpriteLinkPointPosX(LinkPoint);
-			fPosY = m_pknight->GetSpriteLinkPointPosY(LinkPoint);
-			m_peffect->SetSpritePositionX(fPosX);
-			m_peffect->SetSpritePositionY(fPosY);
-			/*尘土向斜下方移动*/
-			m_peffect->SetSpriteFlipX(bFlipX);
-		}
-		else
-		{
-			m_peffect->SpriteMountToSpriteLinkPoint("Knight", LinkPoint);
-			if (strcmp("WSd", m_canimation) == 0 || strcmp("WS", m_canimation) == 0)
-			{
-				m_peffect->SpriteDismount();
-				m_peffect->SetSpriteFlipX(!bFlipX);
-			}
-		}
-		m_peffect->AnimateSpritePlayAnimation(szAnim, false);
-		if (strcmp("B", szAnim) == 0)
-		{
-			//m_peffect->SpriteDismount();
-			m_peffect->SetSpriteLinearVelocity(VEL * sizelvl * (2 * bFlipX - 1), 0);
-		}
-		m_ceffectani = szAnim;
-	}
-}
-//===========================================================================
-//
-// 小骑士动作变化
-void KnightAnimator::Animation(char* szAnim)
-{
-	if (AnimationBreak(szAnim))
-	{
-		if (
-			strcmp("D", szAnim) == 0 ||
-			strcmp("DD", szAnim) == 0 ||
-			strcmp("S", szAnim) == 0 ||
-			strcmp("W", szAnim) == 0 
-			)
-		{
-			m_pknight->SetSpriteColorAlpha(160);
-		}
-		else
-		{
-			m_pknight->SetSpriteColorAlpha(255);
-		}
-		m_ieffect = 1;
-		m_pknight->AnimateSpritePlayAnimation(szAnim, false);
-		m_canimation = szAnim;
-		return;
-	}
-	m_ieffect = 0;
-}
-//===========================================================================
-//
-// 判定是否可以打断当前动画
-int KnightAnimator::AnimationBreak( char* szAnim )
-{
-	int same = strcmp(szAnim, m_canimation);
-	if ( same != 0)
-		if
-			(
-				(
-					strcmp("D", szAnim) == 0 || 
-					strcmp("DD", szAnim) == 0 ||
-					strcmp("S", szAnim) == 0 || 
-					strcmp("W", szAnim) == 0 ||
-					strcmp("H", szAnim) == 0 || 
-					strcmp("Dth", szAnim) == 0
-					) 
-				||
-				(
-					strcmp("I", m_canimation) == 0 ||
-					strcmp("RK", m_canimation) == 0 ||
-					strcmp("LUK", m_canimation) == 0 ||
-					strcmp("LDK", m_canimation) == 0 ||
-					strcmp("AK", m_canimation) == 0 ||
-					strcmp("WSd", m_canimation) == 0 ||
-					strcmp("F", m_canimation) == 0
-					)
-				||
-				(
-					(
-						strcmp("A", m_canimation) == 0 ||
-						strcmp("WJ", m_canimation) == 0
-						) 
-					&& strcmp("AK", szAnim) != 0
-					)
-				||
-				(
-					(
-						strcmp("SA", m_canimation) == 0 &&
-						strcmp("SB", szAnim) != 0
-						)||
-					(
-						strcmp("SB", m_canimation) == 0 &&
-						strcmp("SA", szAnim) != 0
-						)
-					)
-				)
-			return(true);
-	bool end = m_pknight->IsAnimateSpriteAnimationFinished();
-	return(end);
-}
-//===========================================================================
-//
-// 展示数值
-void KnightAnimator::Show()
-{
-	m_tmove->SetTextValue(m_imove);
-	m_tface->SetTextValue(m_iface);
-	m_tjump->SetTextValue(m_ijump);
-	m_tattack->SetTextValue(m_iattack);
-	m_tmagic->SetTextValue(m_imagic);
-	m_tdash->SetTextValue(m_idash);
-	m_thurt->SetTextValue(m_ihurt);
-	m_tfocus->SetTextValue(m_ifocus);
-	m_tdjump->SetTextValue(m_idjump);
-	m_teffect->SetTextValue(m_ieffect);
-}
-//===========================================================================
-//
-// 封印特效
-void KnightAnimator::Delete()
-{
-	if (m_peffect->IsAnimateSpriteAnimationFinished())
-	{
-		if (m_peffect->GetSpriteIsMounted())
-		{
-			m_peffect->SpriteDismount();
-		}
-		m_peffect->SetSpriteVisible(false);
-		m_peffect->SetSpriteEnable(false);
-	}
-}
-//===========================================================================
-//
-// 聚集
-void KnightAnimator::focus()
-{
-	//掉魂
-	if (m_peffect->IsAnimateSpriteAnimationFinished())
-	{
-		m_ifocus = 0;
-		//加一滴血；
-	}
-}
-//===========================================================================
-//
-// 刷新冲刺和二段跳
-void KnightAnimator::refresh()
-{
-	m_idjump = 2;
-	m_idash = 0;
-}
-//===========================================================================
-//
-// 受击
-void KnightAnimator::hit()
-{
-	m_ihurt = 1;
-}
+

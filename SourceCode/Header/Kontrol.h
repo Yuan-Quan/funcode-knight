@@ -66,7 +66,8 @@ private:
 	bool heading_left_ = false;
 	bool is_attack_cd_ = false;
 	float attack_cd_time = 0.f;
-	AtkDirection atk_dir_ = AtkDirection::SIDE;
+	bool is_down_atk_override = false;
+	bool is_up_atk_override = false;
 	bool is_healing = false;
 	float heal_timer_ = 0.f;
 	float soul_drain_timer_ = 0.f;

@@ -145,6 +145,32 @@ void LibParallexScroll::process_camera_lock()
 	}
 }
 
+void LibParallexScroll::process_shake_camera(float dt)
+{
+	if (is_shake_camera)
+	{
+		camera_shake_timer_ += dt;
+		if (camera_shake_timer_ >= camera_shake_time)
+		{
+			is_shake_camera = false;
+			camera_shake_timer_ = 0.f;
+		}
+		srand(114514);
+		float r1 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/10));
+		float r2 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/10));
+		r1 += 20;
+		r2 += 20;
+		Eigen::Vector2f shake;
+		shake << r1, r2;
+		if (shake.dot(last_shake_) >= 0)
+		{
+			shake *= -1;
+		}
+		cam_vel_temp_offset_ << shake.x(), shake.y();
+		last_shake_ = shake;
+	}
+}
+
 LibParallexScroll::LibParallexScroll()
 {
 	player2map_velocity_ = Eigen::Vector2f(0, 0);
@@ -185,6 +211,7 @@ void LibParallexScroll::main_loop(float dt)
 	update_player_stats();
 	update_current_camera_lock_zone();
 	process_camera_lock();
+	process_shake_camera(dt);
 	update_camera_velocity();
 	update_scenery_velocity();
 	update_camera_lock_velocity();
@@ -264,6 +291,12 @@ void LibParallexScroll::force_target_framing()
 		auto tar_pos = cur_pos + velocity_conversion_function(15.0, player2target);
 		item->SetSpritePosition(tar_pos.x(), tar_pos.y());
 	}
+}
+
+void LibParallexScroll::shake_camera(float duration)
+{
+	is_shake_camera = true;
+	camera_shake_time = duration;
 }
 
 void LibParallexScroll::set_screen_bondary(float left, float right, float top, float bottom)

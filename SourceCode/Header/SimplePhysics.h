@@ -77,6 +77,7 @@ public:
 	void on_colid_callback(Object* src, Object* tar);
 	void on_colid_callback(std::string src_name, std::string tar_name);
 	void main_loop(float dt);
+	void freeze(float duration);
 
 private:
 	std::vector<Object*> objects_;
@@ -87,10 +88,14 @@ private:
 	float fric_factor_ = 0.0f;
 	float drag_factor_ = 0.05f;
 	float collision_cancel_epsilon_ = 0.001;
+	float freeze_duration_ = 0.5;
+	float freeze_timer_ = 0.f;
+	bool is_freeze_;
 
 	void test_collision_(Object* a , Object* b);
 	void handel_collisions_();
 	void process_collisions_();
+	void process_freeze_(float dt);
 	void update_col_intergral(Object* obj);
 	void remove_aix_component_(Object* obj, int direction);
 	void reset_col_(Object* obj);

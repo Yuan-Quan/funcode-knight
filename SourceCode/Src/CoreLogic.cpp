@@ -8,11 +8,22 @@ void CoreLogic::set_immortal_after_damage()
 CoreLogic::CoreLogic(std::string player_name)
 {
 	player_name_ = player_name;
+	player_sp_ = new CSprite(player_name_.c_str());
 }
 
 void CoreLogic::set_hud_instance(HUD* hud)
 {
 	hud_instance_ = hud;
+}
+
+void CoreLogic::set_physics_instance(SimplePhysics* physics)
+{
+	physics_instance_ = physics;
+}
+
+void CoreLogic::set_parallex_instance(LibParallexScroll* parallex)
+{
+	parallex_instance_ = parallex;
 }
 
 void CoreLogic::add_enemy(std::string name, int hp)
@@ -33,6 +44,8 @@ void CoreLogic::take_damange()
 	player_hp_--;
 	hud_instance_->break_a_mask();
 	set_immortal_after_damage();
+	parallex_instance_->shake_camera(0.3);
+	physics_instance_->freeze(0.3);
 	if (player_hp_ <= 0)
 	{
 		die();
@@ -55,16 +68,19 @@ int CoreLogic::get_soul_level()
 	return player_soul_;
 }
 
-void CoreLogic::attack_callback(int atk_dir)
+bool CoreLogic::attack_callback(int atk_dir)
 {
+	bool result = false;
 	for (auto& enemy : enemies_)
 	{
 		if (is_in_atk_range(enemy->sp, atk_dir))
 		{
 			enemy->hp--;
-			// knock back it
+			knock_back(enemy);
+			result = true;
 		}
 	}
+	return result;
 }
 
 void CoreLogic::die()
@@ -74,7 +90,30 @@ void CoreLogic::die()
 
 void CoreLogic::knock_back(NPC* npc)
 {
-	Eigen::Vector2f force;
+	Eigen::Vector2f player_pos;
+	player_pos << player_sp_->GetSpritePositionX(), player_sp_->GetSpritePositionY();
+	Eigen::Vector2f npc_pos;
+	npc_pos << npc->sp->GetSpritePositionX(), npc->sp->GetSpritePositionY();
+
+	Eigen::Vector2f force = npc_pos - player_pos;
+	force.normalize();
+	force *= 50;
+
+	physics_instance_->set_vel_temp(npc->sp->GetName(), force.x(), force.y());
+}
+
+void CoreLogic::knock_player(NPC* npc)
+{
+	Eigen::Vector2f player_pos;
+	player_pos << player_sp_->GetSpritePositionX(), player_sp_->GetSpritePositionY();
+	Eigen::Vector2f npc_pos;
+	npc_pos << npc->sp->GetSpritePositionX(), npc->sp->GetSpritePositionY();
+
+	Eigen::Vector2f force = player_pos - npc_pos;
+	force.normalize();
+	force *= 10;
+
+	//physics_instance_->set_vel_override(player_name_, force.x(), force.y());
 }
 
 bool CoreLogic::is_in_atk_range(CSprite* sp, int atk_dir)
@@ -121,6 +160,11 @@ void CoreLogic::set_atk_box(std::string up, std::string down, std::string side)
 
 void CoreLogic::sp_col_callback(std::string src_name, std::string tar_name)
 {
+	if (strcmp(src_name.c_str(), player_name_.c_str()) == 0 &&
+		strcmp(tar_name.c_str(), "to_dirtmouth") == 0)
+	{
+		CSystem::LoadMap("dirtmouth.t2d");
+	}
 	if (is_immortal_)
 	{
 		return;
@@ -132,6 +176,7 @@ void CoreLogic::sp_col_callback(std::string src_name, std::string tar_name)
 			if (strcmp(tar_name.c_str(), item->sp->GetName()) == 0)
 			{
 				take_damange();
+				knock_player(item);
 			}
 		}
 	}
