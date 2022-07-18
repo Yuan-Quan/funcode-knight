@@ -22,19 +22,18 @@ enum KeyBinds
 };
 }
 
-enum AtkDirection
-{
-	UP = 0,
-	DOWN = 0,
-	LEFT = 0,
-	RIGHT = 0,
-};
+//enum AtkDirection
+//{
+//	UP = 0,
+//	DOWN = 1,
+//	SIDE = 2,
+//};
 
-struct Box {
-	Eigen::Vector2f position;
-	float width;
-	float height;
-};
+//struct Box {
+//	Eigen::Vector2f position;
+//	float width;
+//	float height;
+//};
 
 class Kontrol
 {
@@ -47,7 +46,6 @@ private:
 	std::function<bool()> is_grounded_nh_;
 
 	CoreLogic* core_logic_instance_;
-	std::vector<Box*> atk_hit_boxs_;
 
 	Eigen::Vector2f tmp_vel_;
 	Eigen::Vector2f const_vel_;
@@ -66,7 +64,9 @@ private:
 	float dash_cd_time = 0.f;
 	bool is_dashing_ = false;
 	bool heading_left_ = false;
-	AtkDirection atk_dir_ = AtkDirection::RIGHT;
+	bool is_attack_cd_ = false;
+	float attack_cd_time = 0.f;
+	AtkDirection atk_dir_ = AtkDirection::SIDE;
 	bool is_healing = false;
 	float heal_timer_ = 0.f;
 	float soul_drain_timer_ = 0.f;
@@ -95,9 +95,9 @@ private:
 	void unset_dash();
 	void set_heal();
 	void unset_heal();
+	void attack();
 	void refresh();
 
-	bool is_in_atk_range();
 
 public:
 	/// <summary>

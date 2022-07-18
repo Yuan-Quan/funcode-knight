@@ -2,6 +2,7 @@
 #include <string>
 #include "CommonClass.h"
 #include <vector>
+#include <Eigen/Dense>
 #include "HUD.h"
 
 struct NPC
@@ -9,6 +10,20 @@ struct NPC
 	int hp;
 	CSprite* sp;
 };
+
+enum AtkDirection
+{
+	UP = 0,
+	DOWN = 1,
+	SIDE = 2,
+};
+
+struct Box {
+	Eigen::Vector2f position;
+	float width;
+	float height;
+};
+
 
 class CoreLogic
 {
@@ -22,6 +37,10 @@ private:
 	bool is_alive = true;
 	void die();
 
+	bool is_in_atk_range(CSprite* sp, int atk_dir);
+	std::vector<CSprite*> atk_hit_boxs_;
+	bool is_col(Box* a, Box* b);
+
 	void set_immortal_after_damage();
 public:
 	CoreLogic(std::string player_name);
@@ -34,16 +53,17 @@ public:
 	void take_damange();
 	void heal_a_mask();
 	void drain_1_soul();
-	void attack_npc(NPC* npc);
 	void respawn();
 	int get_soul_level();
 
-	void attack_callback();
+	void attack_callback(int atk_dir);
 	void heal_callback();
+	void set_atk_box(std::string up, std::string down, std::string side);
 	void sp_col_callback(std::string src_name, std::string tar_name);
 
 	void update_immortal_state(float dt);
 	void update_hud_status();
+	void update_enemy_status();
 	void main_loop(float dt);
 	void init();
 };

@@ -56,11 +56,21 @@ void Kontrol::update_cool_down(float dt)
 	if (is_dash_cd_)
 	{
 		dash_cd_time += dt;
+		if (dash_cd_time >= 0.5)
+		{
+			dash_cd_time = 0;
+			is_dash_cd_ = false;
+		}
 	}
-	if (dash_cd_time >= 0.5)
+	
+	if (is_attack_cd_)
 	{
-		dash_cd_time = 0;
-		is_dash_cd_ = false;
+		attack_cd_time += dt;
+		if (attack_cd_time >= 0.4)
+		{
+			attack_cd_time = 0.f;
+			is_attack_cd_ = false;
+		}
 	}
 }
 
@@ -211,6 +221,15 @@ void Kontrol::unset_heal()
 	}
 }
 
+void Kontrol::attack()
+{
+	if (!is_attack_cd_)
+	{
+		core_logic_instance_->attack_callback(atk_dir_);
+		is_attack_cd_ = true;
+	}
+}
+
 Kontrol::Kontrol(std::string name)
 {
 	player_name_ = name;
@@ -221,11 +240,11 @@ void Kontrol::key_press_callback(int key)
 	switch (key)
 	{
 	case KeyBinds::KEY_LEFT:
-		atk_dir_ = AtkDirection::LEFT;
+		atk_dir_ = AtkDirection::SIDE;
 		set_left();
 		break;
 	case KeyBinds::KEY_RIGHT:
-		atk_dir_ = AtkDirection::RIGHT;
+		atk_dir_ = AtkDirection::SIDE;
 		set_right();
 		break;
 	case KeyBinds::KEY_DOWN:
@@ -243,6 +262,9 @@ void Kontrol::key_press_callback(int key)
 		break;
 	case KeyBinds::KEY_FOCUS:
 		set_heal();
+		break;
+	case KeyBinds::KEY_ATTACK:
+		attack();
 		break;
 	default:
 		break;

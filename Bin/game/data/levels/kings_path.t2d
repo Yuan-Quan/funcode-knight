@@ -43,7 +43,7 @@
       useSourceRect = "0";
       sourceRect = "2.36006e-039 0 2.36006e-039 6.22914e-039";
       canSaveDynamicFields = "1";
-      Position = "-27.766 -2.966";
+      Position = "-27.617 -3.396";
       size = "301.266 301.266";
       Layer = "15";
       WorldLimitMin = "-50.000 -37.500";
@@ -143,12 +143,13 @@
    };
    new t2dShapeVector(cam_lck_1) {
       canSaveDynamicFields = "1";
-      Position = "2.523 136.771";
+      Position = "2.631 136.341";
       size = "188.291 367.317";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
-      LineColor = "1 1 1 1";
-      fillColor = "0.5 0.5 0.5 1";
+      PolyList = "-1.000 1.000 -1.000 -1.000 1.000 -1.000 1.000 1.000";
+      LineColor = "1 1 1 0";
+      fillColor = "0.5 0.5 0.5 0";
       FillMode = "0";
          mountID = "10";
    };
@@ -979,5 +980,42 @@
       WorldLimitMax = "50.000 37.500";
       CollisionActiveReceive = "1";
          mountID = "71";
+   };
+   new t2dShapeVector(atk_hitbox_side) {
+      canSaveDynamicFields = "1";
+      Position = "8.012 0.507";
+      size = "16.025 11.013";
+      SortPoint = "-0.004 0.004";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      PolyList = "1.000 -1.000 -1.000 -1.000 -1.000 1.000 1.000 1.000";
+      LineColor = "1 1 1 1";
+      fillColor = "0.886275 0 0 0.556863";
+      FillMode = "1";
+         mountID = "72";
+   };
+   new t2dShapeVector(atk_hitbox_up) {
+      canSaveDynamicFields = "1";
+      Position = "-2.609 -11.842";
+      size = "12.180 16.316";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      PolyList = "-1.000 -1.000 1.000 -1.000 1.000 1.000 -1.000 1.000";
+      LineColor = "1 1 1 1";
+      fillColor = "0.96078 0 0 0.486274";
+      FillMode = "1";
+         mountID = "73";
+   };
+   new t2dShapeVector(atk_hitbox_down) {
+      canSaveDynamicFields = "1";
+      Position = "-2.561 10.647";
+      size = "12.038 13.124";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      PolyList = "-1.000 -1.000 1.000 -1.000 1.000 1.000 -1.000 1.000";
+      LineColor = "1 1 1 1";
+      fillColor = "0.862745 0 0 0.537255";
+      FillMode = "1";
+         mountID = "74";
    };
 };

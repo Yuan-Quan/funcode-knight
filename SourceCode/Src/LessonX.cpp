@@ -169,9 +169,16 @@ void CGameMain::GameInit()
 	animator.set_gound_status_handler(fun_ground_state);
 
 	auto knight = new CSprite("Knight");
+	auto atk_hitbox_side = new CSprite("atk_hitbox_side");
+	auto atk_hitbox_up = new CSprite("atk_hitbox_up");
+	auto atk_hitbox_down = new CSprite("atk_hitbox_down");
 	knight->SpriteMountToSprite("knight_placeholder", 0.f, -0.4f);
+	atk_hitbox_side->SpriteMountToSprite("knight_placeholder", -3.f, 0.f);
+	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
+	atk_hitbox_down->SpriteMountToSprite("knight_placeholder", 0.f, 1.8f);
 	kings_logic.set_hud_instance(&hud);
 	kings_logic.add_enemy("potato", 2);
+	kings_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
 	kings_kontrol.set_logic_instance(&kings_logic);
 	//kings_physics.init();
 	kings_logic.init();
