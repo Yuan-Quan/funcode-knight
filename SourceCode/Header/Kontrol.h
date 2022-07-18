@@ -2,6 +2,7 @@
 #include <string>
 #include <functional>
 #include <Eigen/Dense>
+#include "CoreLogic.h"
 
 namespace hk_config {
 enum KeyBinds
@@ -21,6 +22,20 @@ enum KeyBinds
 };
 }
 
+enum AtkDirection
+{
+	UP = 0,
+	DOWN = 0,
+	LEFT = 0,
+	RIGHT = 0,
+};
+
+struct Box {
+	Eigen::Vector2f position;
+	float width;
+	float height;
+};
+
 class Kontrol
 {
 private:
@@ -30,6 +45,9 @@ private:
 	std::function<void(std::string, float, float)> tmp_force_nh_;
 	std::function<void(std::string, float, float)> const_force_nh_;
 	std::function<bool()> is_grounded_nh_;
+
+	CoreLogic* core_logic_instance_;
+	std::vector<Box*> atk_hit_boxs_;
 
 	Eigen::Vector2f tmp_vel_;
 	Eigen::Vector2f const_vel_;
@@ -48,6 +66,10 @@ private:
 	float dash_cd_time = 0.f;
 	bool is_dashing_ = false;
 	bool heading_left_ = false;
+	AtkDirection atk_dir_ = AtkDirection::RIGHT;
+	bool is_healing = false;
+	float heal_timer_ = 0.f;
+	float soul_drain_timer_ = 0.f;
 	bool is_dash_cd_ = false;
 	int jump_refresh = 1;
 	bool dash_refresh = true;
@@ -55,6 +77,7 @@ private:
 
 	void update_jump_stat(float dt);
 	void update_dash_stat(float dt);
+	void update_heal_stat(float dt);
 	void update_cool_down(float dt);
 	void update_velocity();
 	void summing();
@@ -70,7 +93,11 @@ private:
 	void unset_jump();
 	void set_dash();
 	void unset_dash();
+	void set_heal();
+	void unset_heal();
 	void refresh();
+
+	bool is_in_atk_range();
 
 public:
 	/// <summary>
@@ -88,8 +115,8 @@ public:
 		std::function<void(std::string, float, float)> tmp_force,
 		std::function<void(std::string, float, float)> const_force
 	);
-
 	void set_gound_state_handler(std::function<bool()> is_grounded);
+	void set_logic_instance(CoreLogic* cl);
 
 	void main_loop(float dt);
 

@@ -13,6 +13,7 @@
 #include "Kontrol.h"
 #include "HUD.h"
 #include "KnightAnimator.h"
+#include "CoreLogic.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -30,6 +31,7 @@ private:
 	KnightAnimator	animator = KnightAnimator("Knight");
 	SimplePhysics kings_physics = SimplePhysics();
 	Kontrol kings_kontrol = Kontrol("knight_placeholder");
+	CoreLogic kings_logic = CoreLogic("knight_placeholder");
 	HUD hud = HUD("hp_mask_0", "soul_orb");
 
 public:

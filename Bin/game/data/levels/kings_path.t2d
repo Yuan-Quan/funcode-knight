@@ -830,6 +830,7 @@
       size = "6.315 12.450";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
+      CollisionActiveSend = "1";
       LinkPoints = "0.000 0.265";
       PolyList = "-1.000 -1.000 -1.000 1.000 1.000 1.000 1.000 -1.000";
       LineColor = "0.321569 1 0 1";
@@ -976,6 +977,7 @@
       size = "8.000 11.500";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
          mountID = "71";
    };
 };

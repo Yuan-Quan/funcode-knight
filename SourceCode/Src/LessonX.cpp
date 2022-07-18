@@ -168,14 +168,13 @@ void CGameMain::GameInit()
 	kings_kontrol.set_gound_state_handler(fun_ground_state);
 	animator.set_gound_status_handler(fun_ground_state);
 
-	for (size_t i = 0; i < 4; i++)
-	{
-		hud.apend_a_mask();
-	}
-
 	auto knight = new CSprite("Knight");
 	knight->SpriteMountToSprite("knight_placeholder", 0.f, -0.4f);
+	kings_logic.set_hud_instance(&hud);
+	kings_logic.add_enemy("potato", 2);
+	kings_kontrol.set_logic_instance(&kings_logic);
 	//kings_physics.init();
+	kings_logic.init();
 }
 //=============================================================================
 //
@@ -185,8 +184,8 @@ void CGameMain::GameRun( float fDeltaTime )
 	kings_parallex.main_loop(fDeltaTime);
 	kings_physics.main_loop(fDeltaTime);
 	kings_kontrol.main_loop(fDeltaTime);
-	hud.main_loop();
 	animator.main_loop(fDeltaTime);
+	kings_logic.main_loop(fDeltaTime);
 }
 //=============================================================================
 //
@@ -269,6 +268,7 @@ void CGameMain::OnKeyUp( const int iKey )
 void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName )
 {
 	//kings_physics.on_colid_callback(szSrcName, szTarName);
+	kings_logic.sp_col_callback(szSrcName, szTarName);
 }
 //===========================================================================
 //

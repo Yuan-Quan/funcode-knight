@@ -26,6 +26,31 @@ void Kontrol::update_dash_stat(float dt)
 	}
 }
 
+void Kontrol::update_heal_stat(float dt)
+{
+	if (is_healing)
+	{
+		if (core_logic_instance_->get_soul_level() <= 3)
+		{
+			unset_heal();
+			return;
+		}
+		heal_timer_ += dt;
+		soul_drain_timer_ += dt;
+		if (heal_timer_ >= 1.f)
+		{
+			core_logic_instance_->heal_a_mask();
+			heal_timer_ = 0.f;
+		}
+		if (soul_drain_timer_ >= 0.33f)
+		{
+			core_logic_instance_->drain_1_soul();
+			soul_drain_timer_ = 0.f;
+		}
+	}
+
+}
+
 void Kontrol::update_cool_down(float dt)
 {
 	if (is_dash_cd_)
@@ -173,6 +198,19 @@ void Kontrol::unset_dash()
 	dash_time_ = 0.f;
 }
 
+void Kontrol::set_heal()
+{
+	is_healing = true;
+}
+
+void Kontrol::unset_heal()
+{
+	if (is_healing)
+	{
+		is_healing = false;
+	}
+}
+
 Kontrol::Kontrol(std::string name)
 {
 	player_name_ = name;
@@ -183,19 +221,28 @@ void Kontrol::key_press_callback(int key)
 	switch (key)
 	{
 	case KeyBinds::KEY_LEFT:
+		atk_dir_ = AtkDirection::LEFT;
 		set_left();
 		break;
 	case KeyBinds::KEY_RIGHT:
+		atk_dir_ = AtkDirection::RIGHT;
 		set_right();
 		break;
 	case KeyBinds::KEY_DOWN:
+		atk_dir_ = AtkDirection::DOWN;
 		dash_down = true;
+		break;
+	case KeyBinds::KEY_UP:
+		atk_dir_ = AtkDirection::UP;
 		break;
 	case KeyBinds::KEY_JUMP:
 		on_jump_key_press();
 		break;
 	case KeyBinds::KEY_DASH:
 		on_dash_key_press();
+		break;
+	case KeyBinds::KEY_FOCUS:
+		set_heal();
 		break;
 	default:
 		break;
@@ -220,6 +267,9 @@ void Kontrol::key_relese_callback(int key)
 		break;
 	case KeyBinds::KEY_DASH:
 		break;
+	case KeyBinds::KEY_FOCUS:
+		unset_heal();
+		break;
 	default:
 		break;
 	}
@@ -238,11 +288,17 @@ void Kontrol::set_gound_state_handler(std::function<bool()> is_grounded)
 	is_grounded_nh_ = is_grounded;
 }
 
+void Kontrol::set_logic_instance(CoreLogic* cl)
+{
+	core_logic_instance_ = cl;
+}
+
 void Kontrol::main_loop(float dt)
 {
 	update_jump_stat(dt);
 	update_dash_stat(dt);
 	update_cool_down(dt);
+	update_heal_stat(dt);
 	summing();
 	update_velocity();
 	refresh();
