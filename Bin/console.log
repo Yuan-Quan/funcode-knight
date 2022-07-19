@@ -1,7 +1,7 @@
-//-------------------------- 7/19/2022 -- 08:28:39 -----
+//-------------------------- 7/19/2022 -- 20:17:46 -----
 Processor Init:
    AMD (unknown), ~3.15 Ghz
-     (timed at roughly 3.15 Ghz)
+     (timed at roughly 3.17 Ghz)
    FPU detected
    MMX detected
    SSE detected
@@ -52,14 +52,15 @@ Pixel format set:
 Creating a new rendering context...
 Making the new rendering context current...
 OpenGL driver information:
-  Vendor: ATI Technologies Inc.
-  Renderer: AMD Radeon(TM) Graphics
-  Version: 4.6.14800 Compatibility Profile Context 22.4.1 30.0.15021.1001
+  Vendor: NVIDIA Corporation
+  Renderer: NVIDIA GeForce RTX 3060 Laptop GPU/PCIe/SSE2
+  Version: 4.6.0 NVIDIA 512.78
 OpenGL Init: Enabled Extensions
-  ARB_multitexture (Max Texture Units: 8)
+  ARB_multitexture (Max Texture Units: 4)
   EXT_blend_color
   EXT_blend_minmax
   EXT_compiled_vertex_array
+  NV_vertex_array_range
   EXT_texture_env_combine
   EXT_packed_pixels
   EXT_fog_coord
@@ -70,10 +71,9 @@ OpenGL Init: Enabled Extensions
   WGL_EXT_swap_control
 OpenGL Init: Disabled Extensions
   EXT_paletted_texture
-  NV_vertex_array_range
   3DFX_texture_compression_FXT1
 
-Max Texture Size reported as: 16384
+Max Texture Size reported as: 32768
 Setting screen mode to 1280x720x32 (w)...
 OpenAL Driver Init:
    Failed to initialize driver.
@@ -114,48 +114,16 @@ Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/manag
 Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/gui/mainScreen.gui.
 Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/gameScripts/game.cs.
 Activating DirectInput...
-DirectInput joystick failed to enable!
-Compiling C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/kings_path.t2d...
-Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/kings_path.t2d.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for SBE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of SBE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for SAE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of SAE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for USE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of USE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DSE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DSE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for WJE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of WJE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DJE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DJE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for SE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of SE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for FE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of FE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DSSE0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of DSSE0 from t2dImageMapDatablock to t2dAnimatedSprite.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for B0 for t2dImageMapDatablock.
-Error: cannot change namespace parent linkage of B0 from t2dImageMapDatablock to t2dAnimatedSprite.
-t2dSceneGraph::addToScene() - Object '1530' is already in a SceneGraph!.
-t2dSceneGraph::addToScene() - Object '1531' is already in a SceneGraph!.
-t2dSceneGraph::addToScene() - Object '1532' is already in a SceneGraph!.
-t2dSceneGraph::addToScene() - Object '1533' is already in a SceneGraph!.
+DirectInput joystick enabled.
+Compiling C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/save_menu.t2d...
+Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/save_menu.t2d.
+Compiling C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/main_menu.t2d...
+Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/main_menu.t2d.
+Compiling C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/save_menu.t2d...
+Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/save_menu.t2d.
 DirectInput deactivated.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for B0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DSSE0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for FE0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for SE0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DJE0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DE0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for WJE0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for DSE0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for USE0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for SAE0 for t2dImageMapDatablock.
-Namespace::unlinkClass - cannot unlink namespace parent linkage for SBE0 for t2dImageMapDatablock.
-Shutting down the OpenGL display device...
-Making the GL rendering context not current...
-Deleting the GL rendering context...
-Releasing the device context...
+Activating DirectInput...
+DirectInput deactivated.
+Activating DirectInput...
+Compiling C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/main_menu.t2d...
+Loading compiled script C:/Users/metro/source/repos/kings_physics/Bin/game/data/levels/main_menu.t2d.

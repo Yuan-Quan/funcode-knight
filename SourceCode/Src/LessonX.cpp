@@ -7,6 +7,11 @@
 #include <Stdio.h>
 #include "CommonClass.h"
 #include "LessonX.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //
@@ -21,15 +26,15 @@ void CGameMain::trigger_scene_callback(std::string src_name, std::string tar_nam
 	if (strcmp(src_name.c_str(), "knight_placeholder") == 0 &&
 	strcmp(tar_name.c_str(), "to_dirtmouth") == 0)
 	{
-		current_scene = 1;
+		current_scene = Scenes::MENU;
 	}
 }
 
 void CGameMain::update_scene()
 {
-	if (current_scene != lats_scene)
+	if (current_scene != last_scene)
 	{
-		lats_scene = current_scene;
+		last_scene = current_scene;
 		load_scene(current_scene);
 	}
 }
@@ -38,6 +43,12 @@ void CGameMain::init_scene()
 {
 	switch (current_scene)
 	{
+	case Scenes::MENU:
+		init_main_menu();
+		break;
+	case Scenes::SAVE:
+		init_save_menu();
+		break;
 	case Scenes::KINGS_PATH:
 		init_kings_path();
 		break;
@@ -51,12 +62,71 @@ void CGameMain::init_scene()
 
 void CGameMain::load_scene(int scene_id)
 {
-	load_dirtmouth();
+	switch (current_scene)
+	{
+	case Scenes::MENU:
+		load_main_menu();
+		break;
+	case Scenes::SAVE:
+		load_save_menu();
+		break;
+	case Scenes::KINGS_PATH:
+		load_kings_path();
+		break;
+	case Scenes::DIRT_MOUTH:
+		load_dirtmouth();
+		break;
+	case Scenes::CROSS_RODE:
+		break;
+	default:
+		break;
+	}
 	SetGameState(1);
+}
+
+void CGameMain::init_main_menu()
+{
+	if (is_inited_main_menu)
+	{
+		// init every round
+		game_ui.set_main_menu(true);
+		CSystem::SetWindowTitle("Hollow Knight");
+		return;
+	}
+	// init onece
+	CSystem::SetWindowTitle("Hollow Knight");
+	game_ui.set_scene_switch_handler(std::bind(&CGameMain::SetScene, this, std::placeholders::_1));
+	is_inited_main_menu = true;
+}
+
+void CGameMain::init_save_menu()
+{
+	hk_save_read(*current_save, "save.dat");
+	game_ui.save = current_save;
+	game_ui.set_save_menu(true);
+	last_save_time = time(0);
+	CSystem::SetWindowTitle("Hollow Knight - Saves");
 }
 
 void CGameMain::init_kings_path()
 {
+	if (is_inited_kings_path)
+	{
+		// init every round
+	knight->SpriteMountToSprite("knight_placeholder", 0.f, -0.4f);
+	atk_hitbox_side->SpriteMountToSprite("knight_placeholder", -3.f, 0.f);
+	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
+	atk_hitbox_down->SpriteMountToSprite("knight_placeholder", 0.f, 1.8f);
+	kings_logic.set_hud_instance(&hud);
+	kings_logic.set_physics_instance(&kings_physics);
+	kings_logic.set_parallex_instance(&kings_parallex);
+	kings_kontrol.set_logic_instance(&kings_logic);
+	//kings_physics.init();
+	//kings_logic.init();
+	CSystem::SetWindowTitle("Hollow Knight - King's Path");
+		return;
+	}
+	// init onece
 	kings_parallex.add_player({ "knight_placeholder" });
 	kings_parallex.add_scenery({
 		"L15_kings_path_P1",
@@ -227,10 +297,11 @@ void CGameMain::init_kings_path()
 	game_ui.set_physics_instance(&kings_physics);
 	animator.set_gound_status_handler(fun_ground_state);
 
-	auto knight = new CSprite("Knight");
-	auto atk_hitbox_side = new CSprite("atk_hitbox_side");
-	auto atk_hitbox_up = new CSprite("atk_hitbox_up");
-	auto atk_hitbox_down = new CSprite("atk_hitbox_down");
+	knight = new CSprite("Knight");
+	atk_hitbox_side = new CSprite("atk_hitbox_side");
+	atk_hitbox_up = new CSprite("atk_hitbox_up");
+	atk_hitbox_down = new CSprite("atk_hitbox_down");
+
 	knight->SpriteMountToSprite("knight_placeholder", 0.f, -0.4f);
 	atk_hitbox_side->SpriteMountToSprite("knight_placeholder", -3.f, 0.f);
 	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
@@ -244,6 +315,7 @@ void CGameMain::init_kings_path()
 	//kings_physics.init();
 	kings_logic.init();
 	CSystem::SetWindowTitle("Hollow Knight - King's Path");
+	is_inited_kings_path = true;
 }
 
 void CGameMain::init_dirtmouth()
@@ -251,9 +323,38 @@ void CGameMain::init_dirtmouth()
 	CSystem::SetWindowTitle("Hollow Knight - Dirtmouth");
 }
 
+void CGameMain::load_main_menu()
+{
+	CSystem::LoadMap("main_menu.t2d");
+}
+
+void CGameMain::load_save_menu()
+{
+	CSystem::LoadMap("save_menu.t2d");
+}
+
+void CGameMain::load_kings_path()
+{
+	CSystem::LoadMap("kings_path.t2d");
+}
+
 void CGameMain::load_dirtmouth()
 {	
 	CSystem::LoadMap("dirtmouth.t2d");
+}
+
+void CGameMain::auto_save()
+{
+	if (time(0) - last_save_time >= auto_save_interval)
+	{
+		current_save->time += auto_save_interval / 60;
+		if (current_scene >= 2)
+		{
+			current_save->scene = current_scene;
+		}
+		hk_save_write(*current_save, "save.dat");
+		last_save_time = time(0);
+	}
 }
 
 //==============================================================================
@@ -261,7 +362,10 @@ void CGameMain::load_dirtmouth()
 // 构造函数
 CGameMain::CGameMain()
 {
-	m_iGameState			=	1;
+	current_save = new SaveFile();
+	current_save->scene = 0;
+	current_save->time = 0;
+	m_iGameState = 1;
 }
 //==============================================================================
 //
@@ -329,11 +433,12 @@ void CGameMain::GameRun( float fDeltaTime )
 		kings_kontrol.main_loop(fDeltaTime);
 		animator.main_loop(fDeltaTime);
 		kings_logic.main_loop(fDeltaTime);
+		auto_save();
 		break;
 	default:
 		break;
 	}
-
+	game_ui.main_loop();
 	update_scene();
 }
 //=============================================================================
@@ -389,19 +494,13 @@ void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShi
 // 参数 iKey：弹起的键，值见 enum KeyCodes 宏定义
 void CGameMain::OnKeyUp( const int iKey )
 {
+	if (game_ui.key_release_callback(iKey))
+	{
+		return;
+	}
+
 	kings_kontrol.key_relese_callback(iKey);
 	animator.key_release_callback(iKey);
-	switch (iKey)
-	{
-	case KEY_LEFT:
-		kings_parallex.set_npc_linear_velocity("potato", 0, 0);
-		break;
-	case KEY_RIGHT:
-		kings_parallex.set_npc_linear_velocity("potato", 0, 0);
-		break;
-	default:
-		break;
-	}
 }
 //===========================================================================
 //
@@ -421,5 +520,32 @@ void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName 
 // 参数 iColSide：碰撞到的边界 0 左边，1 右边，2 上边，3 下边
 void CGameMain::OnSpriteColWorldLimit( const char *szName, const int iColSide )
 {
+}
+
+void CGameMain::SetScene(int idx)
+{
+	current_scene = idx;
+}
+
+void CGameMain::hk_save_write(SaveFile& data, string path)
+{
+	std::ofstream out;
+	out.open(path,std::ios::binary);
+	out.write(reinterpret_cast<char*>(&data), sizeof(SaveFile));
+	out.close();
+}
+
+void CGameMain::hk_save_read(SaveFile& data, string path)
+{
+	std::ifstream in;
+	in.open(path,std::ios::binary);
+	if (!in)
+	{
+		current_save->scene = 2;
+		current_save->time = 114514;
+		hk_save_write(*current_save, "save.dat");
+	}
+	in.read(reinterpret_cast<char*>(&data), sizeof(SaveFile));
+	in.close();
 }
 

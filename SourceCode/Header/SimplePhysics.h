@@ -79,7 +79,7 @@ public:
 	void main_loop(float dt);
 	void freeze(float duration);
 	void freeze();
-	void unfreeze(float duration);
+	void unfreeze();
 
 private:
 	std::vector<Object*> objects_;

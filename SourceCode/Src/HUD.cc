@@ -95,7 +95,7 @@ HUD::HUD(std::string hp_mask_template_name, std::string soul_orb_name)
 void HUD::apend_a_mask()
 {
 	auto item = new HpMask();
-	item->hp_mask = new CAnimateSprite(("hp_mask_" + to_string(hp_masks_.size())).c_str(), hp_mask_template_name_.c_str());
+	item->hp_mask = new CAnimateSprite(("hp_mask_" + to_string(hp_masks_.size())).c_str());// , hp_mask_template_name_.c_str());
 	auto x = hp_masks_.back()->hp_mask->GetSpritePositionX();
 	item->hp_mask->SetSpritePositionX(x + mask_distance_);
 	hp_masks_.push_back(item);

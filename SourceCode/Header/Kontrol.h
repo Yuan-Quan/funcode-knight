@@ -21,7 +21,9 @@ enum KeyBinds
 	KEY_INVENTORY	= 0x000, //NULL
 
 	KEY_PAUSE = 0x009, //ESC
+	KEY_ENTER = 0x003 //ENTER
 };
+
 }
 
 //enum AtkDirection

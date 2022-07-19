@@ -374,7 +374,7 @@ void SimplePhysics::freeze()
 	freeze_duration_ = 65535;
 }
 
-void SimplePhysics::unfreeze(float duration)
+void SimplePhysics::unfreeze()
 {
 	is_freeze_ = false;
 	freeze_duration_ = 0;

@@ -15,20 +15,26 @@
 #include "KnightAnimator.h"
 #include "CoreLogic.h"
 #include "GameUI.h"
+#include <time.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 //
 // 游戏总管类。负责处理游戏主循环、游戏初始化、结束等工作
 enum Scenes
 {
-	MENU = -1,
-	SAVE = -1,
-	KINGS_PATH = 0,
-	DIRT_MOUTH = 1,
-	CROSS_RODE = 2,
-	CROSS_RODE_LEFT = 3,
-	CROSS_RODE_RIGHT = 4,
+	MENU = 0,
+	SAVE = 1,
+	KINGS_PATH = 2,
+	DIRT_MOUTH = 3,
+	CROSS_RODE = 4,
+	CROSS_RODE_LEFT = 5,
+	CROSS_RODE_RIGHT = 6,
 };
+//struct SaveFile
+//{
+//	int scene;
+//	long time;
+//};
 class	CGameMain
 {
 private:
@@ -40,10 +46,25 @@ private:
 	void init_scene();
 	void load_scene(int scene_id);
 	int current_scene = 0;
-	int lats_scene = 0;
+	int last_scene = -1;
+	void init_main_menu();
+	void init_save_menu();
 	void init_kings_path();
 	void init_dirtmouth();
+	bool is_inited_main_menu;
+	bool is_inited_kings_path;
+	bool is_inited_dirtmouth;
+	void load_main_menu();
+	void load_save_menu();
+	void load_kings_path();
 	void load_dirtmouth();
+	int auto_save_interval = 60;
+	long last_save_time = 0;
+	void auto_save();
+	CSprite* knight;
+	CSprite* atk_hitbox_side;
+	CSprite* atk_hitbox_up;
+	CSprite* atk_hitbox_down;
 	KnightAnimator	animator = KnightAnimator("Knight");
 	SimplePhysics kings_physics = SimplePhysics();
 	Kontrol kings_kontrol = Kontrol("knight_placeholder");
@@ -75,6 +96,10 @@ public:
 	void 			OnSpriteColSprite( const char *szSrcName, const char *szTarName );
 	void 			OnSpriteColWorldLimit( const char *szName, const int iColSide );
 
+	void SetScene(int idx);
+	void hk_save_write(SaveFile& data, string path);
+	void hk_save_read(SaveFile& data, string path);
+	SaveFile* current_save;
 	bool test_flag = false;
 };
 

@@ -5,64 +5,268 @@ GameUI::GameUI()
 	pause_resume = new CSprite("pause_resume");
 	pause_quit = new CSprite("pause_quit");
 	pause_option = new CSprite("pause_option");
+	main_menu_selector = new CSprite("main_menu_selector");
+	save_menu_selector = new CSprite("save_selector");
+
+	save_black = new CSprite("save_black");
+	save_dirt = new CSprite("save_dirt");
+	save_kings = new CSprite("save_kings");
+	save_forgotten = new CSprite("save_forgotten");
+
+	txt_save_area = new CTextSprite("txt_save_area");
+	txt_save_time = new CTextSprite("txt_save_time");
+	
+	main_menu_option = 0;
+	save_menu_option = 0;
+	pause_menu_option = 0;
+
+	save = new SaveFile();
+	save->scene = 2;
+	save->time = 0;
 }
 
 bool GameUI::key_press_callback(int key)
 {
-	if (key == hk_config::KeyBinds::KEY_PAUSE)
+	if (is_in_main_menu)
 	{
-		if (is_in_main_menu)
-		{
-			return false;
-		}
-		is_in_pause_menu = true;
-		physics_instance_->freeze();
-		pause_resume->SetSpriteVisible(true);
-		pause_menue_option = 0;
-	}
 
+		if (key == hk_config::KeyBinds::KEY_DOWN)
+		{
+			main_menu_option = 1;
+		}
+
+		if (key == hk_config::KeyBinds::KEY_UP)
+		{
+			main_menu_option = 0;
+		}
+
+		switch (main_menu_option)
+		{
+		case 0:
+			main_menu_selector->SetSpritePositionY(14.f);
+			break;
+		case 1:
+			main_menu_selector->SetSpritePositionY(28.f);
+		default:
+			break;
+		}
+
+		if (key == hk_config::KeyBinds::KEY_ATTACK || key == hk_config::KeyBinds::KEY_JUMP || key == hk_config::KeyBinds::KEY_ENTER)
+		{
+			switch (main_menu_option)
+			{
+			case 0:
+				is_in_main_menu = false;
+				requested_scene_switch = 1;
+				break;
+			case 1:
+				exit(0);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	if (is_in_save_menu)
+	{
+		if (key == hk_config::KeyBinds::KEY_DOWN)
+		{
+			save_menu_option = 2;
+		}
+		if (key == hk_config::KeyBinds::KEY_UP)
+		{
+			save_menu_option = 0;
+		}
+		if (key == hk_config::KeyBinds::KEY_LEFT)
+		{
+			save_menu_option = 0;
+		}
+		if (key == hk_config::KeyBinds::KEY_RIGHT)
+		{
+			save_menu_option = 1;
+		}
+
+		switch (save_menu_option)
+		{
+		case 0:
+			save_menu_selector->SetSpritePositionX(-44.f);
+			save_menu_selector->SetSpritePositionY(1.f);
+			save_menu_selector->SetSpriteVisible(true);
+			break;
+		case 1:
+			save_menu_selector->SetSpritePositionX(57.f);
+			save_menu_selector->SetSpritePositionY(-1.f);
+			save_menu_selector->SetSpriteVisible(true);
+			break;
+		case 2:
+			save_menu_selector->SetSpritePositionX(2.f);
+			save_menu_selector->SetSpritePositionY(27.5);
+			save_menu_selector->SetSpriteVisible(true);
+			break;
+		default:
+			break;
+		}
+
+		switch (save->scene)
+		{
+		case 0:
+		case 1:
+			save_black->SetSpriteVisible(false);
+			save_dirt->SetSpriteVisible(false);
+			save_kings->SetSpriteVisible(false);
+			save_forgotten->SetSpriteVisible(false);
+			txt_save_area->SetTextString("NULL");
+			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
+			break;
+		case 2:
+			save_black->SetSpriteVisible(false);
+			save_dirt->SetSpriteVisible(false);
+			save_kings->SetSpriteVisible(true);
+			save_forgotten->SetSpriteVisible(false);
+			txt_save_area->SetTextString("KING'S PATH");
+			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
+			break;
+		case 3:
+			save_black->SetSpriteVisible(false);
+			save_dirt->SetSpriteVisible(true);
+			save_kings->SetSpriteVisible(false);
+			save_forgotten->SetSpriteVisible(false);
+			txt_save_area->SetTextString("DIRTMOUTH");
+			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
+			break;
+		case 4:
+			save_black->SetSpriteVisible(false);
+			save_dirt->SetSpriteVisible(false);
+			save_kings->SetSpriteVisible(false);
+			save_forgotten->SetSpriteVisible(true);
+			txt_save_area->SetTextString("FORGOTTEN CROSSRODE");
+			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
+			break;
+		case 5:
+			save_black->SetSpriteVisible(true);
+			save_dirt->SetSpriteVisible(false);
+			save_kings->SetSpriteVisible(false);
+			save_forgotten->SetSpriteVisible(false);
+			txt_save_area->SetTextString("BOSS FIGHT");
+			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
+			break;
+		default:
+			break;
+		}
+
+		if (key == hk_config::KeyBinds::KEY_ATTACK || key == hk_config::KeyBinds::KEY_JUMP || key == hk_config::KeyBinds::KEY_ENTER)
+		{
+			switch (save_menu_option)
+			{
+			case 0:
+				is_in_main_menu = false;
+				is_in_save_menu = false;
+				requested_scene_switch = 2;
+				break;
+			case 1:
+				break;
+			case 2:
+				is_in_main_menu = true;
+				requested_scene_switch = 0;
+				break;
+			default:
+				break;
+			}
+		}
+
+	}
 	if (is_in_pause_menu)
 	{
 		if (key == hk_config::KeyBinds::KEY_UP)
 		{
-			if (pause_menue_option > 0)
+			if (pause_menu_option > 0)
 			{
-				pause_menue_option--;
+				pause_menu_option--;
 			}
 		}
 
 		if (key == hk_config::KeyBinds::KEY_DOWN)
 		{
-			if (pause_menue_option < 2)
+			if (pause_menu_option < 2)
 			{
-				pause_menue_option++;
+				pause_menu_option++;
 			}
-
 		}
 
-		switch (pause_menue_option)
+
+		switch (pause_menu_option)
 		{
 		case 0:
-			pause_quit->SetSpriteVisible(false);
-			pause_option->SetSpriteVisible(false);
 			pause_resume->SetSpriteVisible(true);
+			pause_option->SetSpriteVisible(false);
+			pause_quit->SetSpriteVisible(false);
+			break;
 		case 1:
 			pause_resume->SetSpriteVisible(false);
-			pause_quit->SetSpriteVisible(false);
 			pause_option->SetSpriteVisible(true);
+			pause_quit->SetSpriteVisible(false);
+			break;
 		case 2:
 			pause_resume->SetSpriteVisible(false);
 			pause_option->SetSpriteVisible(false);
 			pause_quit->SetSpriteVisible(true);
+			break;
 		default:
 			break;
 		}
+
+		if (key == hk_config::KeyBinds::KEY_PAUSE || key == hk_config::KeyBinds::KEY_ATTACK || key == hk_config::KeyBinds::KEY_JUMP || key == hk_config::KeyBinds::KEY_ENTER)
+		{
+			if (key == hk_config::KeyBinds::KEY_PAUSE)
+			{
+				pause_menu_option = 0;
+			}
+
+			switch (pause_menu_option)
+			{
+			case 0:
+				is_in_pause_menu = false;
+				physics_instance_->unfreeze();
+				break;
+			case 1:
+				// TODO: implement option menu
+				is_in_pause_menu = false;
+				physics_instance_->unfreeze();
+				break;
+			case 2:
+				requested_scene_switch = 0;
+				break;
+			}
+
+			pause_resume->SetSpriteVisible(false);
+			pause_option->SetSpriteVisible(false);
+			pause_quit->SetSpriteVisible(false);
+		}
+	}
+	
+	if (key == hk_config::KeyBinds::KEY_PAUSE)
+	{
+		is_in_pause_menu = true;
+		physics_instance_->freeze();
+		pause_resume->SetSpriteVisible(true);
+		pause_menu_option = 0;
 	}
 
-	if (is_in_main_menu || is_in_pause_menu)
+
+	if (is_in_main_menu || is_in_pause_menu || is_in_save_menu)
 	{
 		return true;
 	}
+	return false;
+}
+
+bool GameUI::key_release_callback(int key)
+{	
+	if (is_in_main_menu || is_in_pause_menu || is_in_save_menu)
+	{
+		return true;
+	}
+
 	return false;
 }
 
@@ -71,6 +275,29 @@ void GameUI::set_physics_instance(SimplePhysics* ins)
 	physics_instance_ = ins;
 }
 
+void GameUI::set_main_menu(bool b)
+{
+	is_in_main_menu = b;
+}
+
+void GameUI::set_save_menu(bool b)
+{
+	is_in_save_menu = b;
+}
+
 void GameUI::main_loop()
 {
+	if (requested_scene_switch != -1)
+	{
+		if(scene_switch_handler_)
+		{
+			scene_switch_handler_(requested_scene_switch);
+		}
+		requested_scene_switch = -1;
+	}
+}
+
+void GameUI::set_scene_switch_handler(std::function<void(int)> fun)
+{
+	scene_switch_handler_ = fun;
 }
