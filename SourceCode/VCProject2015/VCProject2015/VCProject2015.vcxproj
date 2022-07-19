@@ -101,22 +101,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\CoreLogic.cpp" />
+    <ClCompile Include="..\..\Src\GameUI.cpp" />
     <ClCompile Include="..\..\Src\HUD.cc" />
     <ClCompile Include="..\..\Src\KnightAnimator.cpp" />
     <ClCompile Include="..\..\Src\Kontrol.cc" />
     <ClCompile Include="..\..\Src\LessonX.cpp" />
     <ClCompile Include="..\..\Src\lib_parallax_scroll.cc" />
     <ClCompile Include="..\..\Src\Main.cpp" />
+    <ClCompile Include="..\..\Src\SceneManager.cpp" />
     <ClCompile Include="..\..\Src\SimplePhysics.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\CommonClass.h" />
     <ClInclude Include="..\..\Header\CoreLogic.h" />
+    <ClInclude Include="..\..\Header\GameUI.h" />
     <ClInclude Include="..\..\Header\HUD.h" />
     <ClInclude Include="..\..\Header\KnightAnimator.h" />
     <ClInclude Include="..\..\Header\Kontrol.h" />
     <ClInclude Include="..\..\Header\LessonX.h" />
     <ClInclude Include="..\..\Header\LibParallexScroll.h" />
+    <ClInclude Include="..\..\Header\SceneManager.h" />
     <ClInclude Include="..\..\Header\SimplePhysics.h" />
   </ItemGroup>
   <ItemGroup>

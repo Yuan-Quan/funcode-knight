@@ -160,11 +160,6 @@ void CoreLogic::set_atk_box(std::string up, std::string down, std::string side)
 
 void CoreLogic::sp_col_callback(std::string src_name, std::string tar_name)
 {
-	if (strcmp(src_name.c_str(), player_name_.c_str()) == 0 &&
-		strcmp(tar_name.c_str(), "to_dirtmouth") == 0)
-	{
-		CSystem::LoadMap("dirtmouth.t2d");
-	}
 	if (is_immortal_)
 	{
 		return;

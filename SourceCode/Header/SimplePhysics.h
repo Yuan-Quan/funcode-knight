@@ -78,6 +78,8 @@ public:
 	void on_colid_callback(std::string src_name, std::string tar_name);
 	void main_loop(float dt);
 	void freeze(float duration);
+	void freeze();
+	void unfreeze(float duration);
 
 private:
 	std::vector<Object*> objects_;

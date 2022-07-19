@@ -368,6 +368,18 @@ void SimplePhysics::freeze(float duration)
 	freeze_duration_ = duration;
 }
 
+void SimplePhysics::freeze()
+{
+	is_freeze_ = true;
+	freeze_duration_ = 65535;
+}
+
+void SimplePhysics::unfreeze(float duration)
+{
+	is_freeze_ = false;
+	freeze_duration_ = 0;
+}
+
 void SimplePhysics::test_collision_(Object* a, Object* b)
 {
 	Eigen::Vector2f tf = a->hit_box->position - b->hit_box->position;

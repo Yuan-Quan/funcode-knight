@@ -16,12 +16,47 @@ CGameMain		g_GameMain;
 //
 // 大体的程序流程为：GameMainLoop函数为主循环函数，在引擎每帧刷新屏幕图像之后，都会被调用一次。
 
-//==============================================================================
-//
-// 构造函数
-CGameMain::CGameMain()
+void CGameMain::trigger_scene_callback(std::string src_name, std::string tar_name)
 {
-	m_iGameState			=	1;
+	if (strcmp(src_name.c_str(), "knight_placeholder") == 0 &&
+	strcmp(tar_name.c_str(), "to_dirtmouth") == 0)
+	{
+		current_scene = 1;
+	}
+}
+
+void CGameMain::update_scene()
+{
+	if (current_scene != lats_scene)
+	{
+		lats_scene = current_scene;
+		load_scene(current_scene);
+	}
+}
+
+void CGameMain::init_scene()
+{
+	switch (current_scene)
+	{
+	case Scenes::KINGS_PATH:
+		init_kings_path();
+		break;
+	case Scenes::DIRT_MOUTH:
+		init_dirtmouth();
+		break;
+	default:
+		break;
+	}
+}
+
+void CGameMain::load_scene(int scene_id)
+{
+	load_dirtmouth();
+	SetGameState(1);
+}
+
+void CGameMain::init_kings_path()
+{
 	kings_parallex.add_player({ "knight_placeholder" });
 	kings_parallex.add_scenery({
 		"L15_kings_path_P1",
@@ -113,58 +148,6 @@ CGameMain::CGameMain()
 	kings_parallex.add_npc({
 		"potato"
 		});
-}
-//==============================================================================
-//
-// 析构函数
-CGameMain::~CGameMain()
-{
-}
-
-//==============================================================================
-//
-// 游戏主循环，此函数将被不停的调用，引擎每刷新一次屏幕，此函数即被调用一次
-// 用以处理游戏的开始、进行中、结束等各种状态. 
-// 函数参数fDeltaTime : 上次调用本函数到此次调用本函数的时间间隔，单位：秒
-void CGameMain::GameMainLoop( float	fDeltaTime )
-{
-	switch( GetGameState() )
-	{
-		// 初始化游戏，清空上一局相关数据
-	case 1:
-		{
-			GameInit();
-			SetGameState(2); // 初始化之后，将游戏状态设置为进行中
-		}
-		break;
-
-		// 游戏进行中，处理各种游戏逻辑
-	case 2:
-		{
-			// TODO 修改此处游戏循环条件，完成正确游戏逻辑
-			if( true )
-			{
-				GameRun( fDeltaTime );
-			}
-			else // 游戏结束。调用游戏结算函数，并把游戏状态修改为结束状态
-			{				
-				SetGameState(0);
-				GameEnd();
-			}
-		}
-		break;
-
-		// 游戏结束/等待按空格键开始
-	case 0:
-	default:
-		break;
-	};
-}
-//=============================================================================
-//
-// 每局开始前进行初始化，清空上一局相关数据
-void CGameMain::GameInit()
-{
 	kings_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
 	kings_physics.set_parallex_instance(&kings_parallex);
 	std::function<void(float, float)> f = std::bind(&LibParallexScroll::set_player_linear_velocity, &kings_parallex, std::placeholders::_1, std::placeholders::_2);
@@ -241,6 +224,7 @@ void CGameMain::GameInit()
 
 	kings_kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
 	kings_kontrol.set_gound_state_handler(fun_ground_state);
+	game_ui.set_physics_instance(&kings_physics);
 	animator.set_gound_status_handler(fun_ground_state);
 
 	auto knight = new CSprite("Knight");
@@ -259,17 +243,98 @@ void CGameMain::GameInit()
 	kings_kontrol.set_logic_instance(&kings_logic);
 	//kings_physics.init();
 	kings_logic.init();
+	CSystem::SetWindowTitle("Hollow Knight - King's Path");
+}
+
+void CGameMain::init_dirtmouth()
+{
+	CSystem::SetWindowTitle("Hollow Knight - Dirtmouth");
+}
+
+void CGameMain::load_dirtmouth()
+{	
+	CSystem::LoadMap("dirtmouth.t2d");
+}
+
+//==============================================================================
+//
+// 构造函数
+CGameMain::CGameMain()
+{
+	m_iGameState			=	1;
+}
+//==============================================================================
+//
+// 析构函数
+CGameMain::~CGameMain()
+{
+}
+
+//==============================================================================
+//
+// 游戏主循环，此函数将被不停的调用，引擎每刷新一次屏幕，此函数即被调用一次
+// 用以处理游戏的开始、进行中、结束等各种状态. 
+// 函数参数fDeltaTime : 上次调用本函数到此次调用本函数的时间间隔，单位：秒
+void CGameMain::GameMainLoop( float	fDeltaTime )
+{
+	switch( GetGameState() )
+	{
+		// 初始化游戏，清空上一局相关数据
+	case 1:
+		{
+			GameInit();
+			SetGameState(2); // 初始化之后，将游戏状态设置为进行中
+		}
+		break;
+
+		// 游戏进行中，处理各种游戏逻辑
+	case 2:
+		{
+			// TODO 修改此处游戏循环条件，完成正确游戏逻辑
+			if( true )
+			{
+				GameRun( fDeltaTime );
+			}
+			else // 游戏结束。调用游戏结算函数，并把游戏状态修改为结束状态
+			{				
+				SetGameState(0);
+				GameEnd();
+			}
+		}
+		break;
+
+		// 游戏结束/等待按空格键开始
+	case 0:
+	default:
+		break;
+	};
+}
+//=============================================================================
+//
+// 每局开始前进行初始化，清空上一局相关数据
+void CGameMain::GameInit()
+{
+	init_scene();
 }
 //=============================================================================
 //
 // 每局游戏进行中
 void CGameMain::GameRun( float fDeltaTime )
 {
-	kings_parallex.main_loop(fDeltaTime);
-	kings_physics.main_loop(fDeltaTime);
-	kings_kontrol.main_loop(fDeltaTime);
-	animator.main_loop(fDeltaTime);
-	kings_logic.main_loop(fDeltaTime);
+	switch (current_scene)
+	{
+	case Scenes::KINGS_PATH:
+		kings_parallex.main_loop(fDeltaTime);
+		kings_physics.main_loop(fDeltaTime);
+		kings_kontrol.main_loop(fDeltaTime);
+		animator.main_loop(fDeltaTime);
+		kings_logic.main_loop(fDeltaTime);
+		break;
+	default:
+		break;
+	}
+
+	update_scene();
 }
 //=============================================================================
 //
@@ -292,6 +357,7 @@ void CGameMain::OnMouseMove( const float fMouseX, const float fMouseY )
 // 参数 fMouseX, fMouseY：为鼠标当前坐标
 void CGameMain::OnMouseClick( const int iMouseType, const float fMouseX, const float fMouseY )
 {
+	test_flag = true;
 }
 //==========================================================================
 //
@@ -309,23 +375,13 @@ void CGameMain::OnMouseUp( const int iMouseType, const float fMouseX, const floa
 // 参数 iAltPress, iShiftPress，iCtrlPress：键盘上的功能键Alt，Ctrl，Shift当前是否也处于按下状态(0未按下，1按下)
 void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShiftPress, const bool bCtrlPress )
 {
+	if (game_ui.key_press_callback(iKey))
+	{
+		return;
+	}
+
 	kings_kontrol.key_press_callback(iKey);
 	animator.key_press_callback(iKey);
-	switch (iKey)
-	{
-	case KEY_LEFT:
-		kings_parallex.set_npc_linear_velocity("potato", -20, 0);
-		break;
-	case KEY_RIGHT:
-		kings_parallex.set_npc_linear_velocity("potato", 20, 0);
-		break;
-	case KEY_B:
-		//kings_parallex.shake_camera(0.2);
-		kings_physics.freeze(1);
-		break;
-	default:
-		break;
-	}
 }
 //==========================================================================
 //
@@ -356,6 +412,7 @@ void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName 
 {
 	//kings_physics.on_colid_callback(szSrcName, szTarName);
 	kings_logic.sp_col_callback(szSrcName, szTarName);
+	trigger_scene_callback(szSrcName, szTarName);
 }
 //===========================================================================
 //
