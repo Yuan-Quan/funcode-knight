@@ -888,7 +888,7 @@
    };
    new t2dShapeVector(map_tile_2) {
       canSaveDynamicFields = "1";
-      Position = "-73.000 3.997";
+      Position = "-70.201 4.797";
       size = "16.000 65.346";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
