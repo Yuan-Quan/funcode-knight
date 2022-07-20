@@ -4,7 +4,7 @@ enum Scenes
 {
 	KINGS_PATH = 0,
 	DIRT_MOUTH = 1,
-	CROSS_RODE = 2,
+	CROSS_ROAD = 2,
 	CROSS_RODE_LEFT = 3,
 	CROSS_RODE_RIGHT = 4,
 };

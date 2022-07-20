@@ -4,7 +4,7 @@ using namespace std;
 
 Eigen::Vector2f LibParallexScroll::velocity_conversion_function(float z, Eigen::Vector2f velocity)
 {
-	return exp(0.4 * ( - z + 15)) * velocity;
+	return exp(parallex_coefficient * ( - z + 15)) * velocity;
 }
 
 void LibParallexScroll::update_camera_lock_velocity()

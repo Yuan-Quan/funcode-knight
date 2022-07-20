@@ -139,7 +139,7 @@ bool GameUI::key_press_callback(int key)
 			save_dirt->SetSpriteVisible(false);
 			save_kings->SetSpriteVisible(false);
 			save_forgotten->SetSpriteVisible(true);
-			txt_save_area->SetTextString("FORGOTTEN CROSSRODE");
+			txt_save_area->SetTextString("CROSSRODE");
 			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
 			break;
 		case 5:

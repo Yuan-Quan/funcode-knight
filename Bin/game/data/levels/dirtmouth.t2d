@@ -41,7 +41,7 @@
       imageMap = "dirtmouth_L0_P1ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "73.225 57.407";
       size = "329.541 302.888";
@@ -54,7 +54,7 @@
       imageMap = "dirtmouth_L0_P2ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "403.574 58.215";
       size = "331.157 302.888";
@@ -66,7 +66,7 @@
    new t2dScroller(L15_dirtmouth_P3) {
       imageMap = "dirtmouth_L0_P3ImageMap";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.20699e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.20699e-039";
       canSaveDynamicFields = "1";
       Position = "732.308 58.216";
       size = "329.541 302.888";
@@ -78,7 +78,7 @@
    new t2dScroller(L15_dirtmouth_P4) {
       imageMap = "dirtmouth_L0_P4ImageMap";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.20699e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.20699e-039";
       canSaveDynamicFields = "1";
       Position = "973.810 57.408";
       size = "153.463 302.888";
@@ -91,7 +91,7 @@
       imageMap = "dirtmouth_L1_P1ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "188.822 5.753";
       size = "528.016 329.530";
@@ -104,7 +104,7 @@
       imageMap = "dirtmouth_L1_P2ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "715.555 5.951";
       size = "528.016 329.530";
@@ -117,7 +117,7 @@
       imageMap = "dirtmouth_L2_P1ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "182.340 -11.942";
       size = "547.772 280.498";
@@ -130,7 +130,7 @@
       imageMap = "dirtmouth_L2_P2ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "729.214 -11.019";
       size = "547.772 280.498";
@@ -143,7 +143,7 @@
       imageMap = "dirtmouth_L3_P1ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "142.888 -58.924";
       size = "565.168 344.973";
@@ -156,7 +156,7 @@
       imageMap = "dirtmouth_L3_P2ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "708.210 -57.368";
       size = "565.474 344.973";
@@ -169,7 +169,7 @@
       imageMap = "dirtmouth_L4_P1ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "146.115 -50.998";
       size = "565.907 366.232";
@@ -182,7 +182,7 @@
       imageMap = "dirtmouth_L4_P2ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "711.537 -50.998";
       size = "564.933 366.232";
@@ -195,7 +195,7 @@
       imageMap = "dirtmouthL5ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "496.839 -51.516";
       size = "1163.849 586.967";
@@ -208,7 +208,7 @@
       imageMap = "dirtmouth_LN1_P1ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "300.551 134.482";
       size = "845.654 339.228";
@@ -221,7 +221,7 @@
       imageMap = "dirtmouth_LN1_P2ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "1146.689 134.482";
       size = "846.621 339.228";
@@ -234,7 +234,7 @@
       imageMap = "dirtmouth_LN2_P1ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "302.867 234.817";
       size = "820.285 410.805";
@@ -246,7 +246,7 @@
       imageMap = "dirtmouth_LN2_P2ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "1123.152 234.817";
       size = "820.285 410.805";
@@ -258,7 +258,7 @@
       imageMap = "dirtmouth_LN3_P1ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "274.970 394.245";
       size = "834.492 423.780";
@@ -270,7 +270,7 @@
       imageMap = "dirtmouth_LN3_P2ImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "1109.460 394.245";
       size = "834.492 423.780";
@@ -282,7 +282,7 @@
       imageMap = "crossHairImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Visible = "0";
       Position = "-51.617 19.414";
@@ -793,7 +793,7 @@
       imageMap = "pause_menu_optionImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Visible = "0";
       size = "160.000 90.000";
@@ -805,7 +805,7 @@
       imageMap = "pause_menu_quitImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Visible = "0";
       size = "160.000 90.000";
@@ -817,7 +817,7 @@
       imageMap = "pause_menu_resumeImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "2.37773e-039 0 2.36006e-039 6.22914e-039";
+      sourceRect = "2.36006e-039 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Visible = "0";
       size = "160.000 90.000";
@@ -865,14 +865,14 @@
       imageMap = "soul_orbImageMap";
       frame = "0";
       useSourceRect = "0";
-      sourceRect = "0 0 0 0";
+      sourceRect = "0 0 2.37773e-039 6.22914e-039";
       canSaveDynamicFields = "1";
       Position = "-57.151 -32.238";
       size = "30.750 19.375";
       Layer = "1";
       WorldLimitMin = "-50.000 -37.500";
       WorldLimitMax = "50.000 37.500";
-         mountID = "71";
+         mountID = "62";
    };
    new t2dShapeVector(map_tile_1) {
       canSaveDynamicFields = "1";
@@ -884,7 +884,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "62";
+         mountID = "63";
    };
    new t2dShapeVector(map_tile_2) {
       canSaveDynamicFields = "1";
@@ -896,7 +896,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "63";
+         mountID = "64";
    };
    new t2dShapeVector(map_tile_3) {
       canSaveDynamicFields = "1";
@@ -907,7 +907,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "64";
+         mountID = "65";
    };
    new t2dShapeVector(map_tile_4) {
       canSaveDynamicFields = "1";
@@ -918,7 +918,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "65";
+         mountID = "66";
    };
    new t2dShapeVector(map_tile_5) {
       canSaveDynamicFields = "1";
@@ -929,7 +929,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "66";
+         mountID = "67";
    };
    new t2dShapeVector(map_tile_6) {
       canSaveDynamicFields = "1";
@@ -940,7 +940,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "67";
+         mountID = "68";
    };
    new t2dShapeVector(map_tile_7) {
       canSaveDynamicFields = "1";
@@ -951,7 +951,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "68";
+         mountID = "69";
    };
    new t2dShapeVector(map_tile_8) {
       canSaveDynamicFields = "1";
@@ -962,7 +962,7 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "69";
+         mountID = "70";
    };
    new t2dShapeVector(map_tile_9) {
       canSaveDynamicFields = "1";
@@ -973,6 +973,18 @@
       LineColor = "1 1 1 1";
       fillColor = "0.5 0.5 0.5 1";
       FillMode = "0";
-         mountID = "70";
+         mountID = "71";
+   };
+   new t2dShapeVector(to_crossroad) {
+      canSaveDynamicFields = "1";
+      Position = "714.069 203.000";
+      size = "16.000 16.000";
+      WorldLimitMin = "-50.000 -37.500";
+      WorldLimitMax = "50.000 37.500";
+      CollisionActiveReceive = "1";
+      LineColor = "1 1 1 1";
+      fillColor = "0.5 0.5 0.5 1";
+      FillMode = "0";
+         mountID = "72";
    };
 };

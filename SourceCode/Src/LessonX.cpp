@@ -24,9 +24,15 @@ CGameMain		g_GameMain;
 void CGameMain::trigger_scene_callback(std::string src_name, std::string tar_name)
 {
 	if (strcmp(src_name.c_str(), "knight_placeholder") == 0 &&
-	strcmp(tar_name.c_str(), "to_dirtmouth") == 0)
+		strcmp(tar_name.c_str(), "to_dirtmouth") == 0)
 	{
 		current_scene = Scenes::DIRT_MOUTH;
+	}
+
+	if (strcmp(src_name.c_str(), "knight_placeholder") == 0 &&
+	strcmp(tar_name.c_str(), "to_crossroad") == 0)
+	{
+		current_scene = Scenes::CROSS_ROAD;
 	}
 }
 
@@ -55,6 +61,9 @@ void CGameMain::init_scene()
 	case Scenes::DIRT_MOUTH:
 		init_dirtmouth();
 		break;
+	case Scenes::CROSS_ROAD:
+		init_crossroad();
+		break;
 	default:
 		break;
 	}
@@ -76,7 +85,8 @@ void CGameMain::load_scene(int scene_id)
 	case Scenes::DIRT_MOUTH:
 		load_dirtmouth();
 		break;
-	case Scenes::CROSS_RODE:
+	case Scenes::CROSS_ROAD:
+		load_crossroad();
 		break;
 	default:
 		break;
@@ -399,6 +409,8 @@ void CGameMain::init_dirtmouth()
 		"map_tile_8",
 		"map_tile_9",
 
+		"to_crossroad"
+
 	});
 	dirt_parallex.add_camera_lock({
 		"camera_lock_1",
@@ -444,6 +456,135 @@ void CGameMain::init_dirtmouth()
 	CSystem::SetWindowTitle("Hollow Knight - Dirtmouth");
 }
 
+void CGameMain::init_crossroad()
+{	
+	knight = new CSprite("Knight");
+	atk_hitbox_side = new CSprite("atk_hitbox_side");
+	atk_hitbox_up = new CSprite("atk_hitbox_up");
+	atk_hitbox_down = new CSprite("atk_hitbox_down");
+
+	knight->SpriteMountToSprite("knight_placeholder", 0.f, -0.4f);
+	atk_hitbox_side->SpriteMountToSprite("knight_placeholder", -3.f, 0.f);
+	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
+	atk_hitbox_down->SpriteMountToSprite("knight_placeholder", 0.f, 1.8f);
+
+	core_logic.set_hud_instance(&hud);
+	core_logic.set_physics_instance(&crossroad_physics);
+	core_logic.set_parallex_instance(&crossroad_parallex);
+	kontrol.set_logic_instance(&core_logic);
+
+	crossroad_parallex.parallex_coefficient = 0.2;
+	crossroad_parallex.add_player({ "knight_placeholder" });
+	crossroad_parallex.add_scenery({
+		"L15_crossroad_P1",
+		"L15_crossroad_P2",
+		"L15_crossroad_P3",
+		"L15_crossroad_P4",
+		"L15_crossroad_P5",
+		"L15_crossroad_P6",
+		"L15_crossroad_P7",
+		"L15_crossroad_P8",
+		"L16_crossroad_P1",
+		"L16_crossroad_P2",
+		"L17_crossroad_P1",
+		"L18_crossroad_P1",
+		"L19_crossroad_P1",
+		"L20_crossroad_P1",
+
+		"map_tile_1",
+		"map_tile_2",
+		"map_tile_3",
+		"map_tile_4",
+		"map_tile_5",
+		"map_tile_6",
+		"map_tile_7",
+		"map_tile_8",
+		"map_tile_9",
+		"map_tile_10",
+		"map_tile_11",
+		"map_tile_12",
+		"map_tile_13",
+		"map_tile_14",
+		"map_tile_15",
+		"map_tile_16",
+		"map_tile_17",
+		"map_tile_18",
+		"map_tile_19",
+		"map_tile_20",
+		"map_tile_21",
+		"map_tile_22",
+		"map_tile_23",
+		"map_tile_24",
+		"map_tile_25",
+		"map_tile_26",
+		"map_tile_27",
+		"map_tile_28",
+
+	});
+	crossroad_parallex.add_camera_lock({
+		"cam_lck_1",
+		"cam_lck_2",
+		"cam_lck_3",
+		"cam_lck_4",
+		"cam_lck_5",
+		});
+	
+	crossroad_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
+
+	crossroad_parallex.set_target_framing(0.f, 6.f);
+	crossroad_physics.set_parallex_instance(&dirt_parallex);
+	std::function<void(float, float)> f = std::bind(&LibParallexScroll::set_player_linear_velocity, &crossroad_parallex, std::placeholders::_1, std::placeholders::_2);
+	crossroad_physics.add_entity("knight_placeholder", f);
+	//dirt_physics.add_entity("potato");
+	crossroad_physics.add_map_tile({
+		"map_tile_1",
+		"map_tile_2",
+		"map_tile_3",
+		"map_tile_4",
+		"map_tile_5",
+		"map_tile_6",
+		"map_tile_7",
+		"map_tile_8",
+		"map_tile_9",
+		"map_tile_10",
+		"map_tile_11",
+		"map_tile_12",
+		"map_tile_13",
+		"map_tile_14",
+		"map_tile_15",
+		"map_tile_16",
+		"map_tile_17",
+		"map_tile_18",
+		"map_tile_19",
+		"map_tile_20",
+		"map_tile_21",
+		"map_tile_22",
+		"map_tile_23",
+		"map_tile_24",
+		"map_tile_25",
+		"map_tile_26",
+		"map_tile_27",
+		"map_tile_28",
+	});
+
+	std::function<void(std::string, float, float)> fun_tmp_vel = std::bind(&SimplePhysics::set_vel_temp, &crossroad_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_const_vel = std::bind(&SimplePhysics::set_vel_offset, &crossroad_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_tmp_force = std::bind(&SimplePhysics::set_force_temp, &crossroad_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_cont_force = std::bind(&SimplePhysics::set_force_1, &crossroad_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<bool()> fun_ground_state = std::bind(&SimplePhysics::get_is_on_ground, &crossroad_physics);
+
+	kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
+	kontrol.set_gound_state_handler(fun_ground_state);
+	game_ui.set_physics_instance(&kings_physics);
+	animator.set_gound_status_handler(fun_ground_state);
+
+	core_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
+	//kings_physics.init();
+	core_logic.init();
+
+	CSystem::SetWindowTitle("Hollow Knight - Forgotten Crossroad");
+}
+
 void CGameMain::load_main_menu()
 {
 	CSystem::LoadMap("main_menu.t2d");
@@ -462,6 +603,11 @@ void CGameMain::load_kings_path()
 void CGameMain::load_dirtmouth()
 {	
 	CSystem::LoadMap("dirtmouth.t2d");
+}
+
+void CGameMain::load_crossroad()
+{
+	CSystem::LoadMap("crossroad.t2d");
 }
 
 void CGameMain::auto_save()
@@ -566,6 +712,14 @@ void CGameMain::GameRun( float fDeltaTime )
 	case Scenes::DIRT_MOUTH:
 		dirt_parallex.main_loop(fDeltaTime);
 		dirt_physics.main_loop(fDeltaTime);
+		kontrol.main_loop(fDeltaTime);
+		animator.main_loop(fDeltaTime);
+		core_logic.main_loop(fDeltaTime);
+		auto_save();
+		break;
+	case Scenes::CROSS_ROAD:
+		crossroad_parallex.main_loop(fDeltaTime);
+		crossroad_physics.main_loop(fDeltaTime);
 		kontrol.main_loop(fDeltaTime);
 		animator.main_loop(fDeltaTime);
 		core_logic.main_loop(fDeltaTime);

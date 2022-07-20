@@ -109,6 +109,8 @@ public:
 	/// program interface of scenery should start with 'Lxx_', where xx is the z depth of the object
 	LibParallexScroll(std::vector<std::string> player, std::vector<std::string> npc, std::vector<std::string> scenery);	// Constructor
 
+	float parallex_coefficient = 0.4;
+
 	void set_player_linear_velocity(float v_x, float v_y);
 	void set_npc_linear_velocity(std::string name, float v_x, float v_y);
 	void set_target_framing(float x, float y);

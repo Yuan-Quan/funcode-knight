@@ -27,9 +27,7 @@ enum Scenes
 	SAVE = 1,
 	KINGS_PATH = 2,
 	DIRT_MOUTH = 3,
-	CROSS_RODE = 4,
-	CROSS_RODE_LEFT = 5,
-	CROSS_RODE_RIGHT = 6,
+	CROSS_ROAD = 4,
 };
 //struct SaveFile
 //{
@@ -40,8 +38,6 @@ class	CGameMain
 {
 private:
 	int				m_iGameState;				// 游戏状态，0：结束或者等待开始；1：初始化；2：游戏进行中
-	LibParallexScroll kings_parallex = LibParallexScroll();
-	LibParallexScroll dirt_parallex = LibParallexScroll();
 	void trigger_scene_callback(std::string src_name, std::string tar_name);
 	void update_scene();
 	bool is_inited = false;
@@ -53,6 +49,7 @@ private:
 	void init_save_menu();
 	void init_kings_path();
 	void init_dirtmouth();
+	void init_crossroad();
 	bool is_inited_main_menu;
 	bool is_inited_kings_path;
 	bool is_inited_dirtmouth;
@@ -60,6 +57,7 @@ private:
 	void load_save_menu();
 	void load_kings_path();
 	void load_dirtmouth();
+	void load_crossroad();
 	int auto_save_interval = 60;
 	long last_save_time = 0;
 	void auto_save();
@@ -72,8 +70,12 @@ private:
 	EnemyAnimator	crawler2 = EnemyAnimator("Crawler", 1, 2);
 	FlyAnimator		fly0	 = FlyAnimator("Fly", 1, 0);
 	KnightAnimator	animator = KnightAnimator("Knight");
+	LibParallexScroll kings_parallex = LibParallexScroll();
+	LibParallexScroll dirt_parallex = LibParallexScroll();
+	LibParallexScroll crossroad_parallex = LibParallexScroll();
 	SimplePhysics kings_physics = SimplePhysics();
 	SimplePhysics dirt_physics = SimplePhysics();
+	SimplePhysics crossroad_physics = SimplePhysics();
 	Kontrol kontrol = Kontrol("knight_placeholder");
 	CoreLogic core_logic = CoreLogic("knight_placeholder");
 	HUD hud = HUD("hp_mask_0", "soul_orb");
