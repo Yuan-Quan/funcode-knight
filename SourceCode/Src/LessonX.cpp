@@ -38,8 +38,8 @@ void CGameMain::sound_loop(float dt)
 			break;
 		case Scenes::KINGS_PATH:
 			PlaySound(NULL, 0, 0);
-			//PlaySound("game/data/audio/corssroad.flac"
-			//, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
+			PlaySound("game/data/audio/cave.wav"
+			, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
 			break;
 		case Scenes::CROSS_ROAD:
 			PlaySound(NULL, 0, 0);
