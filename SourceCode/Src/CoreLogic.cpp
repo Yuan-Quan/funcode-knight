@@ -76,6 +76,10 @@ bool CoreLogic::attack_callback(int atk_dir)
 		if (is_in_atk_range(enemy->sp, atk_dir))
 		{
 			enemy->hp--;
+			if (player_soul_ < 10)
+			{
+				player_soul_++;
+			}
 			knock_back(enemy);
 			result = true;
 		}
@@ -170,6 +174,10 @@ void CoreLogic::sp_col_callback(std::string src_name, std::string tar_name)
 		{
 			if (strcmp(tar_name.c_str(), item->sp->GetName()) == 0)
 			{
+				if (item->hp <= 0)
+				{
+					return;
+				}
 				take_damange();
 				knock_player(item);
 			}
@@ -198,7 +206,7 @@ void CoreLogic::update_enemy_status()
 	{
 		if (item->hp <= 0)
 		{
-			item->sp->SetSpriteColorAlpha(100);
+			item->sp->SetSpriteColorAlpha(200);
 		}
 	}
 }

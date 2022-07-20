@@ -15,6 +15,7 @@ class KnightAnimator
         void			set_keybinds( const int key );
         void            stop_knight();
         void            set_gound_status_handler(function<bool()> fun);
+        int				m_imove;					// 朝向状态，1：面向左不动；-1：面向右不动；2：面向左移动；-2：面向右移动；
 
         //用来对接api的回调函数
         void            key_press_callback( const int key );
@@ -29,7 +30,6 @@ class KnightAnimator
 
     private:
         int             stop;                       // 暂停状态
-        int				m_imove;					// 朝向状态，1：面向左不动；-1：面向右不动；2：面向左移动；-2：面向右移动；
         int				m_iface;					// 视线状态，0：平视；1：仰视；-1：俯视；
         int				m_ijump;					// 跳跃状态，0：着地到着地；1：贴墙到贴墙；2：滞空；3：二段滞空；
                                                     //			 4：着地到滞空上升；5：贴墙到滞空上升；6:着陆；

@@ -16,7 +16,8 @@
 #include "CoreLogic.h"
 #include "GameUI.h"
 #include <time.h>
-
+#include "EnemyAnimator.h"
+#include "FlyAnimator.h"
 /////////////////////////////////////////////////////////////////////////////////
 //
 // 游戏总管类。负责处理游戏主循环、游戏初始化、结束等工作
@@ -66,6 +67,10 @@ private:
 	CSprite* atk_hitbox_side;
 	CSprite* atk_hitbox_up;
 	CSprite* atk_hitbox_down;
+	EnemyAnimator	crawler0 = EnemyAnimator("Crawler", 1, 0);
+	EnemyAnimator	crawler1 = EnemyAnimator("Crawler", 1, 1);
+	EnemyAnimator	crawler2 = EnemyAnimator("Crawler", 1, 2);
+	FlyAnimator		fly0	 = FlyAnimator("Fly", 1, 0);
 	KnightAnimator	animator = KnightAnimator("Knight");
 	SimplePhysics kings_physics = SimplePhysics();
 	SimplePhysics dirt_physics = SimplePhysics();

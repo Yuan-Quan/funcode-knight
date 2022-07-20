@@ -30,7 +30,7 @@ void Kontrol::update_heal_stat(float dt)
 {
 	if (is_healing)
 	{
-		if (core_logic_instance_->get_soul_level() <= 3)
+		if (core_logic_instance_->get_soul_level() <= 1)
 		{
 			unset_heal();
 			return;

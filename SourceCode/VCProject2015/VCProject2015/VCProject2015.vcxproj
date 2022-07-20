@@ -50,10 +50,11 @@
     <TargetName>Game</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(Configuration)\</OutDir>
+    <OutDir>..\..\..\Bin</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
+    <TargetName>Game</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -101,6 +102,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\CoreLogic.cpp" />
+    <ClCompile Include="..\..\Src\EnemyAnimator.cpp" />
+    <ClCompile Include="..\..\Src\FlyAnimator.cpp" />
     <ClCompile Include="..\..\Src\GameUI.cpp" />
     <ClCompile Include="..\..\Src\HUD.cc" />
     <ClCompile Include="..\..\Src\KnightAnimator.cpp" />
@@ -114,6 +117,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\Header\CommonClass.h" />
     <ClInclude Include="..\..\Header\CoreLogic.h" />
+    <ClInclude Include="..\..\Header\EnemyAnimator.h" />
+    <ClInclude Include="..\..\Header\FlyAnimator.h" />
     <ClInclude Include="..\..\Header\GameUI.h" />
     <ClInclude Include="..\..\Header\HUD.h" />
     <ClInclude Include="..\..\Header\KnightAnimator.h" />

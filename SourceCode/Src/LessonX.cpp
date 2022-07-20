@@ -121,6 +121,10 @@ void CGameMain::init_kings_path()
 	core_logic.set_physics_instance(&kings_physics);
 	core_logic.set_parallex_instance(&kings_parallex);
 	kontrol.set_logic_instance(&core_logic);
+	crawler0.set_parallex_instance_(&kings_parallex);
+	crawler1.set_parallex_instance_(&kings_parallex);
+	crawler2.set_parallex_instance_(&kings_parallex);
+	fly0.set_parallex_instance_(&kings_parallex);
 	//kings_physics.init();
 	//core_logic.init();
 	CSystem::SetWindowTitle("Hollow Knight - King's Path");
@@ -129,6 +133,11 @@ void CGameMain::init_kings_path()
 	// init onece
 	kings_parallex.add_player({ "knight_placeholder" });
 	kings_parallex.add_scenery({
+		"L12_tutor_txt_1",
+		"L12_tutor_txt_2",
+		"L12_tutor_txt_3",
+		"L12_tutor_txt_4",
+
 		"L15_kings_path_P1",
 		"L15_kings_path_P2",
 		"L15_kings_path_P3",
@@ -199,7 +208,15 @@ void CGameMain::init_kings_path()
 		"map_tile_59",
 
 		"to_dirtmouth",
-		});
+
+		"CL0",
+		"CR0",
+		"CL1",
+		"CR1",
+		"CL2",
+		"CR2",
+		"AREA0",
+	});
 	kings_parallex.add_camera_lock({
 		"cam_lck_1",
 		"cam_lck_2",
@@ -216,7 +233,11 @@ void CGameMain::init_kings_path()
 		"cam_lck_13",
 		});
 	kings_parallex.add_npc({
-		"potato"
+		"potato",
+		"Crawler0",
+		"Crawler1",
+		"Crawler2",
+		"Fly0",
 		});
 	kings_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
 	kings_physics.set_parallex_instance(&kings_parallex);
@@ -283,7 +304,6 @@ void CGameMain::init_kings_path()
 		"map_tile_57",
 		"map_tile_58",
 		"map_tile_59",
-
 		});
 
 	std::function<void(std::string, float, float)> fun_tmp_vel = std::bind(&SimplePhysics::set_vel_temp, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
@@ -310,8 +330,20 @@ void CGameMain::init_kings_path()
 	core_logic.set_physics_instance(&kings_physics);
 	core_logic.set_parallex_instance(&kings_parallex);
 	core_logic.add_enemy("potato", 2);
+	core_logic.add_enemy("Crawler0", 5);
+	core_logic.add_enemy("Crawler1", 5);
+	core_logic.add_enemy("Crawler2", 5);
+	core_logic.add_enemy("Fly0", 5);
 	core_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
 	kontrol.set_logic_instance(&core_logic);
+	crawler0.set_parallex_instance_(&kings_parallex);
+	crawler1.set_parallex_instance_(&kings_parallex);
+	crawler2.set_parallex_instance_(&kings_parallex);
+	fly0.set_parallex_instance_(&kings_parallex);
+	crawler0.main_init(1);
+	crawler1.main_init(1);
+	crawler2.main_init(1);
+	fly0.main_init(1);
 	//kings_physics.init();
 	core_logic.init();
 	CSystem::SetWindowTitle("Hollow Knight - King's Path");
@@ -521,7 +553,14 @@ void CGameMain::GameRun( float fDeltaTime )
 		kings_physics.main_loop(fDeltaTime);
 		kontrol.main_loop(fDeltaTime);
 		animator.main_loop(fDeltaTime);
-		core_logic.main_loop(fDeltaTime);
+		core_logic.main_loop(fDeltaTime);	
+		crawler0.main_loop(fDeltaTime);
+		crawler0.GetFace(animator.m_imove);
+		crawler1.main_loop(fDeltaTime);
+		crawler1.GetFace(animator.m_imove);
+		crawler2.main_loop(fDeltaTime);
+		crawler2.GetFace(animator.m_imove);
+		fly0.main_loop(fDeltaTime);
 		auto_save();
 		break;
 	case Scenes::DIRT_MOUTH:
@@ -609,6 +648,22 @@ void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName 
 	//kings_physics.on_colid_callback(szSrcName, szTarName);
 	core_logic.sp_col_callback(szSrcName, szTarName);
 	trigger_scene_callback(szSrcName, szTarName);
+	if (strcmp("Crawler0", szTarName) == 0)
+	{
+		crawler0.get_col_callback(szSrcName);
+	}
+	if (strcmp("Crawler1", szTarName) == 0)
+	{
+		crawler1.get_col_callback(szSrcName);
+	}
+	if (strcmp("Crawler2", szTarName) == 0)
+	{
+		crawler2.get_col_callback(szSrcName);
+	}
+	if (strcmp("Fly0", szTarName) == 0)
+	{
+		fly0.get_col_callback(szSrcName);
+	}
 }
 //===========================================================================
 //
