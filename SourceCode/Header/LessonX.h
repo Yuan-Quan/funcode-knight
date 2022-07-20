@@ -40,6 +40,7 @@ class	CGameMain
 private:
 	int				m_iGameState;				// 游戏状态，0：结束或者等待开始；1：初始化；2：游戏进行中
 	LibParallexScroll kings_parallex = LibParallexScroll();
+	LibParallexScroll dirt_parallex = LibParallexScroll();
 	void trigger_scene_callback(std::string src_name, std::string tar_name);
 	void update_scene();
 	bool is_inited = false;
@@ -67,8 +68,9 @@ private:
 	CSprite* atk_hitbox_down;
 	KnightAnimator	animator = KnightAnimator("Knight");
 	SimplePhysics kings_physics = SimplePhysics();
-	Kontrol kings_kontrol = Kontrol("knight_placeholder");
-	CoreLogic kings_logic = CoreLogic("knight_placeholder");
+	SimplePhysics dirt_physics = SimplePhysics();
+	Kontrol kontrol = Kontrol("knight_placeholder");
+	CoreLogic core_logic = CoreLogic("knight_placeholder");
 	HUD hud = HUD("hp_mask_0", "soul_orb");
 	GameUI game_ui = GameUI();
 	//SceneManager scene_manager = SceneManager();

@@ -161,7 +161,14 @@ bool GameUI::key_press_callback(int key)
 			case 0:
 				is_in_main_menu = false;
 				is_in_save_menu = false;
-				requested_scene_switch = 2;
+				if (save->scene >= 2)
+				{
+					requested_scene_switch = save->scene;
+				}
+				else
+				{
+					requested_scene_switch = 2;
+				}
 				break;
 			case 1:
 				break;

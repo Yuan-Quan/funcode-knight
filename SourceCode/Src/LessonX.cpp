@@ -26,7 +26,7 @@ void CGameMain::trigger_scene_callback(std::string src_name, std::string tar_nam
 	if (strcmp(src_name.c_str(), "knight_placeholder") == 0 &&
 	strcmp(tar_name.c_str(), "to_dirtmouth") == 0)
 	{
-		current_scene = Scenes::MENU;
+		current_scene = Scenes::DIRT_MOUTH;
 	}
 }
 
@@ -117,12 +117,12 @@ void CGameMain::init_kings_path()
 	atk_hitbox_side->SpriteMountToSprite("knight_placeholder", -3.f, 0.f);
 	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
 	atk_hitbox_down->SpriteMountToSprite("knight_placeholder", 0.f, 1.8f);
-	kings_logic.set_hud_instance(&hud);
-	kings_logic.set_physics_instance(&kings_physics);
-	kings_logic.set_parallex_instance(&kings_parallex);
-	kings_kontrol.set_logic_instance(&kings_logic);
+	core_logic.set_hud_instance(&hud);
+	core_logic.set_physics_instance(&kings_physics);
+	core_logic.set_parallex_instance(&kings_parallex);
+	kontrol.set_logic_instance(&core_logic);
 	//kings_physics.init();
-	//kings_logic.init();
+	//core_logic.init();
 	CSystem::SetWindowTitle("Hollow Knight - King's Path");
 		return;
 	}
@@ -292,8 +292,8 @@ void CGameMain::init_kings_path()
 	std::function<void(std::string, float, float)> fun_cont_force = std::bind(&SimplePhysics::set_force_1, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 	std::function<bool()> fun_ground_state = std::bind(&SimplePhysics::get_is_on_ground, &kings_physics);
 
-	kings_kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
-	kings_kontrol.set_gound_state_handler(fun_ground_state);
+	kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
+	kontrol.set_gound_state_handler(fun_ground_state);
 	game_ui.set_physics_instance(&kings_physics);
 	animator.set_gound_status_handler(fun_ground_state);
 
@@ -306,20 +306,109 @@ void CGameMain::init_kings_path()
 	atk_hitbox_side->SpriteMountToSprite("knight_placeholder", -3.f, 0.f);
 	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
 	atk_hitbox_down->SpriteMountToSprite("knight_placeholder", 0.f, 1.8f);
-	kings_logic.set_hud_instance(&hud);
-	kings_logic.set_physics_instance(&kings_physics);
-	kings_logic.set_parallex_instance(&kings_parallex);
-	kings_logic.add_enemy("potato", 2);
-	kings_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
-	kings_kontrol.set_logic_instance(&kings_logic);
+	core_logic.set_hud_instance(&hud);
+	core_logic.set_physics_instance(&kings_physics);
+	core_logic.set_parallex_instance(&kings_parallex);
+	core_logic.add_enemy("potato", 2);
+	core_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
+	kontrol.set_logic_instance(&core_logic);
 	//kings_physics.init();
-	kings_logic.init();
+	core_logic.init();
 	CSystem::SetWindowTitle("Hollow Knight - King's Path");
 	is_inited_kings_path = true;
 }
 
 void CGameMain::init_dirtmouth()
-{
+{	
+	knight = new CSprite("Knight");
+	atk_hitbox_side = new CSprite("atk_hitbox_side");
+	atk_hitbox_up = new CSprite("atk_hitbox_up");
+	atk_hitbox_down = new CSprite("atk_hitbox_down");
+
+	knight->SpriteMountToSprite("knight_placeholder", 0.f, -0.4f);
+	atk_hitbox_side->SpriteMountToSprite("knight_placeholder", -3.f, 0.f);
+	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
+	atk_hitbox_down->SpriteMountToSprite("knight_placeholder", 0.f, 1.8f);
+
+	core_logic.set_hud_instance(&hud);
+	core_logic.set_physics_instance(&dirt_physics);
+	core_logic.set_parallex_instance(&dirt_parallex);
+	kontrol.set_logic_instance(&core_logic);
+
+	dirt_parallex.add_player({ "knight_placeholder" });
+	dirt_parallex.add_scenery({
+			"L12_dirtmouth_P1",
+			"L12_dirtmouth_p2",
+			"L13_dirtmouth_P1",
+			"L13_dirtmouth_p2",
+			"L14_dirtmouth_P1",
+			"L14_dirtmouth_P2",
+			"L15_dirtmouth_P1",
+			"L15_dirtmouth_P2",
+			"L15_dirtmouth_P3",
+			"L15_dirtmouth_P4",
+			"L16_dirtmouth_P1",
+			"L16_dirtmouth_P2",
+			"L17_dirtmouth_P1",
+			"L17_dirtmouth_P2",
+			"L18_dirtmouth_P1",
+			"L18_dirtmouth_P2",
+			"L19_dirtmouth_P1",
+			"L19_dirtmouth_P2",
+			"L20_dirtmouth_P1",
+
+		"map_tile_1",
+		"map_tile_2",
+		"map_tile_3",
+		"map_tile_4",
+		"map_tile_5",
+		"map_tile_6",
+		"map_tile_7",
+		"map_tile_8",
+		"map_tile_9",
+
+	});
+	dirt_parallex.add_camera_lock({
+		"camera_lock_1",
+		"camera_lock_2",
+		"camera_lock_3",
+		"camera_lock_4",
+		});
+	
+	dirt_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
+
+	dirt_parallex.set_target_framing(0.f, 10.f);
+	dirt_physics.set_parallex_instance(&dirt_parallex);
+	std::function<void(float, float)> f = std::bind(&LibParallexScroll::set_player_linear_velocity, &dirt_parallex, std::placeholders::_1, std::placeholders::_2);
+	dirt_physics.add_entity("knight_placeholder", f);
+	//dirt_physics.add_entity("potato");
+	dirt_physics.add_map_tile({
+		"map_tile_1",
+		"map_tile_2",
+		"map_tile_3",
+		"map_tile_4",
+		"map_tile_5",
+		"map_tile_6",
+		"map_tile_7",
+		"map_tile_8",
+		"map_tile_9",
+	});
+
+	std::function<void(std::string, float, float)> fun_tmp_vel = std::bind(&SimplePhysics::set_vel_temp, &dirt_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_const_vel = std::bind(&SimplePhysics::set_vel_offset, &dirt_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_tmp_force = std::bind(&SimplePhysics::set_force_temp, &dirt_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_cont_force = std::bind(&SimplePhysics::set_force_1, &dirt_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<bool()> fun_ground_state = std::bind(&SimplePhysics::get_is_on_ground, &dirt_physics);
+
+	kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
+	kontrol.set_gound_state_handler(fun_ground_state);
+	game_ui.set_physics_instance(&kings_physics);
+	animator.set_gound_status_handler(fun_ground_state);
+
+	core_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
+	//kings_physics.init();
+	core_logic.init();
+
 	CSystem::SetWindowTitle("Hollow Knight - Dirtmouth");
 }
 
@@ -425,14 +514,22 @@ void CGameMain::GameInit()
 // 每局游戏进行中
 void CGameMain::GameRun( float fDeltaTime )
 {
-	switch (current_scene)
+	switch (last_scene)
 	{
 	case Scenes::KINGS_PATH:
 		kings_parallex.main_loop(fDeltaTime);
 		kings_physics.main_loop(fDeltaTime);
-		kings_kontrol.main_loop(fDeltaTime);
+		kontrol.main_loop(fDeltaTime);
 		animator.main_loop(fDeltaTime);
-		kings_logic.main_loop(fDeltaTime);
+		core_logic.main_loop(fDeltaTime);
+		auto_save();
+		break;
+	case Scenes::DIRT_MOUTH:
+		dirt_parallex.main_loop(fDeltaTime);
+		dirt_physics.main_loop(fDeltaTime);
+		kontrol.main_loop(fDeltaTime);
+		animator.main_loop(fDeltaTime);
+		core_logic.main_loop(fDeltaTime);
 		auto_save();
 		break;
 	default:
@@ -485,7 +582,7 @@ void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShi
 		return;
 	}
 
-	kings_kontrol.key_press_callback(iKey);
+	kontrol.key_press_callback(iKey);
 	animator.key_press_callback(iKey);
 }
 //==========================================================================
@@ -499,7 +596,7 @@ void CGameMain::OnKeyUp( const int iKey )
 		return;
 	}
 
-	kings_kontrol.key_relese_callback(iKey);
+	kontrol.key_relese_callback(iKey);
 	animator.key_release_callback(iKey);
 }
 //===========================================================================
@@ -510,7 +607,7 @@ void CGameMain::OnKeyUp( const int iKey )
 void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName )
 {
 	//kings_physics.on_colid_callback(szSrcName, szTarName);
-	kings_logic.sp_col_callback(szSrcName, szTarName);
+	core_logic.sp_col_callback(szSrcName, szTarName);
 	trigger_scene_callback(szSrcName, szTarName);
 }
 //===========================================================================
@@ -541,8 +638,8 @@ void CGameMain::hk_save_read(SaveFile& data, string path)
 	in.open(path,std::ios::binary);
 	if (!in)
 	{
-		current_save->scene = 2;
-		current_save->time = 114514;
+		current_save->scene = 0;
+		current_save->time = 0;
 		hk_save_write(*current_save, "save.dat");
 	}
 	in.read(reinterpret_cast<char*>(&data), sizeof(SaveFile));
