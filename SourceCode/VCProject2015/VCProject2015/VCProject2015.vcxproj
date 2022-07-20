@@ -111,8 +111,12 @@
     <ClCompile Include="..\..\Src\LessonX.cpp" />
     <ClCompile Include="..\..\Src\lib_parallax_scroll.cc" />
     <ClCompile Include="..\..\Src\Main.cpp" />
+    <ClCompile Include="..\..\Src\MusicBuffer.cpp" />
     <ClCompile Include="..\..\Src\SceneManager.cpp" />
     <ClCompile Include="..\..\Src\SimplePhysics.cc" />
+    <ClCompile Include="..\..\Src\SoundDevice.cpp" />
+    <ClCompile Include="..\..\Src\SoundEffectsLibrary.cpp" />
+    <ClCompile Include="..\..\Src\SoundEffectsPlayer.cpp" />
     <ClCompile Include="..\..\Src\Tutorial.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -121,13 +125,19 @@
     <ClInclude Include="..\..\Header\EnemyAnimator.h" />
     <ClInclude Include="..\..\Header\FlyAnimator.h" />
     <ClInclude Include="..\..\Header\GameUI.h" />
+    <ClInclude Include="..\..\Header\HollowSound.h" />
     <ClInclude Include="..\..\Header\HUD.h" />
     <ClInclude Include="..\..\Header\KnightAnimator.h" />
     <ClInclude Include="..\..\Header\Kontrol.h" />
     <ClInclude Include="..\..\Header\LessonX.h" />
     <ClInclude Include="..\..\Header\LibParallexScroll.h" />
+    <ClInclude Include="..\..\Header\MusicBuffer.h" />
+    <ClInclude Include="..\..\Header\OpenALErrorCheck.h" />
     <ClInclude Include="..\..\Header\SceneManager.h" />
     <ClInclude Include="..\..\Header\SimplePhysics.h" />
+    <ClInclude Include="..\..\Header\SoundDevice.h" />
+    <ClInclude Include="..\..\Header\SoundEffectsLibrary.h" />
+    <ClInclude Include="..\..\Header\SoundEffectsPlayer.h" />
     <ClInclude Include="..\..\Header\Tutorial.h" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@
 #include "CommonClass.h"
 #include "LessonX.h"
 #include <iostream>
+#include <filesystem>
 #include <fstream>
 #include <string>
 #include <cstring>
@@ -20,6 +21,41 @@ CGameMain		g_GameMain;
 //==============================================================================
 //
 // 大体的程序流程为：GameMainLoop函数为主循环函数，在引擎每帧刷新屏幕图像之后，都会被调用一次。
+
+void CGameMain::sound_loop(float dt)
+{
+	sd_current_scene_ = current_scene;
+	if (sd_current_scene_ != sd_last_scene_)
+	{
+		switch (sd_current_scene_)
+		{
+		case Scenes::MENU:
+		//case Scenes::SAVE:
+			//int MenuBGM = SE_LOAD("C:\\Users\\metro\\source\\repos\\kings_physics\\Bin\\game\\data\\audio\\main_menu.wav");
+			PlaySound("game/data/audio/main_menu.wav"
+			, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
+			//menu_bgm_sfx_.Play(MenuBGM);
+			break;
+		case Scenes::KINGS_PATH:
+			PlaySound(NULL, 0, 0);
+			//PlaySound("game/data/audio/corssroad.flac"
+			//, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
+			break;
+		case Scenes::CROSS_ROAD:
+			PlaySound(NULL, 0, 0);
+			PlaySound("game/data/audio/corssroad.wav"
+			, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
+			break;
+		case Scenes::DIRT_MOUTH:
+			PlaySound(NULL, 0, 0);
+			PlaySound("game/data/audio/dirtmouth.wav"
+			, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
+			break;
+
+		}
+		sd_last_scene_ = sd_current_scene_;
+	}
+}
 
 void CGameMain::trigger_scene_callback(std::string src_name, std::string tar_name)
 {
@@ -143,10 +179,13 @@ void CGameMain::init_kings_path()
 	// init onece
 	kings_parallex.add_player({ "knight_placeholder" });
 	kings_parallex.add_scenery({
-		"L12_tutor_txt_1",
-		"L12_tutor_txt_2",
-		"L12_tutor_txt_3",
-		"L12_tutor_txt_4",
+		"L8_tutor_txt_1",
+		"L8_tutor_txt_2",
+		"L8_tutor_txt_3",
+		"L8_tutor_txt_4",
+		
+		"L14_kings_path_P1",
+		"L14_kings_path_P2",
 
 		"L15_kings_path_P1",
 		"L15_kings_path_P2",
@@ -156,6 +195,20 @@ void CGameMain::init_kings_path()
 		"L15_kings_path_P6",
 		"L15_kings_path_P7",
 		"L15_kings_path_P8",
+
+		"L16_kings_path_P1",
+		"L16_kings_path_P2",
+
+		"L17_kings_path_P1",
+		"L17_kings_path_P2",
+
+		"L18_kings_path_P1",
+		"L18_kings_path_P2",
+
+		"L19_kings_path_P1",
+		"L19_kings_path_P2",
+
+		"L20_kings_path_P1",
 
 		"map_tile_1",
 		"map_tile_2",
@@ -317,6 +370,8 @@ void CGameMain::init_kings_path()
 		"map_tile_58",
 		"map_tile_59",
 		});
+
+	kings_parallex.parallex_coefficient = 0.1;
 
 	std::function<void(std::string, float, float)> fun_tmp_vel = std::bind(&SimplePhysics::set_vel_temp, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 	std::function<void(std::string, float, float)> fun_const_vel = std::bind(&SimplePhysics::set_vel_offset, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
@@ -633,6 +688,7 @@ void CGameMain::auto_save()
 // 构造函数
 CGameMain::CGameMain()
 {
+	sound_init();
 	current_save = new SaveFile();
 	current_save->scene = 0;
 	current_save->time = 0;
@@ -738,6 +794,7 @@ void CGameMain::GameRun( float fDeltaTime )
 	}
 	game_ui.main_loop();
 	update_scene();
+	sound_loop(fDeltaTime);
 }
 //=============================================================================
 //
