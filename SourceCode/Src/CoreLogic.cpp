@@ -44,8 +44,8 @@ void CoreLogic::take_damange()
 	player_hp_--;
 	hud_instance_->break_a_mask();
 	set_immortal_after_damage();
-	parallex_instance_->shake_camera(0.3);
-	physics_instance_->freeze(0.3);
+	parallex_instance_->shake_camera(0.4);
+	physics_instance_->freeze(0.4);
 	if (player_hp_ <= 0)
 	{
 		die();
@@ -61,6 +61,11 @@ void CoreLogic::heal_a_mask()
 void CoreLogic::drain_1_soul()
 {
 	player_soul_ --;
+}
+
+void CoreLogic::shock()
+{
+	parallex_instance_->shake_camera(0.4);
 }
 
 int CoreLogic::get_soul_level()

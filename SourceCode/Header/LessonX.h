@@ -18,6 +18,7 @@
 #include <time.h>
 #include "EnemyAnimator.h"
 #include "FlyAnimator.h"
+#include "Tutorial.h"
 /////////////////////////////////////////////////////////////////////////////////
 //
 // 游戏总管类。负责处理游戏主循环、游戏初始化、结束等工作
@@ -69,6 +70,8 @@ private:
 	EnemyAnimator	crawler1 = EnemyAnimator("Crawler", 1, 1);
 	EnemyAnimator	crawler2 = EnemyAnimator("Crawler", 1, 2);
 	FlyAnimator		fly0	 = FlyAnimator("Fly", 1, 0);
+	Tutorial		focus = Tutorial("Focus");
+	Tutorial		ready = Tutorial("Ready");
 	KnightAnimator	animator = KnightAnimator("Knight");
 	LibParallexScroll kings_parallex = LibParallexScroll();
 	LibParallexScroll dirt_parallex = LibParallexScroll();

@@ -32,21 +32,30 @@ bool GameUI::key_press_callback(int key)
 
 		if (key == hk_config::KeyBinds::KEY_DOWN)
 		{
-			main_menu_option = 1;
+			if (main_menu_option < 2)
+			{
+				main_menu_option++;
+			}
 		}
 
 		if (key == hk_config::KeyBinds::KEY_UP)
-		{
-			main_menu_option = 0;
+		{	
+			if (main_menu_option > 0)
+			{
+				main_menu_option--;
+			}
 		}
 
 		switch (main_menu_option)
 		{
 		case 0:
-			main_menu_selector->SetSpritePositionY(14.f);
+			main_menu_selector->SetSpritePositionY(15.f);
 			break;
 		case 1:
-			main_menu_selector->SetSpritePositionY(28.f);
+			main_menu_selector->SetSpritePositionY(23.f);
+			break;
+		case 2:
+			main_menu_selector->SetSpritePositionY(31.f);
 		default:
 			break;
 		}
@@ -60,6 +69,8 @@ bool GameUI::key_press_callback(int key)
 				requested_scene_switch = 1;
 				break;
 			case 1:
+				break;
+			case 2:
 				exit(0);
 				break;
 			default:
@@ -171,9 +182,11 @@ bool GameUI::key_press_callback(int key)
 				}
 				break;
 			case 1:
+				remove("save.dat");
 				break;
 			case 2:
 				is_in_main_menu = true;
+				is_in_save_menu = false;
 				requested_scene_switch = 0;
 				break;
 			default:

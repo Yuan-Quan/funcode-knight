@@ -61,6 +61,7 @@ public:
 	void take_damange();
 	void heal_a_mask();
 	void drain_1_soul();
+	void shock();
 	void respawn();
 	int get_soul_level();
 

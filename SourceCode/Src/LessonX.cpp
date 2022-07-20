@@ -226,6 +226,8 @@ void CGameMain::init_kings_path()
 		"CL2",
 		"CR2",
 		"AREA0",
+		"Focus0",
+		"Ready0",
 	});
 	kings_parallex.add_camera_lock({
 		"cam_lck_1",
@@ -340,10 +342,10 @@ void CGameMain::init_kings_path()
 	core_logic.set_physics_instance(&kings_physics);
 	core_logic.set_parallex_instance(&kings_parallex);
 	core_logic.add_enemy("potato", 2);
-	core_logic.add_enemy("Crawler0", 5);
-	core_logic.add_enemy("Crawler1", 5);
-	core_logic.add_enemy("Crawler2", 5);
-	core_logic.add_enemy("Fly0", 5);
+	core_logic.add_enemy("Crawler0", 4);
+	core_logic.add_enemy("Crawler1", 4);
+	core_logic.add_enemy("Crawler2", 4);
+	core_logic.add_enemy("Fly0", 4);
 	core_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
 	kontrol.set_logic_instance(&core_logic);
 	crawler0.set_parallex_instance_(&kings_parallex);
@@ -354,6 +356,8 @@ void CGameMain::init_kings_path()
 	crawler1.main_init(1);
 	crawler2.main_init(1);
 	fly0.main_init(1);
+	focus.main_init();
+	ready.main_init();
 	//kings_physics.init();
 	core_logic.init();
 	CSystem::SetWindowTitle("Hollow Knight - King's Path");
@@ -707,6 +711,10 @@ void CGameMain::GameRun( float fDeltaTime )
 		crawler2.main_loop(fDeltaTime);
 		crawler2.GetFace(animator.m_imove);
 		fly0.main_loop(fDeltaTime);
+		focus.main_loop(fDeltaTime);
+		focus.GetFace(animator.m_imove);
+		ready.main_loop(fDeltaTime);
+		ready.GetFace(animator.m_imove);
 		auto_save();
 		break;
 	case Scenes::DIRT_MOUTH:
@@ -817,6 +825,14 @@ void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName 
 	if (strcmp("Fly0", szTarName) == 0)
 	{
 		fly0.get_col_callback(szSrcName);
+	}
+	if (strcmp("Focus0", szTarName) == 0)
+	{
+		focus.get_col_callback(szSrcName);
+	}
+	if (strcmp("Ready0", szTarName) == 0)
+	{
+		ready.get_col_callback(szSrcName);
 	}
 }
 //===========================================================================

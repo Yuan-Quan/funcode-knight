@@ -278,6 +278,12 @@ void Kontrol::key_press_callback(int key)
 	case KeyBinds::KEY_ATTACK:
 		attack();
 		break;
+	case KeyBinds::KEY_QUCIK_CAST:
+		core_logic_instance_->drain_1_soul();
+		core_logic_instance_->drain_1_soul();
+		core_logic_instance_->drain_1_soul();
+		core_logic_instance_->shock();
+		break;
 	default:
 		break;
 	}

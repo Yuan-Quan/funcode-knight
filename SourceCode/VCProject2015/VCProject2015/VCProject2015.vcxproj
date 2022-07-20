@@ -113,6 +113,7 @@
     <ClCompile Include="..\..\Src\Main.cpp" />
     <ClCompile Include="..\..\Src\SceneManager.cpp" />
     <ClCompile Include="..\..\Src\SimplePhysics.cc" />
+    <ClCompile Include="..\..\Src\Tutorial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\CommonClass.h" />
@@ -127,6 +128,7 @@
     <ClInclude Include="..\..\Header\LibParallexScroll.h" />
     <ClInclude Include="..\..\Header\SceneManager.h" />
     <ClInclude Include="..\..\Header\SimplePhysics.h" />
+    <ClInclude Include="..\..\Header\Tutorial.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VCTemplate.rc" />
