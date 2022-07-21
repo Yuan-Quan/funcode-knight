@@ -7,6 +7,7 @@ GameUI::GameUI()
 	pause_option = new CSprite("pause_option");
 	main_menu_selector = new CSprite("main_menu_selector");
 	save_menu_selector = new CSprite("save_selector");
+	difficulty_selector = new CSprite("difficulty_selector");
 
 	save_black = new CSprite("save_black");
 	save_dirt = new CSprite("save_dirt");
@@ -15,10 +16,12 @@ GameUI::GameUI()
 
 	txt_save_area = new CTextSprite("txt_save_area");
 	txt_save_time = new CTextSprite("txt_save_time");
+	txt_save_difficulty = new CTextSprite("txt_save_difficulty");
 	
 	main_menu_option = 0;
 	save_menu_option = 0;
 	pause_menu_option = 0;
+	difficulty_option = 0;
 
 	save = new SaveFile();
 	save->scene = 2;
@@ -165,12 +168,26 @@ bool GameUI::key_press_callback(int key)
 			break;
 		}
 
+		switch (save->difficulty)
+		{
+		case 0:
+			txt_save_difficulty->SetTextString("EASY");
+			break;
+		case 1:
+			txt_save_difficulty->SetTextString("NORMAL");
+			break;
+		case 2:
+			txt_save_difficulty->SetTextString("HARD");
+			break;
+		default:
+			break;
+		}
+
 		if (key == hk_config::KeyBinds::KEY_ATTACK || key == hk_config::KeyBinds::KEY_JUMP || key == hk_config::KeyBinds::KEY_ENTER)
 		{
 			switch (save_menu_option)
 			{
 			case 0:
-				is_in_main_menu = false;
 				is_in_save_menu = false;
 				if (save->scene >= 2)
 				{
@@ -187,11 +204,64 @@ bool GameUI::key_press_callback(int key)
 			case 2:
 				is_in_main_menu = true;
 				is_in_save_menu = false;
+				is_in_difficulty_menu = false;
 				requested_scene_switch = 0;
 				break;
 			default:
 				break;
 			}
+		}
+
+	}
+	if (is_in_difficulty_menu)
+	{
+		if (key == hk_config::KeyBinds::KEY_DOWN)
+		{
+			if (difficulty_option < 2)
+			{
+				difficulty_option++;
+				save->difficulty = difficulty_option;
+			}
+		}
+
+		if (key == hk_config::KeyBinds::KEY_UP)
+		{	
+			if (difficulty_option > 0)
+			{
+				difficulty_option--;
+				save->difficulty = difficulty_option;
+			}
+		}
+
+		switch (difficulty_option)
+		{
+		case 0:
+			difficulty_selector->SetSpritePositionY(2.f);
+			break;
+		case 1:
+			difficulty_selector->SetSpritePositionY(12.f);
+			break;
+		case 2:
+			difficulty_selector->SetSpritePositionY(23.f);
+		default:
+			break;
+		}
+
+		if (key == hk_config::KeyBinds::KEY_ATTACK || key == hk_config::KeyBinds::KEY_JUMP || key == hk_config::KeyBinds::KEY_ENTER)
+		{
+			switch (difficulty_option)
+			{
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			default:
+				break;
+			}
+			requested_scene_switch = 3;
+			is_in_difficulty_menu = false;
 		}
 
 	}

@@ -31,9 +31,10 @@ enum Scenes
 {
 	MENU = 0,
 	SAVE = 1,
-	KINGS_PATH = 2,
-	DIRT_MOUTH = 3,
-	CROSS_ROAD = 4,
+	DIFFICULTY = 2,
+	KINGS_PATH = 3,
+	DIRT_MOUTH = 4,
+	CROSS_ROAD = 5,
 };
 //struct SaveFile
 //{
@@ -96,6 +97,7 @@ private:
 	int last_scene = -1;
 	void init_main_menu();
 	void init_save_menu();
+	void init_difficulty_menu();
 	void init_kings_path();
 	void init_dirtmouth();
 	void init_crossroad();
@@ -104,12 +106,14 @@ private:
 	bool is_inited_dirtmouth;
 	void load_main_menu();
 	void load_save_menu();
+	void load_difficulty();
 	void load_kings_path();
 	void load_dirtmouth();
 	void load_crossroad();
 	int auto_save_interval = 60;
 	long last_save_time = 0;
 	void auto_save();
+	void force_save();
 	CSprite* knight;
 	CSprite* atk_hitbox_side;
 	CSprite* atk_hitbox_up;

@@ -91,14 +91,21 @@ void CGameMain::init_scene()
 	case Scenes::SAVE:
 		init_save_menu();
 		break;
+	case Scenes::DIFFICULTY:
+		init_difficulty_menu();
+		force_save();
+		break;
 	case Scenes::KINGS_PATH:
 		init_kings_path();
+		force_save();
 		break;
 	case Scenes::DIRT_MOUTH:
 		init_dirtmouth();
+		force_save();
 		break;
 	case Scenes::CROSS_ROAD:
 		init_crossroad();
+		force_save();
 		break;
 	default:
 		break;
@@ -114,6 +121,9 @@ void CGameMain::load_scene(int scene_id)
 		break;
 	case Scenes::SAVE:
 		load_save_menu();
+		break;
+	case Scenes::DIFFICULTY:
+		load_difficulty();
 		break;
 	case Scenes::KINGS_PATH:
 		load_kings_path();
@@ -151,7 +161,18 @@ void CGameMain::init_save_menu()
 	game_ui.save = current_save;
 	game_ui.set_save_menu(true);
 	last_save_time = time(0);
+	game_ui.is_in_save_menu = true;
 	CSystem::SetWindowTitle("Hollow Knight - Saves");
+}
+
+void CGameMain::init_difficulty_menu()
+{
+	hk_save_read(*current_save, "save.dat");
+	game_ui.save = current_save;
+	game_ui.set_save_menu(true);
+	last_save_time = time(0);
+	game_ui.is_in_difficulty_menu = true;
+	CSystem::SetWindowTitle("Hollow Knight - New Game");
 }
 
 void CGameMain::init_kings_path()
@@ -654,6 +675,11 @@ void CGameMain::load_save_menu()
 	CSystem::LoadMap("save_menu.t2d");
 }
 
+void CGameMain::load_difficulty()
+{
+	CSystem::LoadMap("difficulty.t2d");
+}
+
 void CGameMain::load_kings_path()
 {
 	CSystem::LoadMap("kings_path.t2d");
@@ -673,7 +699,7 @@ void CGameMain::auto_save()
 {
 	if (time(0) - last_save_time >= auto_save_interval)
 	{
-		current_save->time += auto_save_interval / 60;
+		current_save->time += auto_save_interval / 59;
 		if (current_scene >= 2)
 		{
 			current_save->scene = current_scene;
@@ -681,6 +707,18 @@ void CGameMain::auto_save()
 		hk_save_write(*current_save, "save.dat");
 		last_save_time = time(0);
 	}
+}
+
+void CGameMain::force_save()
+{
+	current_save->difficulty = game_ui.difficulty_option;
+	current_save->time += auto_save_interval / 59;
+	if (current_scene >= 2)
+	{
+		current_save->scene = current_scene;
+	}
+	hk_save_write(*current_save, "save.dat");
+	last_save_time = time(0);
 }
 
 //==============================================================================
@@ -922,6 +960,7 @@ void CGameMain::hk_save_read(SaveFile& data, string path)
 	{
 		current_save->scene = 0;
 		current_save->time = 0;
+		current_save->difficulty = 0;
 		hk_save_write(*current_save, "save.dat");
 	}
 	in.read(reinterpret_cast<char*>(&data), sizeof(SaveFile));

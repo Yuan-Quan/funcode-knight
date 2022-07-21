@@ -6,6 +6,7 @@ struct SaveFile
 {
 	int scene;
 	long time;
+	int difficulty;
 };
 
 class GameUI
@@ -19,12 +20,14 @@ public:
 	void set_save_menu(bool b);
 	void main_loop();
 	void set_scene_switch_handler(std::function<void(int)> fun);
+	int difficulty_option;
 	SaveFile* save;
-private:
 	bool is_in_main_menu;
 	bool is_in_save_menu;
 	bool is_in_pause_menu;
+	bool is_in_difficulty_menu;
 	bool is_interact;
+private:
 
 	int requested_scene_switch = -1;
 
@@ -37,9 +40,11 @@ private:
 	CSprite* save_dirt;
 	CSprite* save_kings;
 	CSprite* save_forgotten;
+	CSprite* difficulty_selector;
 
 	CTextSprite* txt_save_area;
 	CTextSprite* txt_save_time;
+	CTextSprite* txt_save_difficulty;
 
 	int main_menu_option;
 	int pause_menu_option;

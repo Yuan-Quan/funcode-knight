@@ -101,6 +101,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\BossStage.cpp" />
     <ClCompile Include="..\..\Src\CoreLogic.cpp" />
     <ClCompile Include="..\..\Src\EnemyAnimator.cpp" />
     <ClCompile Include="..\..\Src\FlyAnimator.cpp" />
@@ -120,6 +121,7 @@
     <ClCompile Include="..\..\Src\Tutorial.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Header\BossStage.h" />
     <ClInclude Include="..\..\Header\CommonClass.h" />
     <ClInclude Include="..\..\Header\CoreLogic.h" />
     <ClInclude Include="..\..\Header\EnemyAnimator.h" />
