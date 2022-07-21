@@ -1,41 +1,4 @@
-﻿C:\program files\microsoft visual studio\2022\community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(500,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  CoreLogic.cpp
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(92,34): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\CoreLogic.cpp(47,38): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\CoreLogic.cpp(48,31): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\CoreLogic.cpp(69,38): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\CoreLogic.cpp(231,23): warning C4018: '<': signed/unsigned mismatch
-  GameUI.cpp
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(92,34): warning C4305: 'initializing': truncation from 'double' to 'float'
-  HollowSound.cpp
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(6,51): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(7,58): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(8,56): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(9,56): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(18,49): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(23,61): warning C4305: 'argument': truncation from 'double' to 'const float'
-  KnightAnimator.cpp
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(92,34): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\KnightAnimator.cpp(110,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\KnightAnimator.cpp(163,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Kontrol.cc
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(92,34): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(500,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   LessonX.cpp
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
@@ -45,16 +8,9 @@ C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(92,3
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(143,23): warning C4244: '=': conversion from 'time_t' to 'long', possible loss of data
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(153,23): warning C4244: '=': conversion from 'time_t' to 'long', possible loss of data
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(377,43): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(542,47): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(706,24): warning C4244: '=': conversion from 'time_t' to 'long', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(719,23): warning C4244: '=': conversion from 'time_t' to 'long', possible loss of data
-  Main.cpp
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(92,34): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Generating Code...
+C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(550,47): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(769,24): warning C4244: '=': conversion from 'time_t' to 'long', possible loss of data
+C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(782,23): warning C4244: '=': conversion from 'time_t' to 'long', possible loss of data
 BossStage.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
 CommonClass_2015.lib(CommonClass.obj) : warning LNK4099: PDB 'CommonClass_2015.pdb' was not found with 'CommonClass_2015.lib(CommonClass.obj)' or at 'C:\Users\metro\source\repos\kings_physics\Bin\CommonClass_2015.pdb'; linking object as if no debug info

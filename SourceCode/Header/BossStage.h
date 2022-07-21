@@ -23,5 +23,14 @@ int hp=3;
 bool Seted;
 bool IsPressed = false;
 bool dan1=false,dan2=false,dan3=false;
+
+CSprite* dan11 = new CSprite("dan11");
+CSprite* dan22 = new CSprite("dan11");
+CSprite* dan33 = new CSprite("dan11");
+CSprite* Q1 = new CSprite("Q1");
+CSprite* Q2 = new CSprite("Q2");
+CSprite* Q3 = new CSprite("Q3");
+
+void duplicate();
 };
 

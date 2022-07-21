@@ -18,14 +18,7 @@ CTextSprite *hp1;
 				//T2=time(NULL);
 				CAnimateSprite *attack1;
 				attack1 = new CAnimateSprite("Attack1");
-				CSprite *dan11,*dan22,*dan33,*Q1,*Q2,*Q3;
 				float fSpeedY=npc->GetSpriteLinearVelocityY(),fSpeedX;
-							Q1 = new CSprite("Q1", "Q");
-							Q2 = new CSprite("Q2","Q");
-							Q3 = new CSprite("Q3", "Q");
-							dan11 = new CSprite("dan11", "dan1");
-							dan22 = new CSprite("dan22", "dan2");
-							dan33 = new CSprite("dan33", "dan3");
 				if (fabs(fSpeedY-0)<=0.001 && IsPressed == false) npc->SetSpriteLinearVelocity(0,0);
 				if (FirstStage<=10){
 					float PosX = npc->GetSpritePositionX();
@@ -37,9 +30,7 @@ CTextSprite *hp1;
 					Type=rand()%2+1;
 					if (FirstStage == 10) Type = 1;
 						if (Type==1){
-							dan11 = new CSprite("dan11", "dan1");
-							dan22 = new CSprite("dan22", "dan2");
-							dan33 = new CSprite("dan33", "dan3");
+							duplicate();
 							dan11->SetSpritePosition(20.399,-3.526);
 							dan22->SetSpritePosition(20.181,10.181);
 							dan33->SetSpritePosition(20.176,24.809);
@@ -50,9 +41,6 @@ CTextSprite *hp1;
 							T1=time(NULL);
 						}
 						if (Type == 2){
-							Q1 = new CSprite("Q1", "Q");
-							Q2 = new CSprite("Q2","Q");
-							Q3 = new CSprite("Q3", "Q");
 							Typed=Type;
 							dan1=false;
 							T1=time(NULL);
@@ -94,15 +82,14 @@ CTextSprite *hp1;
 							}
 						}
 						if (Typed==1){
-							float Speed1 = dan11->GetSpriteLinearVelocityX();
-							float Speed2 = dan22->GetSpriteLinearVelocityX();
-							float Speed3 = dan33->GetSpriteLinearVelocityX();
 							if (!dan1) {
 								T2=time(NULL);
 								if (T2-T1>=0.4) 
 									attack1->AnimateSpritePlayAnimation(  "shotCAnimation", 0 );
 								if (T2-T1>=0.5) {
 									dan11->SpriteMoveTo(-66.952,40.176,80,1);
+									//dan11 = new CSprite("dan11");
+									dan11->SetSpriteLinearVelocity(-10, 0);
 									dan1=true;
 									T1=time(NULL);
 								}
@@ -234,6 +221,7 @@ CTextSprite *hp1;
 				}
 				CSprite *marisa,*mari;
 				marisa = new CSprite("marisa");
+				mari = new CSprite("mari");
 				if (ST2==false && ST1end && !Showed){//set1
 					wenzi->SetTextString("[����]shooting star");
 					marisa->SetSpritePosition(29.310,8.750);
@@ -291,4 +279,15 @@ CTextSprite *hp1;
 				if (Set1) {
 					mari->SetSpritePosition(82.075,-58.945);
 				}
+}
+
+void BossStage::duplicate()
+{
+
+						Q1 = new CSprite("Q1", "Q");
+						Q2 = new CSprite("Q2","Q");
+						Q3 = new CSprite("Q3", "Q");
+						dan11 = new CSprite("dan11", "dan1");
+						dan22 = new CSprite("dan22", "dan2");
+						dan33 = new CSprite("dan33", "dan3");
 }

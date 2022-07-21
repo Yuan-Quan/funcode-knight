@@ -20,9 +20,6 @@
 #include "FlyAnimator.h"
 #include "Tutorial.h"
 #include "BossStage.h"
-#include "SoundDevice.h"
-#include "SoundEffectsPlayer.h"
-#include "SoundEffectsLibrary.h"
 #include "HollowSound.h"
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +60,7 @@ private:
 	void init_kings_path();
 	void init_dirtmouth();
 	void init_crossroad();
-	void init_boss_State();
+	void init_boss_stage();
 	bool is_inited_main_menu;
 	bool is_inited_kings_path;
 	bool is_inited_dirtmouth;
@@ -92,9 +89,11 @@ private:
 	LibParallexScroll kings_parallex = LibParallexScroll();
 	LibParallexScroll dirt_parallex = LibParallexScroll();
 	LibParallexScroll crossroad_parallex = LibParallexScroll();
+	LibParallexScroll boss_parallex = LibParallexScroll();
 	SimplePhysics kings_physics = SimplePhysics();
 	SimplePhysics dirt_physics = SimplePhysics();
 	SimplePhysics crossroad_physics = SimplePhysics();
+	SimplePhysics boss_physics = SimplePhysics();
 	Kontrol kontrol = Kontrol("knight_placeholder");
 	CoreLogic core_logic = CoreLogic("knight_placeholder");
 	HUD hud = HUD("hp_mask_0", "soul_orb");

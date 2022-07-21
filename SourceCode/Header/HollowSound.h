@@ -1,11 +1,11 @@
 #pragma once
 
-#include <AL/al.h>
+//#include <AL/al.h>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <bit>
-#include <AL/alc.h>
+//#include <AL/alc.h>
 #include "CommonClass.h"
 
 class HollowSound

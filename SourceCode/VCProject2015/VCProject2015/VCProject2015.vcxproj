@@ -116,7 +116,6 @@
     <ClCompile Include="..\..\Src\Main.cpp" />
     <ClCompile Include="..\..\Src\SceneManager.cpp" />
     <ClCompile Include="..\..\Src\SimplePhysics.cc" />
-    <ClCompile Include="..\..\Src\SoundDevice.cpp" />
     <ClCompile Include="..\..\Src\Tutorial.cpp" />
   </ItemGroup>
   <ItemGroup>

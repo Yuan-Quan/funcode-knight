@@ -80,7 +80,7 @@ void CGameMain::init_scene()
 		force_save();
 		break;
 	case Scenes::BOSS_STAGE:
-		init_boss_State();
+		init_boss_stage();
 		break;
 	default:
 		break;
@@ -539,6 +539,14 @@ void CGameMain::init_crossroad()
 	core_logic.set_parallex_instance(&crossroad_parallex);
 	kontrol.set_logic_instance(&core_logic);
 
+	core_logic.add_enemy("Q1", 1);
+	core_logic.add_enemy("Q2", 1);
+	core_logic.add_enemy("Q3", 1);
+	core_logic.add_enemy("dan11", 1);
+	core_logic.add_enemy("dan22", 1);
+	core_logic.add_enemy("dan33", 1);
+	core_logic.add_enemy("reimu", 65535);
+
 	crossroad_parallex.parallex_coefficient = 0.2;
 	crossroad_parallex.add_player({ "knight_placeholder" });
 	crossroad_parallex.add_scenery({
@@ -653,8 +661,63 @@ void CGameMain::init_crossroad()
 	CSystem::SetWindowTitle("Hollow Knight - Forgotten Crossroad");
 }
 
-void CGameMain::init_boss_State()
+void CGameMain::init_boss_stage()
 {
+	//hollow_sound.stop_all();
+	//hollow_sound.play_corssroad_bgm();
+	knight = new CSprite("Knight");
+	atk_hitbox_side = new CSprite("atk_hitbox_side");
+	atk_hitbox_up = new CSprite("atk_hitbox_up");
+	atk_hitbox_down = new CSprite("atk_hitbox_down");
+
+	knight->SpriteMountToSprite("knight_placeholder", 0.f, -0.4f);
+	atk_hitbox_side->SpriteMountToSprite("knight_placeholder", -3.f, 0.f);
+	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
+	atk_hitbox_down->SpriteMountToSprite("knight_placeholder", 0.f, 1.8f);
+
+	core_logic.set_hud_instance(&hud);
+	core_logic.set_physics_instance(&boss_physics);
+	core_logic.set_parallex_instance(&boss_parallex);
+	kontrol.set_logic_instance(&core_logic);
+
+	boss_parallex.add_player({ "knight_placeholder" });
+	boss_parallex.add_scenery({
+		"map_tile_1",
+		"map_tile_2",
+		"map_tile_3",
+
+	});
+	boss_parallex.add_camera_lock({
+		"cam_lck_1",
+		});
+	
+	boss_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
+
+	boss_physics.set_parallex_instance(&boss_parallex);
+	std::function<void(float, float)> f = std::bind(&LibParallexScroll::set_player_linear_velocity, &boss_parallex, std::placeholders::_1, std::placeholders::_2);
+	boss_physics.add_entity("knight_placeholder", f);
+	//dirt_physics.add_entity("potato");
+	boss_physics.add_map_tile({
+		"map_tile_1",
+		"map_tile_2",
+		"map_tile_3",
+	});
+
+	std::function<void(std::string, float, float)> fun_tmp_vel = std::bind(&SimplePhysics::set_vel_temp, &boss_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_const_vel = std::bind(&SimplePhysics::set_vel_offset, &boss_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_tmp_force = std::bind(&SimplePhysics::set_force_temp, &boss_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<void(std::string, float, float)> fun_cont_force = std::bind(&SimplePhysics::set_force_1, &boss_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+	std::function<bool()> fun_ground_state = std::bind(&SimplePhysics::get_is_on_ground, &boss_physics);
+
+	kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
+	kontrol.set_gound_state_handler(fun_ground_state);
+	game_ui.set_physics_instance(&kings_physics);
+	animator.set_gound_status_handler(fun_ground_state);
+
+	core_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
+	//kings_physics.init();
+	core_logic.init();
+
 	CSystem::SetWindowTitle("Hollow Knight - Boss Stage");
 }
 
@@ -827,6 +890,11 @@ void CGameMain::GameRun( float fDeltaTime )
 		break;
 	case Scenes::BOSS_STAGE:
 		boss_stage.main_loop(fDeltaTime);
+		boss_parallex.main_loop(fDeltaTime);
+		boss_physics.main_loop(fDeltaTime);
+		kontrol.main_loop(fDeltaTime);
+		animator.main_loop(fDeltaTime);
+		core_logic.main_loop(fDeltaTime);
 	default:
 		break;
 	}

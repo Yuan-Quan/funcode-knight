@@ -1,12 +1,8 @@
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vc143.pdb
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vc143.idb
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\tutorial.obj
-c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\soundeffectsplayer.obj
-c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\soundeffectslibrary.obj
-c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\sounddevice.obj
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\simplephysics.obj
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\scenemanager.obj
-c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\musicbuffer.obj
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\main.obj
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\lib_parallax_scroll.obj
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\lessonx.obj
@@ -22,15 +18,6 @@ c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015
 c:\users\metro\source\repos\kings_physics\bin\game.exe
 c:\users\metro\source\repos\kings_physics\bin\game.pdb
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vctemplate.res
-c:\users\metro\source\repos\kings_physics\bin\openal32.dll
-c:\users\metro\source\repos\kings_physics\bin\sndfile.dll
-c:\users\metro\source\repos\kings_physics\bin\vorbisenc.dll
-c:\users\metro\source\repos\kings_physics\bin\vorbis.dll
-c:\users\metro\source\repos\kings_physics\bin\ogg.dll
-c:\users\metro\source\repos\kings_physics\bin\flac.dll
-c:\users\metro\source\repos\kings_physics\bin\opus.dll
-c:\users\metro\source\repos\kings_physics\bin\mpg123.dll
-c:\users\metro\source\repos\kings_physics\bin\libmp3lame.dll
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vcproject2015.tlog\cl.command.1.tlog
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vcproject2015.tlog\cl.read.1.tlog
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vcproject2015.tlog\cl.write.1.tlog
@@ -40,4 +27,3 @@ c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vcproject2015.tlog\rc.command.1.tlog
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vcproject2015.tlog\rc.read.1.tlog
 c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vcproject2015.tlog\rc.write.1.tlog
-c:\users\metro\source\repos\kings_physics\sourcecode\vcproject2015\vcproject2015\debug\vcproject2015.tlog\vcproject2015.write.1u.tlog
