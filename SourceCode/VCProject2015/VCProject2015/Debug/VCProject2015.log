@@ -1,55 +1,4 @@
 ﻿C:\program files\microsoft visual studio\2022\community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(500,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  BossStage.cpp
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(13,43): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(14,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(32,49): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(33,46): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(43,46): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(44,46): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(45,46): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(65,40): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(72,40): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(79,40): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(105,49): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(115,49): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(125,49): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(154,46): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(156,27): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1252)
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(156,27): warning C4566: character represented by universal-character-name '\u04E1' cannot be represented in the current code page (1252)
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(157,43): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(158,45): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(164,41): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(165,44): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(166,44): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(167,45): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(216,96): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(216,66): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(216,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(217,92): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(217,65): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(217,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(231,44): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(232,44): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(238,27): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1252)
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(239,44): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(240,45): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(246,45): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(248,44): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(256,47): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(256,40): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(256,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(256,89): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(256,82): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(256,59): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(263,21): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(263,53): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(263,46): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(263,23): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(264,19): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(281,52): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(282,43): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(292,44): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(22,51): warning C4101: 'fSpeedX': unreferenced local variable
   CoreLogic.cpp
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
@@ -59,32 +8,7 @@ C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(92,3
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\CoreLogic.cpp(47,38): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\CoreLogic.cpp(48,31): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\CoreLogic.cpp(69,38): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\CoreLogic.cpp(230,23): warning C4018: '<': signed/unsigned mismatch
-  EnemyAnimator.cpp
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\EnemyAnimator.cpp(208,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  FlyAnimator.cpp
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(99,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(172,18): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(209,61): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(209,46): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(209,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(210,56): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(210,40): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(210,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(211,56): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(211,40): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(211,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(213,47): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(227,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\FlyAnimator.cpp(229,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\metro\source\repos\kings_physics\SourceCode\Src\CoreLogic.cpp(231,23): warning C4018: '<': signed/unsigned mismatch
   GameUI.cpp
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
@@ -97,9 +21,7 @@ C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(7,58): 
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(8,56): warning C4305: 'argument': truncation from 'double' to 'const float'
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(9,56): warning C4305: 'argument': truncation from 'double' to 'const float'
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(18,49): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(23,57): warning C4305: 'argument': truncation from 'double' to 'const float'
-  HUD.cc
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HUD.cc(9,20): warning C4244: 'initializing': conversion from 'time_t' to 'long', possible loss of data
+C:\Users\metro\source\repos\kings_physics\SourceCode\Src\HollowSound.cpp(23,61): warning C4305: 'argument': truncation from 'double' to 'const float'
   KnightAnimator.cpp
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
@@ -126,43 +48,13 @@ C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(377,43): wa
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(542,47): warning C4305: '=': truncation from 'double' to 'float'
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(706,24): warning C4244: '=': conversion from 'time_t' to 'long', possible loss of data
 C:\Users\metro\source\repos\kings_physics\SourceCode\Src\LessonX.cpp(719,23): warning C4244: '=': conversion from 'time_t' to 'long', possible loss of data
-  lib_parallax_scroll.cc
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\lib_parallax_scroll.cc(67,21): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\lib_parallax_scroll.cc(67,47): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\lib_parallax_scroll.cc(67,73): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\lib_parallax_scroll.cc(67,100): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
   Main.cpp
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(92,34): warning C4305: 'initializing': truncation from 'double' to 'float'
-  MusicBuffer.cpp
-  SceneManager.cpp
-  SimplePhysics.cc
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\SimplePhysics.h(92,34): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\SimplePhysics.cc(391,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\SimplePhysics.cc(392,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\SimplePhysics.cc(393,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\SimplePhysics.cc(394,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  SoundDevice.cpp
-  SoundEffectsLibrary.cpp
-  SoundEffectsPlayer.cpp
-  Tutorial.cpp
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5030: attribute 'DEPRECATED' is not recognized
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(118,4): warning C5222: 'DEPRECATED': all unscoped attribute names are reserved for future standardization
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(70,20): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\metro\source\repos\kings_physics\SourceCode\Header\LibParallexScroll.h(112,29): warning C4305: 'initializing': truncation from 'double' to 'float'
   Generating Code...
-C:\Users\metro\source\repos\kings_physics\SourceCode\Src\BossStage.cpp(248): warning C4700: uninitialized local variable 'mari' used
 BossStage.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
 CommonClass_2015.lib(CommonClass.obj) : warning LNK4099: PDB 'CommonClass_2015.pdb' was not found with 'CommonClass_2015.lib(CommonClass.obj)' or at 'C:\Users\metro\source\repos\kings_physics\Bin\CommonClass_2015.pdb'; linking object as if no debug info

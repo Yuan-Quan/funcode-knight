@@ -20,7 +20,10 @@ HollowSound::HollowSound()
 	dash = new CSound("hero_dash.wav", false, 1);
 	land_soft = new CSound("hero_land_soft.wav", false, 0.75);
 	land_hard = new CSound("hero_land_hard.wav", false, 1);
-	run = new CSound("hero_run_footsteps_stone", true, 0.7);
+	run = new CSound("hero_run_footsteps_stone.wav", true, 0.7);
+	enemey_damage = new CSound("enemy_damage.wav", false, 1);
+	foucs = new CSound("focus_health_charging.wav", true, 1);
+	heal = new CSound("focus_health_heal.wav", false, 1);
 }
 
 void HollowSound::play_menu_bgm()
@@ -115,6 +118,26 @@ void HollowSound::play_run()
 void HollowSound::stop_run()
 {
 	run->StopSound();
+}
+
+void HollowSound::play_enemy_damage()
+{
+	enemey_damage->PlaySound();
+}
+
+void HollowSound::play_foucs()
+{
+	foucs->PlaySound();
+}
+
+void HollowSound::stop_foucs()
+{
+	foucs->StopSound();
+}
+
+void HollowSound::play_heal()
+{
+	heal->PlaySound();
 }
 
 void HollowSound::stop_all()

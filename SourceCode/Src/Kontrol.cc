@@ -39,6 +39,7 @@ void Kontrol::update_heal_stat(float dt)
 		soul_drain_timer_ += dt;
 		if (heal_timer_ >= 1.f)
 		{
+			hollow_sound.play_heal();
 			core_logic_instance_->heal_a_mask();
 			heal_timer_ = 0.f;
 		}
@@ -257,7 +258,11 @@ void Kontrol::unset_dash()
 
 void Kontrol::set_heal()
 {
-	is_healing = true;
+	if (core_logic_instance_->get_soul_level() >= 3)
+	{
+		is_healing = true;
+		hollow_sound.play_foucs();
+	}
 }
 
 void Kontrol::unset_heal()
@@ -265,6 +270,7 @@ void Kontrol::unset_heal()
 	if (is_healing)
 	{
 		is_healing = false;
+		hollow_sound.stop_foucs();
 	}
 }
 

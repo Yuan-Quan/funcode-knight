@@ -86,6 +86,7 @@ bool CoreLogic::attack_callback(int atk_dir)
 			{
 				player_soul_++;
 			}
+			hollow_sound.play_enemy_damage();
 			knock_back(enemy);
 			result = true;
 		}

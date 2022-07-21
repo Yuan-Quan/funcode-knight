@@ -27,6 +27,10 @@ public:
 	void play_dash();
 	void play_run();
 	void stop_run();
+	void play_enemy_damage();
+	void play_foucs();
+	void stop_foucs();
+	void play_heal();
 	void stop_all();
 private:
 	CSound* menu_bgm;
@@ -47,5 +51,8 @@ private:
 	CSound* land_soft;
 	CSound* land_hard;
 	CSound* run;
+	CSound* enemey_damage;
+	CSound* foucs;
+	CSound* heal;
 
 };
