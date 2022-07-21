@@ -5,6 +5,7 @@
 #include <Eigen/Dense>
 #include "HUD.h"
 #include "SimplePhysics.h"
+#include "HollowSound.h"
 
 struct NPC
 {
@@ -49,6 +50,7 @@ private:
 	HUD* hud_instance_;
 	SimplePhysics* physics_instance_;
 	LibParallexScroll* parallex_instance_;
+	HollowSound hollow_sound = HollowSound();
 public:
 	CoreLogic(std::string player_name);
 	void set_player_name(std::string name);

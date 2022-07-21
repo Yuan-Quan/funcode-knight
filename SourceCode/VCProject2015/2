@@ -1,480 +1,170 @@
-/////////////////////////////////////////////////////////////////////////////////
-//
-//
-//
-//
-/////////////////////////////////////////////////////////////////////////////////
-#include <Stdio.h>
-#include "CommonClass.h"
-#include "LessonX.h"
-////////////////////////////////////////////////////////////////////////////////
-//
-//
-CGameMain		g_GameMain;	
+#pragma once
+#include "SoundDevice.h"
+#include "SoundEffectsPlayer.h"
+#include "SoundEffectsLibrary.h"
 
-//==============================================================================
-//
-// ´óÌåµÄ³ÌÐòÁ÷³ÌÎª£ºGameMainLoopº¯ÊýÎªÖ÷Ñ­»·º¯Êý£¬ÔÚÒýÇæÃ¿Ö¡Ë¢ÐÂÆÁÄ»Í¼ÏñÖ®ºó£¬¶¼»á±»µ÷ÓÃÒ»´Î¡£
+namespace GridGame {
+SoundDevice* sd = LISTENER->Get();
+int SciFiSound = SE_LOAD("../res/soundeffects/sci-fidrone.ogg");
+SoundEffectsPlayer sound_effects_player_forSciFiSound;
+const constexpr int ROWS = 10, COLUMNS = 10;
+const constexpr float CELLSIZE = 40;  // assumes ROWS == COLUMNS for simplicity
+enum class GraphicKey { UNSEARCHED, SEARCHED, PLAYER1, PLAYER2 };
+GraphicKey map[ROWS][COLUMNS];
+bool mapHasChanged = true;  //process a map draw update
+float aColor[3] = { 0,1,0 };
 
-void CGameMain::trigger_scene_callback(std::string src_name, std::string tar_name)
+void init()
+	ALint attunation = AL_INVERSE_DISTANCE_CLAMPED;
+	sd->SetAttunation(attunation);
+	sd->SetLocation(0.f, 0.f, 0.f);
+	sd->SetOrientation(0.f, 1.f, 0.f, 0.f, 0.f, 1.f);
+
+	sound_effects_player_forSciFiSound.SetLooping(true);
+	sound_effects_player_forSciFiSound.SetPosition(ROWS-1, COLUMNS-1, 0);
+	sound_effects_player_forSciFiSound.Play(SciFiSound);
+}
+void processMapChanges()
 {
-	if (strcmp(src_name.c_str(), "knight_placeholder") == 0 &&
-	strcmp(tar_name.c_str(), "to_dirtmouth") == 0)
+	for (int x = 0; x < ROWS; x++)  //rows
 	{
-		current_scene = 1;
-	}
-}
-
-void CGameMain::update_scene()
-{
-	if (current_scene != last_scene)
-	{
-		last_scene = current_scene;
-		load_scene(current_scene);
-	}
-}
-
-void CGameMain::init_scene()
-{
-	switch (current_scene)
-	{
-	case Scenes::MENU:
-		init_main_menu();
-		break;
-	case Scenes::KINGS_PATH:
-		init_kings_path();
-		break;
-	case Scenes::DIRT_MOUTH:
-		init_dirtmouth();
-		break;
-	default:
-		break;
-	}
-}
-
-void CGameMain::load_scene(int scene_id)
-{
-	switch (current_scene)
-	{
-	case Scenes::MENU:
-		load_main_menu();
-		break;
-	case Scenes::SAVE:
-		break;
-	case Scenes::KINGS_PATH:
-		load_kings_path();
-		break;
-	case Scenes::DIRT_MOUTH:
-		load_dirtmouth();
-		break;
-	case Scenes::CROSS_RODE:
-		break;
-	default:
-		break;
-	}
-	SetGameState(1);
-}
-
-void CGameMain::init_main_menu()
-{
-	game_ui.set_main_menu(true);
-
-	// init onece
-	if (is_inited_main_menu)
-	{
-		return;
-	}
-	CSystem::SetWindowTitle("Hollow Knight");
-	game_ui.set_scene_switch_handler(std::bind(&CGameMain::SetScene, this, std::placeholders::_1));
-	is_inited_main_menu = true;
-}
-
-void CGameMain::init_kings_path()
-{
-	// init onece
-	if (is_inited_kings_path)
-	{
-		return;
-	}
-	kings_parallex.add_player({ "knight_placeholder" });
-	kings_parallex.add_scenery({
-		"L15_kings_path_P1",
-		"L15_kings_path_P2",
-		"L15_kings_path_P3",
-		"L15_kings_path_P4",
-		"L15_kings_path_P5",
-		"L15_kings_path_P6",
-		"L15_kings_path_P7",
-		"L15_kings_path_P8",
-
-		"map_tile_1",
-		"map_tile_2",
-		"map_tile_3",
-		"map_tile_4",
-		"map_tile_5",
-		"map_tile_6",
-		"map_tile_7",
-		"map_tile_8",
-		"map_tile_9",
-		"map_tile_10",
-		"map_tile_11",
-		"map_tile_12",
-		"map_tile_13",
-		"map_tile_14",
-		"map_tile_15",
-		"map_tile_16",
-		"map_tile_17",
-		"map_tile_18",
-		"map_tile_19",
-		"map_tile_20",
-		"map_tile_21",
-		"map_tile_22",
-		"map_tile_23",
-		"map_tile_24",
-		"map_tile_25",
-		"map_tile_26",
-		"map_tile_27",
-		"map_tile_28",
-		"map_tile_29",
-		"map_tile_30",
-		"map_tile_31",
-		"map_tile_32",
-		"map_tile_33",
-		"map_tile_34",
-		"map_tile_35",
-		"map_tile_36",
-		"map_tile_37",
-		"map_tile_38",
-		"map_tile_39",
-		"map_tile_40",
-		"map_tile_41",
-		"map_tile_42",
-		"map_tile_43",
-		"map_tile_44",
-		"map_tile_45",
-		"map_tile_46",
-		"map_tile_47",
-		"map_tile_48",
-		"map_tile_49",
-		"map_tile_50",
-		"map_tile_51",
-		"map_tile_52",
-		"map_tile_53",
-		"map_tile_54",
-		"map_tile_55",
-		"map_tile_56",
-		"map_tile_57",
-		"map_tile_58",
-		"map_tile_59",
-
-		"to_dirtmouth",
-		});
-	kings_parallex.add_camera_lock({
-		"cam_lck_1",
-		"cam_lck_2",
-		"cam_lck_3",
-		"cam_lck_4",
-		"cam_lck_5",
-		"cam_lck_6",
-		"cam_lck_7",
-		"cam_lck_8",
-		"cam_lck_9",
-		"cam_lck_10",
-		"cam_lck_11",
-		"cam_lck_12",
-		"cam_lck_13",
-		});
-	kings_parallex.add_npc({
-		"potato"
-		});
-	kings_parallex.set_screen_bondary(CSystem::GetScreenLeft(), CSystem::GetScreenRight(), CSystem::GetScreenTop(), CSystem::GetScreenBottom());
-	kings_physics.set_parallex_instance(&kings_parallex);
-	std::function<void(float, float)> f = std::bind(&LibParallexScroll::set_player_linear_velocity, &kings_parallex, std::placeholders::_1, std::placeholders::_2);
-	kings_physics.add_entity("knight_placeholder", f);
-	kings_physics.add_entity("potato");
-	kings_physics.add_map_tile({
-		"map_tile_1",
-		"map_tile_2",
-		"map_tile_3",
-		"map_tile_4",
-		"map_tile_5",
-		"map_tile_6",
-		"map_tile_7",
-		"map_tile_8",
-		"map_tile_9",
-		"map_tile_10",
-		"map_tile_11",
-		"map_tile_12",
-		"map_tile_13",
-		"map_tile_14",
-		"map_tile_15",
-		"map_tile_16",
-		"map_tile_17",
-		"map_tile_18",
-		"map_tile_19",
-		"map_tile_20",
-		"map_tile_21",
-		"map_tile_22",
-		"map_tile_23",
-		"map_tile_24",
-		"map_tile_25",
-		"map_tile_26",
-		"map_tile_27",
-		"map_tile_28",
-		"map_tile_29",
-		"map_tile_30",
-		"map_tile_31",
-		"map_tile_32",
-		"map_tile_33",
-		"map_tile_34",
-		"map_tile_35",
-		"map_tile_36",
-		"map_tile_37",
-		"map_tile_38",
-		"map_tile_39",
-		"map_tile_40",
-		"map_tile_41",
-		"map_tile_42",
-		"map_tile_43",
-		"map_tile_44",
-		"map_tile_45",
-		"map_tile_46",
-		"map_tile_47",
-		"map_tile_48",
-		"map_tile_49",
-		"map_tile_50",
-		"map_tile_51",
-		"map_tile_52",
-		"map_tile_53",
-		"map_tile_54",
-		"map_tile_55",
-		"map_tile_56",
-		"map_tile_57",
-		"map_tile_58",
-		"map_tile_59",
-
-		});
-
-	std::function<void(std::string, float, float)> fun_tmp_vel = std::bind(&SimplePhysics::set_vel_temp, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-	std::function<void(std::string, float, float)> fun_const_vel = std::bind(&SimplePhysics::set_vel_offset, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-	std::function<void(std::string, float, float)> fun_tmp_force = std::bind(&SimplePhysics::set_force_temp, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-	std::function<void(std::string, float, float)> fun_cont_force = std::bind(&SimplePhysics::set_force_1, &kings_physics, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-	std::function<bool()> fun_ground_state = std::bind(&SimplePhysics::get_is_on_ground, &kings_physics);
-
-	kings_kontrol.set_physics_engine_handler(fun_tmp_vel,fun_const_vel, fun_tmp_force, fun_cont_force);
-	kings_kontrol.set_gound_state_handler(fun_ground_state);
-	game_ui.set_physics_instance(&kings_physics);
-	animator.set_gound_status_handler(fun_ground_state);
-
-	auto knight = new CSprite("Knight");
-	auto atk_hitbox_side = new CSprite("atk_hitbox_side");
-	auto atk_hitbox_up = new CSprite("atk_hitbox_up");
-	auto atk_hitbox_down = new CSprite("atk_hitbox_down");
-	knight->SpriteMountToSprite("knight_placeholder", 0.f, -0.4f);
-	atk_hitbox_side->SpriteMountToSprite("knight_placeholder", -3.f, 0.f);
-	atk_hitbox_up->SpriteMountToSprite("knight_placeholder", 0.f, -1.8f);
-	atk_hitbox_down->SpriteMountToSprite("knight_placeholder", 0.f, 1.8f);
-	kings_logic.set_hud_instance(&hud);
-	kings_logic.set_physics_instance(&kings_physics);
-	kings_logic.set_parallex_instance(&kings_parallex);
-	kings_logic.add_enemy("potato", 2);
-	kings_logic.set_atk_box("atk_hitbox_up", "atk_hitbox_down", "atk_hitbox_side");
-	kings_kontrol.set_logic_instance(&kings_logic);
-	//kings_physics.init();
-	kings_logic.init();
-	CSystem::SetWindowTitle("Hollow Knight - King's Path");
-	is_inited_kings_path = true;
-}
-
-void CGameMain::init_dirtmouth()
-{
-	CSystem::SetWindowTitle("Hollow Knight - Dirtmouth");
-}
-
-void CGameMain::load_main_menu()
-{
-	CSystem::LoadMap("main_menu.t2d");
-}
-
-void CGameMain::load_kings_path()
-{
-	CSystem::LoadMap("kings_path.t2d");
-}
-
-void CGameMain::load_dirtmouth()
-{	
-	CSystem::LoadMap("dirtmouth.t2d");
-}
-
-//==============================================================================
-//
-// ¹¹Ôìº¯Êý
-CGameMain::CGameMain()
-{
-	m_iGameState			=	1;
-}
-//==============================================================================
-//
-// Îö¹¹º¯Êý
-CGameMain::~CGameMain()
-{
-}
-
-//==============================================================================
-//
-// ÓÎÏ·Ö÷Ñ­»·£¬´Ëº¯Êý½«±»²»Í£µÄµ÷ÓÃ£¬ÒýÇæÃ¿Ë¢ÐÂÒ»´ÎÆÁÄ»£¬´Ëº¯Êý¼´±»µ÷ÓÃÒ»´Î
-// ÓÃÒÔ´¦ÀíÓÎÏ·µÄ¿ªÊ¼¡¢½øÐÐÖÐ¡¢½áÊøµÈ¸÷ÖÖ×´Ì¬. 
-// º¯Êý²ÎÊýfDeltaTime : ÉÏ´Îµ÷ÓÃ±¾º¯Êýµ½´Ë´Îµ÷ÓÃ±¾º¯ÊýµÄÊ±¼ä¼ä¸ô£¬µ¥Î»£ºÃë
-void CGameMain::GameMainLoop( float	fDeltaTime )
-{
-	switch( GetGameState() )
-	{
-		// ³õÊ¼»¯ÓÎÏ·£¬Çå¿ÕÉÏÒ»¾ÖÏà¹ØÊý¾Ý
-	case 1:
+		for (int y = 0; y < COLUMNS; y++)  //columns
 		{
-			GameInit();
-			SetGameState(2); // ³õÊ¼»¯Ö®ºó£¬½«ÓÎÏ·×´Ì¬ÉèÖÃÎª½øÐÐÖÐ
+			if (x == PLAYER1.mapPos[0] && y == PLAYER1.mapPos[1])
+				map[x][y] = GraphicKey::PLAYER1;
+			else if (x == PLAYER2.mapPos[0] && y == PLAYER2.mapPos[1])
+				map[x][y] = GraphicKey::PLAYER2;
+			else
+				map[x][y] = GraphicKey::UNSEARCHED;
 		}
-		break;
-
-		// ÓÎÏ·½øÐÐÖÐ£¬´¦Àí¸÷ÖÖÓÎÏ·Âß¼­
-	case 2:
+	}
+}
+void processPlayer(float dt)
+{
+	static const float MOVECD = .1667f;
+	static float stopwatch = .1667f;
+	stopwatch += dt;
+	if (stopwatch > MOVECD)
+	{
+		if (PLAYER1.hasUnprocessedMoved)
 		{
-			// TODO ÐÞ¸Ä´Ë´¦ÓÎÏ·Ñ­»·Ìõ¼þ£¬Íê³ÉÕýÈ·ÓÎÏ·Âß¼­
-			if( true )
+			stopwatch = 0.f;
+			PLAYER1.hasUnprocessedMoved = false;
+			mapHasChanged = true;
+			switch (PLAYER1.direction)
 			{
-				GameRun( fDeltaTime );
+			case Actor::Orientation::UP:
+				if (PLAYER1.mapPos[1] < ROWS - 1)
+					PLAYER1.mapPos[1]++;
+				break;
+			case Actor::Orientation::DOWN:
+				if (PLAYER1.mapPos[1] > 0)
+					PLAYER1.mapPos[1]--;
+				break;
+			case Actor::Orientation::LEFT:
+				if (PLAYER1.mapPos[0] > 0)
+					PLAYER1.mapPos[0]--;
+				break;
+			case Actor::Orientation::RIGHT:
+				if (PLAYER1.mapPos[0] < COLUMNS -1)
+					PLAYER1.mapPos[0]++;
+				break;
+			case Actor::Orientation::PRONE:
+				break;
+			default:
+				break;
 			}
-			else // ÓÎÏ·½áÊø¡£µ÷ÓÃÓÎÏ·½áËãº¯Êý£¬²¢°ÑÓÎÏ·×´Ì¬ÐÞ¸ÄÎª½áÊø×´Ì¬
-			{				
-				SetGameState(0);
-				GameEnd();
+			setPLAYER1ListenerLoc();
+		}
+	}
+}
+void processAI(float dt) {
+	if (PLAYER2.hasUnprocessedMoved)
+	{
+		switch (PLAYER2.direction)
+		{
+		case Actor::Orientation::UP:
+			break;
+		case Actor::Orientation::DOWN:
+			break;
+		case Actor::Orientation::LEFT:
+			break;
+		case Actor::Orientation::RIGHT:
+			break;
+		case Actor::Orientation::PRONE:
+			break;
+		default:
+			break;
+		}
+	}
+}
+void setCellDrawColor(const int& x, const int& y) {
+	processMapChanges();
+	switch (map[x][y]) {
+	case GraphicKey::UNSEARCHED:
+		aColor[0] = 0.1f;
+		aColor[1] = 0.4f;
+		aColor[2] = 0.1f;
+		break;
+	case GraphicKey::SEARCHED:
+		aColor[0] = 0.1f;
+		aColor[1] = 0.1f;
+		aColor[2] = 0.1f;
+		break;
+	case GraphicKey::PLAYER1:
+		aColor[0] = 0.1f;
+		aColor[1] = 0.1f;
+		aColor[2] = 0.9f;
+		break;
+	case GraphicKey::PLAYER2:
+		aColor[0] = 0.9f;
+		aColor[1] = 0.1f;
+		aColor[2] = 0.1f;
+		break;
+	default:
+		break;
+	}
+}
+void clearScreen()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+void renderScene()
+{
+	if (mapHasChanged)
+	{
+		mapHasChanged = false;
+		clearScreen();
+		glUseProgram(programID);
+		/// <summary>
+		/// Where map[0][0] is the Bottom Left, and map[ROWS-1][COLUMNS-1] is the Top Right.
+		/// </summary>
+		for (int r = 0; r < ROWS; r++) {
+			for (int c = 0; c < COLUMNS; c++)
+			{
+				setCellDrawColor(r, c);
+				glUniform3fv(glGetUniformLocation(programID, "ucolor"), 1, &aColor[0]);
+				glm::mat4 ModelMatrix(1);
+				glm::vec3 Translate((float)((float)r / (float)COLUMNS) * 2.f - .9f, (float)((float)c / (float)ROWS) * 2.f - .9f, 0.f);
+
+				//std::cout << "crl: " << Translate.x << ", " << Translate.y << '|';
+				ModelMatrix = glm::translate(ModelMatrix, Translate);
+				glm::vec3 Scale((float)ROWS / (float)CELLSIZE - .08f);
+				ModelMatrix = glm::scale(ModelMatrix, Scale);
+				//static const glm::vec3 rot_ax_x(1, 0, 0);
+				//static const glm::vec3 rot_ax_y(0, 1, 0);
+				//static const glm::vec3 rot_ax_z(0, 0, 1);
+				//glm::vec3 Rotation(0);
+				//ModelMatrix = glm::rotate(ModelMatrix, Rotation.x, rot_ax_x);
+				//ModelMatrix = glm::rotate(ModelMatrix, Rotation.y, rot_ax_y);
+				//ModelMatrix = glm::rotate(ModelMatrix, Rotation.z, rot_ax_z);
+				glUniformMatrix4fv(glGetUniformLocation(programID, "modelmatrix"), 1, false, &ModelMatrix[0][0]);
+				glDrawArrays(GL_TRIANGLES, 0, 12 * 3); // 12*3 indices starting at 0 -> 12 triangles -> 6 squares
 			}
 		}
-		break;
-
-		// ÓÎÏ·½áÊø/µÈ´ý°´¿Õ¸ñ¼ü¿ªÊ¼
-	case 0:
-	default:
-		break;
-	};
-}
-//=============================================================================
-//
-// Ã¿¾Ö¿ªÊ¼Ç°½øÐÐ³õÊ¼»¯£¬Çå¿ÕÉÏÒ»¾ÖÏà¹ØÊý¾Ý
-void CGameMain::GameInit()
-{
-	init_scene();
-}
-//=============================================================================
-//
-// Ã¿¾ÖÓÎÏ·½øÐÐÖÐ
-void CGameMain::GameRun( float fDeltaTime )
-{
-	switch (current_scene)
-	{
-	case Scenes::KINGS_PATH:
-		kings_parallex.main_loop(fDeltaTime);
-		kings_physics.main_loop(fDeltaTime);
-		kings_kontrol.main_loop(fDeltaTime);
-		animator.main_loop(fDeltaTime);
-		kings_logic.main_loop(fDeltaTime);
-		break;
-	default:
-		break;
+		glfwSwapBuffers(window);
 	}
-	game_ui.main_loop();
-	update_scene();
+	glfwPollEvents();
 }
-//=============================================================================
-//
-// ±¾¾ÖÓÎÏ·½áÊø
-void CGameMain::GameEnd()
-{
-}
-//==========================================================================
-//
-// Êó±êÒÆ¶¯
-// ²ÎÊý fMouseX, fMouseY£ºÎªÊó±êµ±Ç°×ø±ê
-void CGameMain::OnMouseMove( const float fMouseX, const float fMouseY )
-{
-	
-}
-//==========================================================================
-//
-// Êó±êµã»÷
-// ²ÎÊý iMouseType£ºÊó±ê°´¼üÖµ£¬¼û enum MouseTypes ¶¨Òå
-// ²ÎÊý fMouseX, fMouseY£ºÎªÊó±êµ±Ç°×ø±ê
-void CGameMain::OnMouseClick( const int iMouseType, const float fMouseX, const float fMouseY )
-{
-	test_flag = true;
-}
-//==========================================================================
-//
-// Êó±êµ¯Æð
-// ²ÎÊý iMouseType£ºÊó±ê°´¼üÖµ£¬¼û enum MouseTypes ¶¨Òå
-// ²ÎÊý fMouseX, fMouseY£ºÎªÊó±êµ±Ç°×ø±ê
-void CGameMain::OnMouseUp( const int iMouseType, const float fMouseX, const float fMouseY )
-{
-	
-}
-//==========================================================================
-//
-// ¼üÅÌ°´ÏÂ
-// ²ÎÊý iKey£º±»°´ÏÂµÄ¼ü£¬Öµ¼û enum KeyCodes ºê¶¨Òå
-// ²ÎÊý iAltPress, iShiftPress£¬iCtrlPress£º¼üÅÌÉÏµÄ¹¦ÄÜ¼üAlt£¬Ctrl£¬Shiftµ±Ç°ÊÇ·ñÒ²´¦ÓÚ°´ÏÂ×´Ì¬(0Î´°´ÏÂ£¬1°´ÏÂ)
-void CGameMain::OnKeyDown( const int iKey, const bool bAltPress, const bool bShiftPress, const bool bCtrlPress )
-{
-	if (game_ui.key_press_callback(iKey))
-	{
-		return;
-	}
-
-	kings_kontrol.key_press_callback(iKey);
-	animator.key_press_callback(iKey);
-}
-//==========================================================================
-//
-// ¼üÅÌµ¯Æð
-// ²ÎÊý iKey£ºµ¯ÆðµÄ¼ü£¬Öµ¼û enum KeyCodes ºê¶¨Òå
-void CGameMain::OnKeyUp( const int iKey )
-{
-	kings_kontrol.key_relese_callback(iKey);
-	animator.key_release_callback(iKey);
-	switch (iKey)
-	{
-	case KEY_LEFT:
-		kings_parallex.set_npc_linear_velocity("potato", 0, 0);
-		break;
-	case KEY_RIGHT:
-		kings_parallex.set_npc_linear_velocity("potato", 0, 0);
-		break;
-	default:
-		break;
-	}
-}
-//===========================================================================
-//
-// ¾«ÁéÓë¾«ÁéÅö×²
-// ²ÎÊý szSrcName£º·¢ÆðÅö×²µÄ¾«ÁéÃû×Ö
-// ²ÎÊý szTarName£º±»Åö×²µÄ¾«ÁéÃû×Ö
-void CGameMain::OnSpriteColSprite( const char *szSrcName, const char *szTarName )
-{
-	//kings_physics.on_colid_callback(szSrcName, szTarName);
-	kings_logic.sp_col_callback(szSrcName, szTarName);
-	trigger_scene_callback(szSrcName, szTarName);
-}
-//===========================================================================
-//
-// ¾«ÁéÓëÊÀ½ç±ß½çÅö×²
-// ²ÎÊý szName£ºÅö×²µ½±ß½çµÄ¾«ÁéÃû×Ö
-// ²ÎÊý iColSide£ºÅö×²µ½µÄ±ß½ç 0 ×ó±ß£¬1 ÓÒ±ß£¬2 ÉÏ±ß£¬3 ÏÂ±ß
-void CGameMain::OnSpriteColWorldLimit( const char *szName, const int iColSide )
-{
-}
-
-void CGameMain::SetScene(int idx)
-{
-	current_scene = idx;
-}
-
+bool isRunning() { return (!glfwWindowShouldClose(window)); }
+}  // end namespace TTD

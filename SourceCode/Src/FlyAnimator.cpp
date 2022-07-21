@@ -6,12 +6,12 @@
 #include <math.h>
 using namespace std;
 
-FlyAnimator::FlyAnimator(const char* name, const int lvl, const int num)
+FlyAnimator::FlyAnimator(string name, const int lvl, const int num)
 {
-	nameF = CSystem::MakeSpriteName(name, num);
+	nameF = CSystem::MakeSpriteName(name.c_str(), num);
 	nameA = CSystem::MakeSpriteName("AREA", num);
-	m_pfly = new CAnimateSprite(nameF);
-	m_pa = new CAnimateSprite(nameA);
+	m_pfly = new CAnimateSprite(nameF.c_str());
+	m_pa = new CAnimateSprite(nameA.c_str());
 	stop = 0;
 	m_iface = 1;
 	getface = -1;
@@ -157,10 +157,10 @@ void FlyAnimator::key_release_callback(const int key)
 //
 // 碰撞精灵
 // 参数 script：碰撞到的精灵
-void FlyAnimator::get_col_callback(const char* script)
+void FlyAnimator::get_col_callback(string script)
 {
 	if (stop != 0) return;
-	if (strcmp("Blank", script) == 0)
+	if (strcmp("Blank", script.c_str()) == 0)
 		hurt();
 }
 //===========================================================================
@@ -247,14 +247,14 @@ void FlyAnimator::hurt()
 //===========================================================================
 //
 // 蚊子动作变化
-void FlyAnimator::Animation(char* szAnim)
+void FlyAnimator::Animation(string szAnim)
 {
-	if(strcmp(szAnim,m_canimation))
+	if(szAnim == m_canimation)
 	{
-		if (strcmp("Bm", m_canimation)!=0 ||
+		if (strcmp("Bm", m_canimation.c_str())!=0 ||
 			m_pfly->IsAnimateSpriteAnimationFinished())
 		{
-			m_pfly->AnimateSpritePlayAnimation(szAnim, false);
+			m_pfly->AnimateSpritePlayAnimation(szAnim.c_str(), false);
 			m_canimation = szAnim;
 		}
 	}
@@ -267,7 +267,7 @@ void FlyAnimator::Show()
 {
 	m_tface->SetTextValue(m_iface);
 	m_tcon->SetTextValue(m_icon);
-	m_tanimation->SetTextString(m_canimation);
+	m_tanimation->SetTextString(m_canimation.c_str());
 	m_ttime->SetTextValueFloat(m_ftime);
 	m_tHP->SetTextValue(m_iHP);
 }

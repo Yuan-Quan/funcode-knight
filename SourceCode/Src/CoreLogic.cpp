@@ -46,6 +46,7 @@ void CoreLogic::take_damange()
 	set_immortal_after_damage();
 	parallex_instance_->shake_camera(0.4);
 	physics_instance_->freeze(0.4);
+	hollow_sound.play_hurt();
 	if (player_hp_ <= 0)
 	{
 		die();

@@ -61,12 +61,13 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../Header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Winmm.lib;../../Src/CommonClass_2015.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -106,6 +107,7 @@
     <ClCompile Include="..\..\Src\EnemyAnimator.cpp" />
     <ClCompile Include="..\..\Src\FlyAnimator.cpp" />
     <ClCompile Include="..\..\Src\GameUI.cpp" />
+    <ClCompile Include="..\..\Src\HollowSound.cpp" />
     <ClCompile Include="..\..\Src\HUD.cc" />
     <ClCompile Include="..\..\Src\KnightAnimator.cpp" />
     <ClCompile Include="..\..\Src\Kontrol.cc" />
@@ -127,6 +129,7 @@
     <ClInclude Include="..\..\Header\EnemyAnimator.h" />
     <ClInclude Include="..\..\Header\FlyAnimator.h" />
     <ClInclude Include="..\..\Header\GameUI.h" />
+    <ClInclude Include="..\..\Header\HKAudio.h" />
     <ClInclude Include="..\..\Header\HollowSound.h" />
     <ClInclude Include="..\..\Header\HUD.h" />
     <ClInclude Include="..\..\Header\KnightAnimator.h" />

@@ -8,7 +8,7 @@ using namespace std;
 class KnightAnimator
 {
     public:
-        KnightAnimator( const char* name1 );
+        KnightAnimator(string name1 );
         virtual ~KnightAnimator();
 
         // set,get方法用于操作状态，等
@@ -57,8 +57,8 @@ class KnightAnimator
         CSound*         m_sjump;					// 跳跃音效
         float			m_ftime;					// 单程差时
         float           m_fjump;                    // 跳跃计时
-        char*           m_canimation;               // 记录当前动画
-        char*           m_ceffectani;               // 记录当前特效动画
+        string           m_canimation;               // 记录当前动画
+        string           m_ceffectani;               // 记录当前特效动画
         int             J;                          // 攻击键
         int             K;                          // 跳跃键
         int             L;                          // 冲刺键
@@ -80,11 +80,11 @@ class KnightAnimator
         void			dash();
         void			hurt();
         void            focus();
-        void			Release(char* szAnim, int LinkPoint);
-        void			Animation(char* szAnim);
+        void			Release(string szAnim, int LinkPoint);
+        void			Animation(string szAnim);
         void			Show();
         void			Delete();
-        int             AnimationBreak(char* szAnim);
+        int             AnimationBreak(string szAnim);
        	std::function<bool()> is_grounded_nh_;
 };
 

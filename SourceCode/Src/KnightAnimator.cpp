@@ -7,7 +7,7 @@
 #include <math.h>
 using namespace std;
 
-KnightAnimator::KnightAnimator(const char* name)
+KnightAnimator::KnightAnimator(string name)
 {
 	stop = 0;
 	m_imove = -1;
@@ -20,7 +20,7 @@ KnightAnimator::KnightAnimator(const char* name)
 	m_ifocus = 0;
 	m_idjump = 2;
 	m_ieffect = 0;
-	m_pknight = new CAnimateSprite(name);
+	m_pknight = new CAnimateSprite(name.c_str());
     m_pPlaceHolder = new CSprite("knight_placeholder");
 	m_peffect = new CAnimateSprite("Blank");
 	m_tmove = new CTextSprite("move");
@@ -71,12 +71,12 @@ void KnightAnimator::main_loop(float dt)
 	magic();
 	move();
 	Delete();
-	if (strcmp("D", m_canimation) == 0)
+	if (strcmp("D", m_canimation.c_str()) == 0)
 	{
 		attack();
 		if (m_pknight->IsAnimateSpriteAnimationFinished() == false) return;
 	}
-	else if (strcmp("DD", m_canimation) == 0 || strcmp("S", m_canimation) == 0 || strcmp("W", m_canimation) == 0)
+	else if (strcmp("DD", m_canimation.c_str()) == 0 || strcmp("S", m_canimation.c_str()) == 0 || strcmp("W", m_canimation.c_str()) == 0)
 	{
 		if (m_pknight->IsAnimateSpriteAnimationFinished() == false) return;
 	}
@@ -303,7 +303,7 @@ void KnightAnimator::attack()
 	{
 		if (m_iattack != 0)
 		{
-			if (strcmp("D",m_canimation)==0)
+			if (strcmp("D",m_canimation.c_str())==0)
 			{
 				Release("DSSE", 5);
 				m_iattack = 0;
@@ -432,25 +432,25 @@ void KnightAnimator::magic()
 //===========================================================================
 //
 // 释放特效
-void KnightAnimator::Release(char* szAnim, int LinkPoint)
+void KnightAnimator::Release(string szAnim, int LinkPoint)
 {
 	float sizelvl=(m_pknight->GetSpriteHeight())/SIZE;
 	if (
 		(m_ieffect == 1) ||
 		(
-			strcmp("D", m_canimation) == 0 &&
-			strcmp("DSSE", szAnim) == 0 &&
-			strcmp("DSSE", m_ceffectani) != 0
+			strcmp("D", m_canimation.c_str()) == 0 &&
+			strcmp("DSSE", szAnim.c_str()) == 0 &&
+			strcmp("DSSE", m_ceffectani.c_str()) != 0
 			)
 		)
 	{
 		char* tmpEffect;
-		tmpEffect = CSystem::MakeSpriteName(szAnim, 0);
+		tmpEffect = CSystem::MakeSpriteName(szAnim.c_str(), 0);
 		m_peffect->DeleteSprite();
 		m_peffect->CloneSprite(tmpEffect);
 		m_peffect->SetSpriteHeight((m_peffect->GetSpriteHeight()) * sizelvl);
 		m_peffect->SetSpriteWidth((m_peffect->GetSpriteWidth()) * sizelvl);
-		if (strcmp("F", m_canimation) == 0)
+		if (strcmp("F", m_canimation.c_str()) == 0)
 		{
 			m_peffect->SetSpriteColorAlpha(200);
 		}
@@ -462,7 +462,7 @@ void KnightAnimator::Release(char* szAnim, int LinkPoint)
 		m_peffect->SetSpriteCollisionSend(true);
 		m_peffect->SetSpriteEnable(true);
 		bool bFlipX = m_pknight->GetSpriteFlipX();
-		if (strcmp("WJ", m_canimation) == 0 || strcmp("W" , m_canimation) == 0)
+		if (strcmp("WJ", m_canimation.c_str()) == 0 || strcmp("W" , m_canimation.c_str()) == 0)
 		{
 			float fPosX, fPosY;
 			fPosX = m_pknight->GetSpriteLinkPointPosX(LinkPoint);
@@ -475,14 +475,14 @@ void KnightAnimator::Release(char* szAnim, int LinkPoint)
 		else
 		{
 			m_peffect->SpriteMountToSpriteLinkPoint("Knight", LinkPoint);
-			if (strcmp("WSd", m_canimation) == 0 || strcmp("WS", m_canimation) == 0)
+			if (strcmp("WSd", m_canimation.c_str()) == 0 || strcmp("WS", m_canimation.c_str()) == 0)
 			{
 				m_peffect->SpriteDismount();
 				m_peffect->SetSpriteFlipX(!bFlipX);
 			}
 		}
-		m_peffect->AnimateSpritePlayAnimation(szAnim, false);
-		if (strcmp("B", szAnim) == 0)
+		m_peffect->AnimateSpritePlayAnimation(szAnim.c_str(), false);
+		if (strcmp("B", szAnim.c_str()) == 0)
 		{
 			//m_peffect->SpriteDismount();
 			m_peffect->SetSpriteLinearVelocity(VEL * sizelvl * (2 * bFlipX - 1), 0);
@@ -493,15 +493,15 @@ void KnightAnimator::Release(char* szAnim, int LinkPoint)
 //===========================================================================
 //
 // 小骑士动作变化
-void KnightAnimator::Animation(char* szAnim)
+void KnightAnimator::Animation(string szAnim)
 {
 	if (AnimationBreak(szAnim))
 	{
 		if (
-			strcmp("D", szAnim) == 0 ||
-			strcmp("DD", szAnim) == 0 ||
-			strcmp("S", szAnim) == 0 ||
-			strcmp("W", szAnim) == 0 
+			strcmp("D", szAnim.c_str()) == 0 ||
+			strcmp("DD", szAnim.c_str()) == 0 ||
+			strcmp("S", szAnim.c_str()) == 0 ||
+			strcmp("W", szAnim.c_str()) == 0 
 			)
 		{
 			m_pknight->SetSpriteColorAlpha(160);
@@ -511,7 +511,7 @@ void KnightAnimator::Animation(char* szAnim)
 			m_pknight->SetSpriteColorAlpha(255);
 		}
 		m_ieffect = 1;
-		m_pknight->AnimateSpritePlayAnimation(szAnim, false);
+		m_pknight->AnimateSpritePlayAnimation(szAnim.c_str(), false);
 		m_canimation = szAnim;
 		return;
 	}
@@ -520,47 +520,47 @@ void KnightAnimator::Animation(char* szAnim)
 //===========================================================================
 //
 // 判定是否可以打断当前动画
-int KnightAnimator::AnimationBreak( char* szAnim )
+int KnightAnimator::AnimationBreak(string szAnim )
 {
-	int same = strcmp(szAnim, m_canimation);
+	int same = strcmp(szAnim.c_str(), m_canimation.c_str());
 	if ( same != 0)
 		if
 			(
 				(
-					strcmp("D", szAnim) == 0 || 
-					strcmp("DD", szAnim) == 0 ||
-					strcmp("S", szAnim) == 0 || 
-					strcmp("W", szAnim) == 0 ||
-					strcmp("H", szAnim) == 0 || 
-					strcmp("Dth", szAnim) == 0
+					strcmp("D", szAnim.c_str()) == 0 || 
+					strcmp("DD", szAnim.c_str()) == 0 ||
+					strcmp("S", szAnim.c_str()) == 0 || 
+					strcmp("W", szAnim.c_str()) == 0 ||
+					strcmp("H", szAnim.c_str()) == 0 || 
+					strcmp("Dth", szAnim.c_str()) == 0
 					) 
 				||
 				(
-					strcmp("I", m_canimation) == 0 ||
-					strcmp("RK", m_canimation) == 0 ||
-					strcmp("LUK", m_canimation) == 0 ||
-					strcmp("LDK", m_canimation) == 0 ||
-					strcmp("AK", m_canimation) == 0 ||
-					strcmp("WSd", m_canimation) == 0 ||
-					strcmp("F", m_canimation) == 0
+					strcmp("I", m_canimation.c_str()) == 0 ||
+					strcmp("RK", m_canimation.c_str()) == 0 ||
+					strcmp("LUK", m_canimation.c_str()) == 0 ||
+					strcmp("LDK", m_canimation.c_str()) == 0 ||
+					strcmp("AK", m_canimation.c_str()) == 0 ||
+					strcmp("WSd", m_canimation.c_str()) == 0 ||
+					strcmp("F", m_canimation.c_str()) == 0
 					)
 				||
 				(
 					(
-						strcmp("A", m_canimation) == 0 ||
-						strcmp("WJ", m_canimation) == 0
+						strcmp("A", m_canimation.c_str()) == 0 ||
+						strcmp("WJ", m_canimation.c_str()) == 0
 						) 
-					&& strcmp("AK", szAnim) != 0
+					&& strcmp("AK", szAnim.c_str()) != 0
 					)
 				||
 				(
 					(
-						strcmp("SA", m_canimation) == 0 &&
-						strcmp("SB", szAnim) != 0
+						strcmp("SA", m_canimation.c_str()) == 0 &&
+						strcmp("SB", szAnim.c_str()) != 0
 						)||
 					(
-						strcmp("SB", m_canimation) == 0 &&
-						strcmp("SA", szAnim) != 0
+						strcmp("SB", m_canimation.c_str()) == 0 &&
+						strcmp("SA", szAnim.c_str()) != 0
 						)
 					)
 				)

@@ -51,6 +51,7 @@ private:
 	int save_menu_option;
 
 	void display_pause();
+	std::function<void()> play_men;
 
 	SimplePhysics* physics_instance_;
 	std::function<void(int)> scene_switch_handler_ = NULL;

@@ -8,7 +8,7 @@ using namespace std;
 class FlyAnimator
 {
 public:
-    FlyAnimator(const char* name, const int lvl, const int num);
+    FlyAnimator(string name, const int lvl, const int num);
     virtual ~FlyAnimator();
 
     // set,get方法用于操作状态，等
@@ -18,7 +18,7 @@ public:
     //用来对接api的回调函数
     void            key_press_callback(int key);
     void            key_release_callback(const int key);
-    void            get_col_callback(const char* script);
+    void            get_col_callback(string script);
 
     //主处理循环，用于更新状态，计算进度等
     void update_knight_pos();
@@ -42,10 +42,10 @@ private:
     float           m_fmtime;                   // 移动时间
     int             m_iHP;                      // 蚊子血量，初值为10
     int				m_ieffect;					// 特效释放状态，0：不可释放；1：可以释放；
-    char*           m_canimation;               // 记录当前动画
-    char*           m_ceffectani;               // 记录当前特效动画
-    char*           nameF;                      // 怪物名
-    char*           nameA;                      // 边界名
+    string           m_canimation;               // 记录当前动画
+    string           m_ceffectani;               // 记录当前特效动画
+    string           nameF;                      // 怪物名
+    string           nameA;                      // 边界名
     int             ESC;
     int             ONE;
     int             TWO;
@@ -57,7 +57,7 @@ private:
     void            face();
     void            move();
     void            hurt();
-    void            Animation(char* szAnim);
+    void            Animation(string szAnim);
     void            Show();
     CTextSprite*    m_tface;					// face示数
     CTextSprite*    m_tcon;					    // con示数

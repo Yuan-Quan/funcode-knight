@@ -13,6 +13,8 @@
 #include <string>
 #include <cstring>
 
+//#include "HKAudio.h"
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //
@@ -21,41 +23,6 @@ CGameMain		g_GameMain;
 //==============================================================================
 //
 // 大体的程序流程为：GameMainLoop函数为主循环函数，在引擎每帧刷新屏幕图像之后，都会被调用一次。
-
-void CGameMain::sound_loop(float dt)
-{
-	sd_current_scene_ = current_scene;
-	if (sd_current_scene_ != sd_last_scene_)
-	{
-		switch (sd_current_scene_)
-		{
-		case Scenes::MENU:
-		//case Scenes::SAVE:
-			//int MenuBGM = SE_LOAD("C:\\Users\\metro\\source\\repos\\kings_physics\\Bin\\game\\data\\audio\\main_menu.wav");
-			PlaySound("game/data/audio/main_menu.wav"
-			, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
-			//menu_bgm_sfx_.Play(MenuBGM);
-			break;
-		case Scenes::KINGS_PATH:
-			PlaySound(NULL, 0, 0);
-			PlaySound("game/data/audio/cave.wav"
-			, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
-			break;
-		case Scenes::CROSS_ROAD:
-			PlaySound(NULL, 0, 0);
-			PlaySound("game/data/audio/corssroad.wav"
-			, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
-			break;
-		case Scenes::DIRT_MOUTH:
-			PlaySound(NULL, 0, 0);
-			PlaySound("game/data/audio/dirtmouth.wav"
-			, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
-			break;
-
-		}
-		sd_last_scene_ = sd_current_scene_;
-	}
-}
 
 void CGameMain::trigger_scene_callback(std::string src_name, std::string tar_name)
 {
@@ -69,6 +36,11 @@ void CGameMain::trigger_scene_callback(std::string src_name, std::string tar_nam
 	strcmp(tar_name.c_str(), "to_crossroad") == 0)
 	{
 		current_scene = Scenes::CROSS_ROAD;
+	}
+	if (strcmp(src_name.c_str(), "knight_placeholder") == 0 &&
+	strcmp(tar_name.c_str(), "to_boss_stage") == 0)
+	{
+		current_scene = Scenes::BOSS_STAGE;
 	}
 }
 
@@ -107,6 +79,9 @@ void CGameMain::init_scene()
 		init_crossroad();
 		force_save();
 		break;
+	case Scenes::BOSS_STAGE:
+		init_boss_State();
+		break;
 	default:
 		break;
 	}
@@ -134,6 +109,9 @@ void CGameMain::load_scene(int scene_id)
 	case Scenes::CROSS_ROAD:
 		load_crossroad();
 		break;
+	case Scenes::BOSS_STAGE:
+		load_boss_stage();
+		break;
 	default:
 		break;
 	}
@@ -142,6 +120,9 @@ void CGameMain::load_scene(int scene_id)
 
 void CGameMain::init_main_menu()
 {
+	hollow_sound.stop_all();
+	hollow_sound.play_menu_bgm();
+	CSystem::SetWindowTitle("Hollow Knight");
 	if (is_inited_main_menu)
 	{
 		// init every round
@@ -150,7 +131,6 @@ void CGameMain::init_main_menu()
 		return;
 	}
 	// init onece
-	CSystem::SetWindowTitle("Hollow Knight");
 	game_ui.set_scene_switch_handler(std::bind(&CGameMain::SetScene, this, std::placeholders::_1));
 	is_inited_main_menu = true;
 }
@@ -177,6 +157,8 @@ void CGameMain::init_difficulty_menu()
 
 void CGameMain::init_kings_path()
 {
+	hollow_sound.stop_all();
+	hollow_sound.play_kings_path_bgm();
 	if (is_inited_kings_path)
 	{
 		// init every round
@@ -442,6 +424,8 @@ void CGameMain::init_kings_path()
 
 void CGameMain::init_dirtmouth()
 {	
+	hollow_sound.stop_all();
+	hollow_sound.play_dirtmouth_bgm();
 	knight = new CSprite("Knight");
 	atk_hitbox_side = new CSprite("atk_hitbox_side");
 	atk_hitbox_up = new CSprite("atk_hitbox_up");
@@ -538,6 +522,8 @@ void CGameMain::init_dirtmouth()
 
 void CGameMain::init_crossroad()
 {	
+	hollow_sound.stop_all();
+	hollow_sound.play_corssroad_bgm();
 	knight = new CSprite("Knight");
 	atk_hitbox_side = new CSprite("atk_hitbox_side");
 	atk_hitbox_up = new CSprite("atk_hitbox_up");
@@ -599,6 +585,8 @@ void CGameMain::init_crossroad()
 		"map_tile_26",
 		"map_tile_27",
 		"map_tile_28",
+
+		"to_boss_stage",
 
 	});
 	crossroad_parallex.add_camera_lock({
@@ -665,6 +653,11 @@ void CGameMain::init_crossroad()
 	CSystem::SetWindowTitle("Hollow Knight - Forgotten Crossroad");
 }
 
+void CGameMain::init_boss_State()
+{
+	CSystem::SetWindowTitle("Hollow Knight - Boss Stage");
+}
+
 void CGameMain::load_main_menu()
 {
 	CSystem::LoadMap("main_menu.t2d");
@@ -693,6 +686,11 @@ void CGameMain::load_dirtmouth()
 void CGameMain::load_crossroad()
 {
 	CSystem::LoadMap("crossroad.t2d");
+}
+
+void CGameMain::load_boss_stage()
+{
+	CSystem::LoadMap("boss_stage.t2d");
 }
 
 void CGameMain::auto_save()
@@ -726,7 +724,6 @@ void CGameMain::force_save()
 // 构造函数
 CGameMain::CGameMain()
 {
-	sound_init();
 	current_save = new SaveFile();
 	current_save->scene = 0;
 	current_save->time = 0;
@@ -783,6 +780,7 @@ void CGameMain::GameMainLoop( float	fDeltaTime )
 // 每局开始前进行初始化，清空上一局相关数据
 void CGameMain::GameInit()
 {
+
 	init_scene();
 }
 //=============================================================================
@@ -827,12 +825,13 @@ void CGameMain::GameRun( float fDeltaTime )
 		core_logic.main_loop(fDeltaTime);
 		auto_save();
 		break;
+	case Scenes::BOSS_STAGE:
+		boss_stage.main_loop(fDeltaTime);
 	default:
 		break;
 	}
 	game_ui.main_loop();
 	update_scene();
-	sound_loop(fDeltaTime);
 }
 //=============================================================================
 //

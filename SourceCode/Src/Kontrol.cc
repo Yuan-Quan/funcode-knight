@@ -74,6 +74,46 @@ void Kontrol::update_cool_down(float dt)
 	}
 }
 
+void Kontrol::update_land(float dt)
+{
+	if (waiting_land)
+	{
+		land_timer += dt;
+		if (is_grounded_nh_())
+		{
+			if (land_timer >= 2.f)
+			{
+				hollow_sound.play_land_hard();
+				waiting_land = false;
+				land_timer = 0.f;
+			}
+			else if (land_timer >= 0.6)
+			{
+				hollow_sound.play_land_soft();
+				waiting_land = false;
+				land_timer = 0.f;
+			}
+		}
+	}
+}
+
+void Kontrol::update_runing()
+{
+	bool current_running = (is_running_l || is_running_r) && is_grounded_nh_();
+	if (current_running!=last_running_status)
+	{
+		last_running_status = current_running;
+		if (current_running)
+		{
+			hollow_sound.play_run();
+		}
+		else
+		{
+			hollow_sound.stop_run();
+		}
+	}
+}
+
 void Kontrol::update_velocity()
 {
 	tmp_vel_nh_(player_name_, tmp_vel_.x(), tmp_vel_.y());
@@ -130,33 +170,39 @@ void Kontrol::on_dash_key_press()
 
 void Kontrol::set_left()
 {
+	is_running_l = true;
 	const_vel_left_ << -40, 0;
 	heading_left_ = true;
 }
 
 void Kontrol::unset_left()
 {
+	is_running_l = false;
 	const_vel_left_ << 0, 0;
 }
 
 void Kontrol::set_right()
 {
+	is_running_r = true;
 	const_vel_right_ << 40, 0;
 	heading_left_ = false;
 }
 
 void Kontrol::unset_right()
 {
+	is_running_r = false;
 	const_vel_right_ << 0, 0;
 }
 
 void Kontrol::set_jump()
 {
+	hollow_sound.play_jump();
 	tmp_vel_jump << 0, -60;
 	const_force_jump << 0, -450;
 
 	jump_refresh--;
 	is_jumping_ = true;
+	waiting_land = true;
 }
 
 void Kontrol::unset_jump()
@@ -172,6 +218,7 @@ void Kontrol::set_dash()
 {
 	if (dash_refresh)
 	{
+		hollow_sound.play_dash();
 		is_dashing_ = true;
 		is_dash_cd_ = true;
 		dash_refresh = false;
@@ -225,6 +272,7 @@ void Kontrol::attack()
 {
 	if (!is_attack_cd_)
 	{
+		hollow_sound.play_sword_swing();
 		int atk_dir = AtkDirection::SIDE;
 		if (is_up_atk_override)
 		{
@@ -240,6 +288,7 @@ void Kontrol::attack()
 		if (is_down_atk_override && response)
 		{
 			tmp_vel_jump << 0, -160;
+			land_timer = 0.f;
 		}
 	}
 }
@@ -279,6 +328,7 @@ void Kontrol::key_press_callback(int key)
 		attack();
 		break;
 	case KeyBinds::KEY_QUCIK_CAST:
+		hollow_sound.play_fire_ball();
 		core_logic_instance_->drain_1_soul();
 		core_logic_instance_->drain_1_soul();
 		core_logic_instance_->drain_1_soul();
@@ -343,6 +393,8 @@ void Kontrol::main_loop(float dt)
 	update_dash_stat(dt);
 	update_cool_down(dt);
 	update_heal_stat(dt);
+	update_land(dt);
+	update_runing();
 	summing();
 	update_velocity();
 	refresh();

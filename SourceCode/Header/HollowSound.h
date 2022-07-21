@@ -1,48 +1,51 @@
 #pragma once
 
-#include "SoundDevice.h"
-#include "SoundEffectsPlayer.h"
-#include "SoundEffectsLibrary.h"
+#include <AL/al.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <bit>
+#include <AL/alc.h>
+#include "CommonClass.h"
 
-namespace hk_sound {
-SoundDevice* sd = LISTENER->Get();
-int MenuBGM = SE_LOAD("./game/data/audio/main_menu.wav");
-//int MenuBGM = SE_LOAD("C:\\Users\\metro\\source\\repos\\kings_physics\\Bin\\game\\data\\audio\\main_menu.wav");
-SoundEffectsPlayer menu_bgm_sfx_;
-ALint attunation = AL_INVERSE_DISTANCE_CLAMPED;
-
-int current_scene_ = 0;
-int last_scene_ = -1;
-
-void init()
+class HollowSound
 {
-	sd->SetAttunation(attunation);
-	sd->SetLocation(0.f, 0.f, 0.f);
-	sd->SetOrientation(0.f, 1.f, 0.f, 0.f, 0.f, 1.f);
-	menu_bgm_sfx_.SetLooping(true);
-	menu_bgm_sfx_.SetPosition(0, 0, 0);
-	menu_bgm_sfx_.Play(hk_sound::MenuBGM);
-}
-inline void set_scene(int scene)
-{
-	current_scene_ = scene;
-}
+public:
+	HollowSound();
+	void play_menu_bgm();
+	void stop_menu_bgm();
+	void play_kings_path_bgm();
+	void stop_kings_path_bgm();
+	void play_dirtmouth_bgm();
+	void play_corssroad_bgm();
+	void play_sword_swing();
+	void play_fire_ball();
+	void play_jump();
+	void play_hurt();
+	void play_land_soft();
+	void play_land_hard();
+	void play_dash();
+	void play_run();
+	void stop_run();
+	void stop_all();
+private:
+	CSound* menu_bgm;
+	CSound* kings_path_bgm;
+	CSound* dirtmouth_bgm;
+	CSound* crossroad_bgm;
 
-inline void main_loop(float dt)
-{
-	if (current_scene_ != last_scene_)
-	{
-		switch (current_scene_)
-		{
-		case 0:
-			break;
-		case 1:
-			break;
-		default:
-			break;
-		}
-		last_scene_ = current_scene_;
-	}
-}
+	CSound* sword_1;
+	CSound* sword_2;
+	CSound* sword_3;
+	CSound* sword_4;
+	CSound* sword_5;
+	
+	CSound* fireball;
+	CSound* jump;
+	CSound* hurt;
+	CSound* dash;
+	CSound* land_soft;
+	CSound* land_hard;
+	CSound* run;
 
-}
+};

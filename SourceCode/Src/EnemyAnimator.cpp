@@ -11,9 +11,9 @@ EnemyAnimator::EnemyAnimator(const char* name, const int lvl,const int num)
 	nameE = CSystem::MakeSpriteName(name, num);
 	nameL = CSystem::MakeSpriteName("CL", num);
 	nameR = CSystem::MakeSpriteName("CR", num);
-	m_pcrawler = new CAnimateSprite(nameE);
-	m_pcl = new CAnimateSprite(nameL);
-	m_pcr = new CAnimateSprite(nameR);
+	m_pcrawler = new CAnimateSprite(nameE.c_str());
+	m_pcl = new CAnimateSprite(nameL.c_str());
+	m_pcr = new CAnimateSprite(nameR.c_str());
 	m_peffect = new CAnimateSprite("effect");
 	stop = 0;
 	m_iface = 1;
@@ -140,11 +140,11 @@ void EnemyAnimator::key_release_callback(const int key)
 //
 // 碰撞精灵
 // 参数 script：碰撞到的精灵
-void EnemyAnimator::get_col_callback(const char* script)
+void EnemyAnimator::get_col_callback(string script)
 {
 	if (stop != 0) m_ilvl = 1;
 	if (
-		strcmp(nameL, script) == 0 &&
+		strcmp(nameL.c_str(), script.c_str()) == 0 &&
 		m_iface == 1
 		)
 	{
@@ -152,14 +152,14 @@ void EnemyAnimator::get_col_callback(const char* script)
 		Animation("T");
 	}
 	if (
-		strcmp(nameR, script) == 0 &&
+		strcmp(nameR.c_str(), script.c_str()) == 0 &&
 		m_iface == -1
 		)
 	{
 		m_iface = 1;
 		Animation("T");
 	}
-	if ( strcmp("Blank", script) == 0 )
+	if ( strcmp("Blank", script.c_str()) == 0 )
 		hurt("SS");
 }
 //===========================================================================
@@ -167,7 +167,7 @@ void EnemyAnimator::get_col_callback(const char* script)
 // 爬虫朝向
 void EnemyAnimator::face()
 {
-	if (strcmp("T", m_canimation)==0)return;
+	if (strcmp("T", m_canimation.c_str())==0)return;
 	if (m_iface < 0)
 	{
 		m_pcrawler->SetSpriteFlipX(true);
@@ -197,7 +197,7 @@ void EnemyAnimator::move()
 //===========================================================================
 //
 // 爬虫受伤
-void EnemyAnimator::hurt(char* szAnim)
+void EnemyAnimator::hurt(string szAnim)
 {
 	if (m_ftime > 0)return;
 	float fPosX = m_pcrawler->GetSpritePositionX();
@@ -227,13 +227,13 @@ void EnemyAnimator::hurt(char* szAnim)
 //===========================================================================
 //
 // 释放特效
-void EnemyAnimator::Release(char* szAnim, int LinkPoint)
+void EnemyAnimator::Release(string szAnim, int LinkPoint)
 {
 	if (m_ieffect == 1)
 	{
 		float sizelvl = (m_pcrawler->GetSpriteHeight()) / SIZE;
 		char* tmpEffect;
-		tmpEffect = CSystem::MakeSpriteName(szAnim, 0);
+		tmpEffect = CSystem::MakeSpriteName(szAnim.c_str(), 0);
 		m_peffect->DeleteSprite();
 		m_peffect->CloneSprite(tmpEffect);
 		m_peffect->SetSpriteHeight((m_peffect->GetSpriteHeight()) * sizelvl);
@@ -243,20 +243,20 @@ void EnemyAnimator::Release(char* szAnim, int LinkPoint)
 		m_peffect->SetSpriteEnable(true);
 		bool bFlipX = m_pcrawler->GetSpriteFlipX();
 		m_peffect->SpriteMountToSpriteLinkPoint("Crawler", LinkPoint);
-		m_peffect->AnimateSpritePlayAnimation(szAnim, false);
+		m_peffect->AnimateSpritePlayAnimation(szAnim.c_str(), false);
 		m_ceffectani = szAnim;
 	}
 }
 //===========================================================================
 //
 // 爬虫动作变化
-void EnemyAnimator::Animation(char* szAnim)
+void EnemyAnimator::Animation(string szAnim)
 {
 	if (AnimationBreak(szAnim))
 	{
-		if (strcmp("H", szAnim) != 0)
+		if (strcmp("H", szAnim.c_str()) != 0)
 		{
-			m_pcrawler->AnimateSpritePlayAnimation(szAnim, false);
+			m_pcrawler->AnimateSpritePlayAnimation(szAnim.c_str(), false);
 			m_canimation = szAnim;
 		}
 		m_ieffect = 1;
@@ -282,11 +282,11 @@ void EnemyAnimator::Delete()
 //===========================================================================
 //
 // 判定是否可以打断当前动画
-int EnemyAnimator::AnimationBreak(char* szAnim)
+int EnemyAnimator::AnimationBreak(string szAnim)
 {
-	int same = strcmp(szAnim, m_canimation);
+	int same = strcmp(szAnim.c_str(), m_canimation.c_str());
 	if (same != 0)
-		if (strcmp("K", szAnim) == 0 || strcmp("Wk", m_canimation) == 0)
+		if (strcmp("K", szAnim.c_str()) == 0 || strcmp("Wk", m_canimation.c_str()) == 0)
 		{
 			return(true);
 		}
@@ -300,7 +300,7 @@ void EnemyAnimator::Show()
 {
 	m_tface->SetTextValue(getface);
 	m_tcon->SetTextValue(m_icon);
-	m_tanimation->SetTextString(m_canimation);
+	m_tanimation->SetTextString(m_canimation.c_str());
 	m_teffect->SetTextValue(m_ieffect);
 	m_ttime->SetTextValueFloat(m_ftime);
 	m_tHP->SetTextValue(m_iHP);

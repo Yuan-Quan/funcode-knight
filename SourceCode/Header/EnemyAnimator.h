@@ -18,7 +18,7 @@ public:
     //用来对接api的回调函数
     void            key_press_callback(int key);
     void            key_release_callback(const int key);
-    void            get_col_callback(const char* script);
+    void            get_col_callback(string script);
 
     //主处理循环，用于更新状态，计算进度等
     void            main_loop(float dt);
@@ -40,11 +40,11 @@ private:
     float           m_ftime;                    // 受伤后的无敌时间
     int             m_iHP;                      // 爬虫血量，初值为10
     int				m_ieffect;					// 特效释放状态，0：不可释放；1：可以释放；
-    char*           m_canimation;               // 记录当前动画
-    char*           m_ceffectani;               // 记录当前特效动画
-    char*           nameE;                      // 怪物名
-    char*           nameL;                      // 左边界名
-    char*           nameR;                      // 右边界名
+    string           m_canimation;               // 记录当前动画
+    string           m_ceffectani;               // 记录当前特效动画
+    string           nameE;                      // 怪物名
+    string           nameL;                      // 左边界名
+    string           nameR;                      // 右边界名
     int             ESC;
     int             ONE;
     int             TWO;
@@ -54,11 +54,11 @@ private:
     float           INIY;
     void            face();
     void            move();
-    void            hurt(char* szAnim);
-    void            Release(char* szAnim, int LinkPoint);
-    void            Animation(char* szAnim);
+    void            hurt(string szAnim);
+    void            Release(string szAnim, int LinkPoint);
+    void            Animation(string szAnim);
     void            Delete();
-    int             AnimationBreak(char* szAnim);
+    int             AnimationBreak(string szAnim);
     void            Show();
     CTextSprite* m_tface;					// face示数
     CTextSprite* m_tcon;					// con示数

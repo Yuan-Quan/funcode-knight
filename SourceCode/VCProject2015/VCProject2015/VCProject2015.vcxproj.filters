@@ -54,6 +54,12 @@
     <ClCompile Include="..\..\Src\Tutorial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\BossStage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\HollowSound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Src\MusicBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -64,9 +70,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\SoundEffectsPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\BossStage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,6 +113,15 @@
     <ClInclude Include="..\..\Header\Tutorial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Header\HollowSound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\BossStage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\HKAudio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Header\MusicBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -123,12 +135,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Header\SoundEffectsPlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Header\HollowSound.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Header\BossStage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

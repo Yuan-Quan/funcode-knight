@@ -26,13 +26,13 @@ GameUI::GameUI()
 	save = new SaveFile();
 	save->scene = 2;
 	save->time = 0;
+
 }
 
 bool GameUI::key_press_callback(int key)
 {
 	if (is_in_main_menu)
 	{
-
 		if (key == hk_config::KeyBinds::KEY_DOWN)
 		{
 			if (main_menu_option < 2)
@@ -125,6 +125,7 @@ bool GameUI::key_press_callback(int key)
 		{
 		case 0:
 		case 1:
+		case 2:
 			save_black->SetSpriteVisible(false);
 			save_dirt->SetSpriteVisible(false);
 			save_kings->SetSpriteVisible(false);
@@ -132,7 +133,7 @@ bool GameUI::key_press_callback(int key)
 			txt_save_area->SetTextString("NULL");
 			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
 			break;
-		case 2:
+		case 3:
 			save_black->SetSpriteVisible(false);
 			save_dirt->SetSpriteVisible(false);
 			save_kings->SetSpriteVisible(true);
@@ -140,7 +141,7 @@ bool GameUI::key_press_callback(int key)
 			txt_save_area->SetTextString("KING'S PATH");
 			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
 			break;
-		case 3:
+		case 4:
 			save_black->SetSpriteVisible(false);
 			save_dirt->SetSpriteVisible(true);
 			save_kings->SetSpriteVisible(false);
@@ -148,7 +149,7 @@ bool GameUI::key_press_callback(int key)
 			txt_save_area->SetTextString("DIRTMOUTH");
 			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
 			break;
-		case 4:
+		case 5:
 			save_black->SetSpriteVisible(false);
 			save_dirt->SetSpriteVisible(false);
 			save_kings->SetSpriteVisible(false);
@@ -156,7 +157,7 @@ bool GameUI::key_press_callback(int key)
 			txt_save_area->SetTextString("CROSSRODE");
 			txt_save_time->SetTextString((std::to_string(save->time) + "M").c_str());
 			break;
-		case 5:
+		case 6:
 			save_black->SetSpriteVisible(true);
 			save_dirt->SetSpriteVisible(false);
 			save_kings->SetSpriteVisible(false);

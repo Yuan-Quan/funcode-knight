@@ -19,10 +19,11 @@
 #include "EnemyAnimator.h"
 #include "FlyAnimator.h"
 #include "Tutorial.h"
-//#include "HollowSound.h"
+#include "BossStage.h"
 #include "SoundDevice.h"
 #include "SoundEffectsPlayer.h"
 #include "SoundEffectsLibrary.h"
+#include "HollowSound.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -35,6 +36,7 @@ enum Scenes
 	KINGS_PATH = 3,
 	DIRT_MOUTH = 4,
 	CROSS_ROAD = 5,
+	BOSS_STAGE = 6,
 };
 //struct SaveFile
 //{
@@ -46,47 +48,7 @@ enum Scenes
 class	CGameMain
 {
 private:
-	SoundDevice* sd = LISTENER->Get();
-	//int MenuBGM = SE_LOAD("main_menu.wav");
-	//int MenuBGM = SE_LOAD("C:\\Users\\metro\\source\\repos\\kings_physics\\Bin\\game\\data\\audio\\main_menu.wav");
-	SoundEffectsPlayer menu_bgm_sfx_;
-	ALint attunation = AL_INVERSE_DISTANCE_CLAMPED;
-	
-	int sd_current_scene_ = 0;
-	int sd_last_scene_ = -1;
-	
-	void sound_init()
-	{
-		sd->SetAttunation(attunation);
-		sd->SetLocation(0.f, 0.f, 0.f);
-		sd->SetOrientation(0.f, 1.f, 0.f, 0.f, 0.f, 1.f);
-		menu_bgm_sfx_.SetLooping(true);
-		menu_bgm_sfx_.SetPosition(0, 0, 0);
-	}
-
-	//void sound_set_scene(int scene)
-	//{
-	//	sd_current_scene_ = scene;
-	//}
-	
-	void sound_loop(float dt);
-//	void sound_main_loop(float dt)
-//	{
-//		if (sd_current_scene_ != sd_last_scene_)
-//		{
-//			switch (sd_current_scene_)
-//			{
-//			case 0:
-//				break;
-//			case 1:
-//				break;
-//			default:
-//				break;
-//			}
-//			sd_last_scene_ = sd_current_scene_;
-//		}
-//	}
-
+		
 	int				m_iGameState;				// 游戏状态，0：结束或者等待开始；1：初始化；2：游戏进行中
 	void trigger_scene_callback(std::string src_name, std::string tar_name);
 	void update_scene();
@@ -101,6 +63,7 @@ private:
 	void init_kings_path();
 	void init_dirtmouth();
 	void init_crossroad();
+	void init_boss_State();
 	bool is_inited_main_menu;
 	bool is_inited_kings_path;
 	bool is_inited_dirtmouth;
@@ -110,6 +73,7 @@ private:
 	void load_kings_path();
 	void load_dirtmouth();
 	void load_crossroad();
+	void load_boss_stage();
 	int auto_save_interval = 60;
 	long last_save_time = 0;
 	void auto_save();
@@ -135,7 +99,9 @@ private:
 	CoreLogic core_logic = CoreLogic("knight_placeholder");
 	HUD hud = HUD("hp_mask_0", "soul_orb");
 	GameUI game_ui = GameUI();
+	BossStage boss_stage = BossStage();
 	//SceneManager scene_manager = SceneManager();
+	HollowSound hollow_sound = HollowSound();
 
 
 public:

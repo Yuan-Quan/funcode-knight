@@ -21,7 +21,7 @@ int FirstStage=0;
 int Typed = 0;
 int hp=3;
 bool Seted;
+bool IsPressed = false;
 bool dan1=false,dan2=false,dan3=false;
-
 };
 

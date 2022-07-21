@@ -3,6 +3,7 @@
 #include <functional>
 #include <Eigen/Dense>
 #include "CoreLogic.h"
+#include "HollowSound.h"
 
 namespace hk_config {
 enum KeyBinds
@@ -50,6 +51,7 @@ private:
 	std::function<bool()> is_grounded_nh_;
 
 	CoreLogic* core_logic_instance_;
+	HollowSound hollow_sound = HollowSound();
 
 	Eigen::Vector2f tmp_vel_;
 	Eigen::Vector2f const_vel_;
@@ -79,11 +81,18 @@ private:
 	int jump_refresh = 1;
 	bool dash_refresh = true;
 	bool dash_down = false;
+	bool waiting_land = false;
+	float land_timer = 0.f;
+	bool is_running_l;
+	bool is_running_r;
+	bool last_running_status;
 
 	void update_jump_stat(float dt);
 	void update_dash_stat(float dt);
 	void update_heal_stat(float dt);
 	void update_cool_down(float dt);
+	void update_land(float dt);
+	void update_runing();
 	void update_velocity();
 	void summing();
 
